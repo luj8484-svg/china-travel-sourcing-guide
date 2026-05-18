@@ -1,0 +1,31 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<BaseLayout
+  title="Blog"
+  description="English China travel, Canton Fair, wholesale market, and sourcing guides for international visitors and buyers."
+  canonical="/blog/"
+>
+  <section class="content-page">
+    <div class="page-header">
+      <span class="eyebrow">Blog</span>
+      <h1>Practical China travel and sourcing guides.</h1>
+      <p>Search-focused articles written for visitors, Canton Fair buyers, and small business importers.</p>
+    </div>
+    <div class="article-grid">
+      {posts.map((post: any) => (
+        <a class="article-card" href={`/blog/${post.slug ?? post.id.replace(/\.(md|mdx)$/, '')}/`}>
+          <span class="article-meta">{post.data.category.replace('-', ' ')}</span>
+          <h2>{post.data.title}</h2>
+          <p>{post.data.description}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

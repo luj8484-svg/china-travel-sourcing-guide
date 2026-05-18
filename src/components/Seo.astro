@@ -1,0 +1,40 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  type?: 'website' | 'article';
+  schema?: Record<string, unknown>[];
+}
+
+const {
+  title,
+  description,
+  canonical = Astro.url.pathname,
+  ogImage = '/og/default.svg',
+  type = 'website',
+  schema = []
+} = Astro.props;
+
+const site = Astro.site ?? new URL(Astro.url.origin);
+const canonicalUrl = canonical.startsWith('http') ? canonical : new URL(canonical, site).href;
+const imageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, site).href;
+const siteName = 'China Travel & Sourcing Guide';
+const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
+---
+
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl} />
+<meta property="og:site_name" content={siteName} />
+<meta property="og:type" content={type} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:image" content={imageUrl} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
+{schema.map((item) => <script is:inline type="application/ld+json" set:html={JSON.stringify(item)} />)}

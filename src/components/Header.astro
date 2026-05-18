@@ -1,0 +1,20 @@
+---
+const navItems = [
+  { href: '/china-travel/', label: 'China Travel' },
+  { href: '/canton-fair/', label: 'Canton Fair' },
+  { href: '/china-sourcing/', label: 'Sourcing' },
+  { href: '/blog/', label: 'Blog' },
+  { href: '/tools/', label: 'Tools' },
+  { href: '/contact/', label: 'Contact' }
+];
+---
+
+<header class="site-header">
+  <a class="brand" href="/" aria-label="China Travel and Sourcing Guide home">
+    <span class="brand-mark">CT</span>
+    <span>China Travel & Sourcing Guide</span>
+  </a>
+  <nav class="site-nav" aria-label="Primary navigation">
+    {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
+  </nav>
+</header>

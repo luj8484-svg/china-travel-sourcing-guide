@@ -1,0 +1,18 @@
+---
+interface Props {
+  href: string;
+  eyebrow: string;
+  title: string;
+  description: string;
+  accent?: 'travel' | 'fair' | 'sourcing';
+}
+
+const { href, eyebrow, title, description, accent = 'travel' } = Astro.props;
+---
+
+<a class={`entry-card ${accent}`} href={href}>
+  <span>{eyebrow}</span>
+  <h3>{title}</h3>
+  <p>{description}</p>
+  <strong>Open guide</strong>
+</a>

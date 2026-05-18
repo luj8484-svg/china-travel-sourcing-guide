@@ -1,0 +1,85 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Faq from '@components/Faq.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post: any) => ({
+    params: { slug: post.slug ?? post.id.replace(/\.(md|mdx)$/, '') },
+    props: { post }
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const slug = post.slug ?? post.id.replace(/\.(md|mdx)$/, '');
+const canonical = post.data.canonical ?? `/blog/${slug}/`;
+const articleUrl = new URL(canonical, Astro.site ?? Astro.url.origin).href;
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.pubDate.toISOString(),
+  dateModified: (post.data.updatedDate ?? post.data.pubDate).toISOString(),
+  mainEntityOfPage: articleUrl,
+  image: new URL(post.data.ogImage, Astro.site ?? Astro.url.origin).href,
+  author: {
+    '@type': 'Organization',
+    name: 'China Travel & Sourcing Guide'
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'China Travel & Sourcing Guide'
+  }
+};
+const faqSchema = post.data.faqs
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: post.data.faqs.map((item: { question: string; answer: string }) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: item.answer
+        }
+      }))
+    }
+  : null;
+const schema = faqSchema ? [articleSchema, faqSchema] : [articleSchema];
+---
+
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description}
+  canonical={canonical}
+  ogImage={post.data.ogImage}
+  type="article"
+  schema={schema}
+>
+  <article class="article-shell">
+    <header class="article-header page-header">
+      <span class="eyebrow">{post.data.category.replace('-', ' ')}</span>
+      <h1>{post.data.title}</h1>
+      <p>{post.data.description}</p>
+      <span class="article-meta">
+        Published {post.data.pubDate.toLocaleDateString('en', { year: 'numeric', month: 'long', day: 'numeric' })}
+      </span>
+    </header>
+    <div class="content-grid">
+      <div class="prose">
+        <Content />
+        <Faq items={post.data.faqs} />
+      </div>
+      <aside class="sidebar">
+        <div class="notice-box">
+          <h2>Need a checklist?</h2>
+          <p>This article can later link to a paid PDF, service inquiry form, or supplier matching offer.</p>
+          <a class="button secondary" href="/contact/">Ask a question</a>
+        </div>
+      </aside>
+    </div>
+  </article>
+</BaseLayout>

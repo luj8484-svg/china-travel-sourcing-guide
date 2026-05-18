@@ -1,0 +1,119 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import EntryCard from '@components/EntryCard.astro';
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'China Travel & Sourcing Guide',
+    url: Astro.site?.href ?? 'https://chinatravelsourcingguide.com/',
+    inLanguage: 'en',
+    description:
+      'English guides for first-time China travelers, Canton Fair visitors, and international sourcing buyers.'
+  }
+];
+---
+
+<BaseLayout
+  title="China Travel & Sourcing Guide"
+  description="Practical English guides, checklists, and tools for China travel, Canton Fair trips, and supplier sourcing."
+  schema={schema}
+>
+  <section class="hero">
+    <div class="hero-copy">
+      <span class="eyebrow">Travel smarter. Source with less friction.</span>
+      <h1>China guides for visitors, buyers, and small business importers.</h1>
+      <p>
+        Clear English resources for planning a first China trip, attending the Canton Fair, navigating wholesale
+        markets, and preparing supplier conversations before money is on the line.
+      </p>
+      <div class="hero-actions">
+        <a class="button" href="/china-travel/">Plan a China trip</a>
+        <a class="button secondary" href="/china-sourcing/">Start sourcing</a>
+      </div>
+    </div>
+    <div class="visual-panel" aria-label="China trip planning workflow">
+      <div class="route-map">
+        <div class="route-step">
+          <span>1</span>
+          <div>
+            <strong>Prepare</strong>
+            <p>Visa-free transit, payment apps, SIM or eSIM, hotel location, and must-have documents.</p>
+          </div>
+        </div>
+        <div class="route-step">
+          <span>2</span>
+          <div>
+            <strong>Visit</strong>
+            <p>Trade fair route planning, market days, factory visits, samples, and quality notes.</p>
+          </div>
+        </div>
+        <div class="route-step">
+          <span>3</span>
+          <div>
+            <strong>Follow up</strong>
+            <p>Supplier comparison, quotation checks, shipping terms, and next-step negotiation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="start-title">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">Start here</span>
+        <h2 id="start-title">Choose the path that matches your trip.</h2>
+      </div>
+      <p>Each section is built for search traffic first, then expandable into paid PDFs, consulting, and lead capture.</p>
+    </div>
+    <div class="entry-grid">
+      <EntryCard
+        href="/china-travel/"
+        eyebrow="First-time visitors"
+        title="First-Time China Travel"
+        description="Payments, transportation, apps, safety basics, and city-by-city planning for first China trips."
+        accent="travel"
+      />
+      <EntryCard
+        href="/canton-fair/"
+        eyebrow="Trade fair trips"
+        title="Canton Fair Guide"
+        description="Registration, phases, hotels, buyer routes, sample handling, and what to do after the fair."
+        accent="fair"
+      />
+      <EntryCard
+        href="/china-sourcing/"
+        eyebrow="Small importers"
+        title="China Sourcing Guide"
+        description="Supplier discovery, wholesale markets, factory visits, quoting, payment terms, and QC basics."
+        accent="sourcing"
+      />
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="latest-title">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">Latest guides</span>
+        <h2 id="latest-title">Useful posts to publish first.</h2>
+      </div>
+      <a class="button secondary" href="/blog/">View all posts</a>
+    </div>
+    <div class="article-grid">
+      {posts.map((post: any) => (
+        <a class="article-card" href={`/blog/${post.slug ?? post.id.replace(/\.(md|mdx)$/, '')}/`}>
+          <span class="article-meta">{post.data.category.replace('-', ' ')}</span>
+          <h2>{post.data.title}</h2>
+          <p>{post.data.description}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

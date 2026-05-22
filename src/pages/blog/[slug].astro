@@ -49,6 +49,33 @@ const faqSchema = post.data.faqs
     }
   : null;
 const schema = faqSchema ? [articleSchema, faqSchema] : [articleSchema];
+const checklistCtaByCategory = {
+  'china-travel': {
+    heading: 'Use the checklist',
+    body: 'Before departure, review the China Trip Checklist to confirm your payment setup, internet access, hotel address, transport plan, and daily route.',
+    href: '/tools/china-trip-checklist/',
+    label: 'Open checklist'
+  },
+  'canton-fair': {
+    heading: 'Use the buyer checklist',
+    body: 'Before booking flights, review the Canton Fair Buyer Checklist to confirm your phase, buyer badge, hotel area, supplier questions, and follow-up process.',
+    href: '/tools/canton-fair-buyer-checklist/',
+    label: 'Open buyer checklist'
+  },
+  'china-sourcing': {
+    heading: 'Use the supplier comparison sheet',
+    body: 'When comparing suppliers, use the Supplier Comparison Sheet to track MOQ, price, sample cost, lead time, payment terms, trade terms, and communication quality.',
+    href: '/tools/supplier-comparison-sheet/',
+    label: 'Open comparison sheet'
+  },
+  tools: {
+    heading: 'Use the tools',
+    body: 'Review the related checklist or template before you make travel, fair, or supplier decisions.',
+    href: '/tools/',
+    label: 'Open tools'
+  }
+};
+const checklistCta = checklistCtaByCategory[post.data.category as keyof typeof checklistCtaByCategory];
 ---
 
 <BaseLayout
@@ -75,9 +102,9 @@ const schema = faqSchema ? [articleSchema, faqSchema] : [articleSchema];
       </div>
       <aside class="sidebar">
         <div class="notice-box">
-          <h2>Need a checklist?</h2>
-          <p>Send a question if you are planning a route, preparing for a fair, or comparing suppliers.</p>
-          <a class="button secondary" href="/contact/">Ask a question</a>
+          <h2>{checklistCta.heading}</h2>
+          <p>{checklistCta.body}</p>
+          <a class="button secondary" href={checklistCta.href}>{checklistCta.label}</a>
         </div>
       </aside>
     </div>

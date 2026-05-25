@@ -20,7 +20,7 @@ const {
 const site = Astro.site ?? new URL(Astro.url.origin);
 const canonicalUrl = canonical.startsWith('http') ? canonical : new URL(canonical, site).href;
 const imageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, site).href;
-const siteName = 'China Travel & Sourcing Guide';
+const siteName = 'China Buyer Prep';
 const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
 ---
 

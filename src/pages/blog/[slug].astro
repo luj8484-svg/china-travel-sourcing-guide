@@ -27,11 +27,11 @@ const articleSchema = {
   image: new URL(post.data.ogImage, Astro.site ?? Astro.url.origin).href,
   author: {
     '@type': 'Organization',
-    name: 'China Travel & Sourcing Guide'
+    name: 'China Buyer Prep'
   },
   publisher: {
     '@type': 'Organization',
-    name: 'China Travel & Sourcing Guide'
+    name: 'China Buyer Prep'
   }
 };
 const faqSchema = post.data.faqs

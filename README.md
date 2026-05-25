@@ -1,6 +1,6 @@
-# China Travel & Sourcing Guide
+# China Buyer Prep
 
-An English content site for first-time China travelers, Canton Fair visitors, and overseas small business buyers sourcing from China.
+Practical China travel, Canton Fair, and sourcing checklists for first-time overseas buyers.
 
 The site is built with Astro for fast static output, Markdown/MDX article publishing, SEO-friendly metadata, sitemap generation, robots.txt, Article schema, and FAQ schema.
 
@@ -101,7 +101,7 @@ Supported categories:
 - Blog posts automatically include Article schema.
 - Blog posts with `faqs` automatically include FAQ schema.
 
-Before deployment, update the `site` value in `astro.config.mjs` and the sitemap URL in `public/robots.txt` to match the production domain.
+The production domain is configured as `https://www.chinabuyerprep.com` in `astro.config.mjs` and `public/robots.txt`.
 
 ## Deployment
 

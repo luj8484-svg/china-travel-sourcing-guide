@@ -4,7 +4,6 @@
   <circle cx="970" cy="158" r="52" fill="#C94A35"/>
   <path d="M163 417C236 320 313 270 394 267C487 264 520 333 610 323C701 313 732 229 823 224C892 220 954 264 1010 356" stroke="#1F5E5A" stroke-width="18" stroke-linecap="round"/>
   <path d="M171 450H1018" stroke="#D9D3C7" stroke-width="10" stroke-linecap="round"/>
-  <text x="160" y="208" fill="#1C2523" font-family="Arial, Helvetica, sans-serif" font-size="62" font-weight="700">China Travel &amp;</text>
-  <text x="160" y="282" fill="#1C2523" font-family="Arial, Helvetica, sans-serif" font-size="62" font-weight="700">Sourcing Guide</text>
-  <text x="162" y="349" fill="#52605B" font-family="Arial, Helvetica, sans-serif" font-size="30">Practical English guides for trips, trade fairs, and suppliers.</text>
+  <text x="160" y="230" fill="#1C2523" font-family="Arial, Helvetica, sans-serif" font-size="70" font-weight="700">China Buyer Prep</text>
+  <text x="162" y="312" fill="#52605B" font-family="Arial, Helvetica, sans-serif" font-size="30">Practical checklists for travel, Canton Fair, and sourcing.</text>
 </svg>

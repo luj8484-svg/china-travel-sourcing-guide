@@ -13,6 +13,9 @@ const blog = defineCollection({
     category: z.enum(['china-travel', 'canton-fair', 'china-sourcing', 'tools']),
     canonical: z.url().optional(),
     ogImage: z.string().default('/og/default.svg'),
+    coverImage: z.string().optional(),
+    coverAlt: z.string().optional(),
+    coverMotif: z.enum(['map', 'checklist', 'badge', 'hotel', 'supplier']).optional(),
     faqs: z
       .array(
         z.object({

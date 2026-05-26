@@ -331,6 +331,13 @@ Avoid:
 
 Current site uses CSS illustration panels. That is acceptable for performance and consistency, but the site will feel more premium if key pages eventually use local, optimized imagery.
 
+Article covers now use a lightweight local visual system:
+
+- Add `coverImage` to blog frontmatter when a local image is available, for example `/images/covers/canton-fair-hotel-area.jpg`.
+- Add `coverAlt` for the image description.
+- Add `coverMotif` when using a CSS/SVG placeholder instead of an image. Supported motifs: `map`, `checklist`, `badge`, `hotel`, `supplier`.
+- If no cover image is provided, blog cards and article headers render an editorial placeholder with warm off-white, deep green, terracotta, and sand accents.
+
 Image rules:
 
 - Do not hotlink external images.
@@ -530,4 +537,3 @@ Run this before considering a visual update done:
 - Important SEO copy remains visible in HTML.
 - Colors match the defined palette.
 - The design feels like a practical China travel/sourcing guide, not a generic SaaS template.
-

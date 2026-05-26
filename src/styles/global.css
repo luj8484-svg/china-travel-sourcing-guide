@@ -208,13 +208,129 @@ h3 {
 
 .visual-panel,
 .hub-visual,
-.article-visual {
+.article-visual,
+.article-cover {
   border: 1px solid rgba(203, 189, 168, 0.9);
   border-radius: var(--radius-lg);
   background:
     linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(243, 234, 220, 0.76)),
     var(--surface);
   box-shadow: var(--shadow-md);
+}
+
+.article-cover {
+  position: relative;
+  display: grid;
+  min-height: 280px;
+  margin: 0 0 34px;
+  overflow: hidden;
+  place-items: center;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(201, 154, 74, 0.18), transparent 12rem),
+    linear-gradient(135deg, #fffdf8, var(--surface-tint));
+}
+
+.article-cover.compact {
+  width: 100%;
+  min-height: 150px;
+  margin: 0 0 18px;
+  border-radius: 14px;
+  box-shadow: none;
+}
+
+.article-cover.has-image {
+  background: var(--surface);
+}
+
+.article-cover img {
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  object-fit: cover;
+}
+
+.cover-grid {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(23, 79, 73, 0.08) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(23, 79, 73, 0.07) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: linear-gradient(135deg, rgba(0, 0, 0, 0.82), transparent 78%);
+}
+
+.cover-motif {
+  position: relative;
+  width: min(70%, 430px);
+  color: var(--green);
+  z-index: 1;
+}
+
+.article-cover.compact .cover-motif {
+  width: min(78%, 260px);
+}
+
+.cover-motif svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.cover-motif path,
+.cover-motif rect,
+.cover-motif circle {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 8;
+}
+
+.cover-motif circle {
+  fill: var(--red);
+  stroke: #fff8ec;
+}
+
+.article-cover.badge,
+.article-cover.hotel {
+  background:
+    radial-gradient(circle at 80% 20%, rgba(185, 79, 63, 0.17), transparent 13rem),
+    linear-gradient(135deg, #fffdf8, var(--pale-red));
+}
+
+.article-cover.badge .cover-motif,
+.article-cover.hotel .cover-motif {
+  color: var(--red);
+}
+
+.article-cover.supplier {
+  background:
+    radial-gradient(circle at 82% 22%, rgba(201, 154, 74, 0.2), transparent 13rem),
+    linear-gradient(135deg, #fffdf8, var(--pale-gold));
+}
+
+.article-cover.supplier .cover-motif {
+  color: #8a6221;
+}
+
+.cover-label {
+  position: absolute;
+  right: 18px;
+  bottom: 16px;
+  z-index: 2;
+  max-width: min(70%, 420px);
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--ink);
+  font-size: 0.82rem;
+  font-weight: 850;
+  line-height: 1.2;
+  padding: 9px 13px;
+}
+
+.article-cover.compact .cover-label {
+  display: none;
 }
 
 .visual-panel {
@@ -403,10 +519,15 @@ h3 {
 .article-grid,
 .tool-grid,
 .resource-grid,
-.icon-grid {
+.icon-grid,
+.trust-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
+}
+
+.trust-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .entry-card,
@@ -414,6 +535,8 @@ h3 {
 .tool-card,
 .notice-box,
 .resource-card,
+.trust-card,
+.save-notice,
 .callout,
 .summary-box {
   border: 1px solid var(--line);
@@ -518,7 +641,8 @@ h3 {
 
 .article-card,
 .tool-card,
-.resource-card {
+.resource-card,
+.trust-card {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -535,8 +659,45 @@ h3 {
 
 .article-card p,
 .tool-card p,
-.resource-card p {
+.resource-card p,
+.trust-card p {
   flex: 1;
+}
+
+.trust-card {
+  min-height: 230px;
+}
+
+.trust-card h3 {
+  margin-top: 16px;
+}
+
+.icon-badge.fair {
+  background: var(--red);
+}
+
+.icon-badge.sourcing {
+  background: var(--gold);
+}
+
+.save-notice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 22px;
+  padding: 24px;
+  background:
+    linear-gradient(135deg, rgba(233, 242, 238, 0.9), rgba(255, 255, 255, 0.78)),
+    var(--surface);
+}
+
+.save-notice h2 {
+  margin: 8px 0 8px;
+}
+
+.save-notice p {
+  margin: 0;
 }
 
 .content-page,
@@ -847,7 +1008,8 @@ details p {
   .article-grid,
   .tool-grid,
   .resource-grid,
-  .icon-grid {
+  .icon-grid,
+  .trust-grid {
     grid-template-columns: 1fr;
   }
 
@@ -889,6 +1051,19 @@ details p {
 
   .button {
     width: 100%;
+  }
+
+  .article-cover {
+    min-height: 220px;
+  }
+
+  .article-cover.compact {
+    min-height: 135px;
+  }
+
+  .save-notice {
+    align-items: stretch;
+    flex-direction: column;
   }
 
   .site-nav {

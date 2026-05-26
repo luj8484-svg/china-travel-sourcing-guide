@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '@layouts/BaseLayout.astro';
+import ArticleCover from '@components/ArticleCover.astro';
 import Faq from '@components/Faq.astro';
 
 export async function getStaticPaths() {
@@ -84,6 +85,14 @@ const checklistCtaByCategory = {
   }
 };
 const checklistCta = checklistCtaByCategory[post.data.category as keyof typeof checklistCtaByCategory];
+const motifByCategory = {
+  'china-travel': 'map',
+  'canton-fair': slug.includes('stay-guangzhou') ? 'hotel' : 'badge',
+  'china-sourcing': 'supplier',
+  tools: 'checklist'
+} as const;
+const coverMotif =
+  post.data.coverMotif ?? motifByCategory[post.data.category as keyof typeof motifByCategory] ?? 'checklist';
 ---
 
 <BaseLayout
@@ -103,6 +112,12 @@ const checklistCta = checklistCtaByCategory[post.data.category as keyof typeof c
         Published {post.data.pubDate.toLocaleDateString('en', { year: 'numeric', month: 'long', day: 'numeric' })}
       </span>
     </header>
+    <ArticleCover
+      image={post.data.coverImage}
+      alt={post.data.coverAlt ?? post.data.title}
+      motif={coverMotif}
+      label={post.data.title}
+    />
     <div class="content-grid">
       <div class="prose">
         <div class="article-summary">

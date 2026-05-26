@@ -1,10 +1,18 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '@layouts/BaseLayout.astro';
+import ArticleCover from '@components/ArticleCover.astro';
 
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
+
+const motifByCategory = {
+  'china-travel': 'map',
+  'canton-fair': 'badge',
+  'china-sourcing': 'supplier',
+  tools: 'checklist'
+} as const;
 ---
 
 <BaseLayout
@@ -21,6 +29,13 @@ const posts = (await getCollection('blog')).sort(
     <div class="article-grid">
       {posts.map((post: any) => (
         <a class="article-card" href={`/blog/${post.slug ?? post.id.replace(/\.(md|mdx)$/, '')}/`}>
+          <ArticleCover
+            image={post.data.coverImage}
+            alt={post.data.coverAlt ?? post.data.title}
+            motif={post.data.coverMotif ?? motifByCategory[post.data.category as keyof typeof motifByCategory]}
+            label={post.data.title}
+            compact
+          />
           <span class="article-meta">{post.data.category.replace('-', ' ')}</span>
           <h2>{post.data.title}</h2>
           <p>{post.data.description}</p>

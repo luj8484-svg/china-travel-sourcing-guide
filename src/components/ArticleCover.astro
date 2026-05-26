@@ -1,0 +1,74 @@
+---
+interface Props {
+  image?: string;
+  alt?: string;
+  motif?: 'map' | 'checklist' | 'badge' | 'hotel' | 'supplier';
+  label?: string;
+  compact?: boolean;
+}
+
+const {
+  image,
+  alt = '',
+  motif = 'checklist',
+  label = 'China Buyer Prep guide visual',
+  compact = false
+} = Astro.props;
+---
+
+{
+  image ? (
+    <figure class={`article-cover has-image ${compact ? 'compact' : ''}`}>
+      <img src={image} alt={alt} loading={compact ? 'lazy' : 'eager'} decoding="async" />
+    </figure>
+  ) : (
+    <div
+      class={`article-cover placeholder ${motif} ${compact ? 'compact' : ''}`}
+      role="img"
+      aria-label={label}
+    >
+      <div class="cover-grid" aria-hidden="true"></div>
+      <div class="cover-motif" aria-hidden="true">
+        {motif === 'map' && (
+          <svg viewBox="0 0 320 180">
+            <path d="M42 122 C82 50, 126 144, 168 84 S250 54, 282 114" />
+            <circle cx="42" cy="122" r="12" />
+            <circle cx="168" cy="84" r="12" />
+            <circle cx="282" cy="114" r="12" />
+          </svg>
+        )}
+        {motif === 'checklist' && (
+          <svg viewBox="0 0 320 180">
+            <rect x="72" y="34" width="176" height="118" rx="16" />
+            <path d="M104 72 l13 13 l28 -33" />
+            <path d="M104 112 l13 13 l28 -33" />
+            <path d="M166 70 H220 M166 112 H220" />
+          </svg>
+        )}
+        {motif === 'badge' && (
+          <svg viewBox="0 0 320 180">
+            <rect x="84" y="30" width="152" height="120" rx="18" />
+            <path d="M126 30 v-16 h68 v16" />
+            <circle cx="136" cy="82" r="22" />
+            <path d="M176 70 H214 M176 94 H214 M112 124 H208" />
+          </svg>
+        )}
+        {motif === 'hotel' && (
+          <svg viewBox="0 0 320 180">
+            <path d="M160 32 C124 32, 100 58, 100 92 c0 42 60 80 60 80 s60 -38 60 -80 c0 -34 -24 -60 -60 -60z" />
+            <circle cx="160" cy="90" r="24" />
+            <path d="M142 91 h36 M142 108 h36" />
+          </svg>
+        )}
+        {motif === 'supplier' && (
+          <svg viewBox="0 0 320 180">
+            <rect x="58" y="42" width="204" height="104" rx="14" />
+            <path d="M58 78 H262 M126 42 V146 M194 42 V146" />
+            <path d="M82 104 h24 M150 104 h24 M218 104 h20 M82 126 h24 M150 126 h24 M218 126 h20" />
+          </svg>
+        )}
+      </div>
+      <span class="cover-label">{label}</span>
+    </div>
+  )
+}

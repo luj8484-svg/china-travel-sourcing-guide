@@ -8,9 +8,16 @@ interface Props {
 }
 
 const { href, eyebrow, title, description, accent = 'travel' } = Astro.props;
+
+const iconByAccent = {
+  travel: 'TR',
+  fair: 'CF',
+  sourcing: 'SO'
+};
 ---
 
 <a class={`entry-card ${accent}`} href={href}>
+  <span class="entry-icon" aria-hidden="true">{iconByAccent[accent]}</span>
   <span>{eyebrow}</span>
   <h3>{title}</h3>
   <p>{description}</p>

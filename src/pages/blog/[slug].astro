@@ -54,25 +54,33 @@ const checklistCtaByCategory = {
     heading: 'Use the checklist',
     body: 'Before departure, review the China Trip Checklist to confirm your payment setup, internet access, hotel address, transport plan, and daily route.',
     href: '/tools/china-trip-checklist/',
-    label: 'Open checklist'
+    label: 'Open checklist',
+    quick: 'Confirm payment, internet, hotel address, transport, and daily route before departure.',
+    avoid: 'Do not wait until arrival to test payment, maps, translation, or your hotel address.'
   },
   'canton-fair': {
     heading: 'Use the buyer checklist',
     body: 'Before booking flights, review the Canton Fair Buyer Checklist to confirm your phase, buyer badge, hotel area, supplier questions, and follow-up process.',
     href: '/tools/canton-fair-buyer-checklist/',
-    label: 'Open buyer checklist'
+    label: 'Open buyer checklist',
+    quick: 'Confirm your fair phase, hotel area, buyer badge, supplier questions, and follow-up process before booking too much of the trip.',
+    avoid: 'Do not choose flights or hotels before checking the fair phase and your daily route to Pazhou.'
   },
   'china-sourcing': {
     heading: 'Use the supplier comparison sheet',
     body: 'When comparing suppliers, use the Supplier Comparison Sheet to track MOQ, price, sample cost, lead time, payment terms, trade terms, and communication quality.',
     href: '/tools/supplier-comparison-sheet/',
-    label: 'Open comparison sheet'
+    label: 'Open comparison sheet',
+    quick: 'Compare suppliers using the same fields: specification, MOQ, price, sample cost, lead time, terms, and communication.',
+    avoid: 'Do not choose a supplier from unit price alone before checking samples, trade terms, packaging, and quality risks.'
   },
   tools: {
     heading: 'Use the tools',
     body: 'Review the related checklist or template before you make travel, fair, or supplier decisions.',
     href: '/tools/',
-    label: 'Open tools'
+    label: 'Open tools',
+    quick: 'Use a checklist or template before making decisions that affect your trip or supplier follow-up.',
+    avoid: 'Do not rely on memory for details you need to compare later.'
   }
 };
 const checklistCta = checklistCtaByCategory[post.data.category as keyof typeof checklistCtaByCategory];
@@ -88,7 +96,7 @@ const checklistCta = checklistCtaByCategory[post.data.category as keyof typeof c
 >
   <article class="article-shell">
     <header class="article-header page-header">
-      <span class="eyebrow">{post.data.category.replace('-', ' ')}</span>
+      <span class="eyebrow category-badge">{post.data.category.replace('-', ' ')}</span>
       <h1>{post.data.title}</h1>
       <p>{post.data.description}</p>
       <span class="article-meta">
@@ -97,6 +105,16 @@ const checklistCta = checklistCtaByCategory[post.data.category as keyof typeof c
     </header>
     <div class="content-grid">
       <div class="prose">
+        <div class="article-summary">
+          <div class="summary-box">
+            <span class="card-kicker">Article summary</span>
+            <p>{post.data.description}</p>
+          </div>
+          <div class="callout quick-answer">
+            <strong>Quick answer</strong>
+            <p>{checklistCta.quick}</p>
+          </div>
+        </div>
         <Content />
         <Faq items={post.data.faqs} />
       </div>
@@ -105,6 +123,10 @@ const checklistCta = checklistCtaByCategory[post.data.category as keyof typeof c
           <h2>{checklistCta.heading}</h2>
           <p>{checklistCta.body}</p>
           <a class="button secondary" href={checklistCta.href}>{checklistCta.label}</a>
+        </div>
+        <div class="notice-box mistake-callout">
+          <h2>Common mistake</h2>
+          <p>{checklistCta.avoid}</p>
         </div>
       </aside>
     </div>

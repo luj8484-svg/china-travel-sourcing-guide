@@ -8,13 +8,24 @@ import BaseLayout from '@layouts/BaseLayout.astro';
   canonical="/canton-fair/"
 >
   <section class="content-page">
-    <div class="page-header">
-      <span class="eyebrow">Canton Fair Guide</span>
-      <h1>Prepare for the Canton Fair like a serious buyer.</h1>
-      <p>
-        The fair is easier to use when you know which phase to attend, where to stay, how to organize booth visits, and
-        what information to collect from suppliers.
-      </p>
+    <div class="hub-hero">
+      <div class="page-header">
+        <span class="eyebrow">Canton Fair Guide</span>
+        <h1>Prepare for the Canton Fair like a serious buyer.</h1>
+        <p>
+          The fair is easier to use when you know which phase to attend, where to stay, how to organize booth visits, and
+          what information to collect from suppliers.
+        </p>
+        <div class="inline-actions">
+          <a class="button" href="/tools/canton-fair-buyer-checklist/">Open buyer checklist</a>
+          <a class="button secondary" href="/blog/best-area-to-stay-guangzhou-canton-fair/">Choose hotel area</a>
+        </div>
+      </div>
+      <div class="hub-visual" aria-label="Canton Fair preparation summary">
+        <div class="hub-stat"><span class="icon-badge">P1</span><div><strong>Phase</strong><p>Match fair dates to your product category.</p></div></div>
+        <div class="hub-stat"><span class="icon-badge">ID</span><div><strong>Badge</strong><p>Prepare registration details and business cards.</p></div></div>
+        <div class="hub-stat"><span class="icon-badge">Q</span><div><strong>Questions</strong><p>Ask suppliers the same comparison questions.</p></div></div>
+      </div>
     </div>
     <div class="content-grid">
       <div class="prose">
@@ -26,7 +37,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
         </p>
 
         <h2>Common problems buyers run into</h2>
-        <ul>
+        <ul class="checklist">
           <li>Booking flights before confirming the correct fair phase</li>
           <li>Choosing a hotel that adds too much daily transport time</li>
           <li>Collecting brochures without clear supplier notes</li>
@@ -35,7 +46,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
         </ul>
 
         <h2>What to prepare</h2>
-        <ul>
+        <ul class="checklist">
           <li>Confirm whether your products fit Phase 1, Phase 2, or Phase 3</li>
           <li>Prepare buyer badge registration details and business cards</li>
           <li>Book a hotel with practical access to the Pazhou exhibition area</li>
@@ -44,11 +55,26 @@ import BaseLayout from '@layouts/BaseLayout.astro';
         </ul>
 
         <h2>Helpful resources for buyers</h2>
-        <ul>
-          <li><a href="/blog/canton-fair-first-time-buyer-guide/">Canton Fair Guide for First-Time Overseas Buyers</a></li>
-          <li><a href="/tools/canton-fair-buyer-checklist/">Canton Fair Buyer Checklist</a></li>
-          <li><a href="/tools/supplier-comparison-sheet/">Supplier Comparison Sheet</a></li>
-        </ul>
+        <div class="resource-grid">
+          <a class="resource-card" href="/blog/canton-fair-first-time-buyer-guide/">
+            <span class="card-kicker">Guide</span>
+            <h3>First-Time Buyer Guide</h3>
+            <p>Phases, badge basics, booth planning, supplier questions, and follow-up.</p>
+            <strong>Read guide</strong>
+          </a>
+          <a class="resource-card" href="/tools/canton-fair-buyer-checklist/">
+            <span class="card-kicker">Tool</span>
+            <h3>Buyer Checklist</h3>
+            <p>Confirm phase, badge, hotel area, questions, and follow-up process.</p>
+            <strong>Open checklist</strong>
+          </a>
+          <a class="resource-card" href="/tools/supplier-comparison-sheet/">
+            <span class="card-kicker">Template</span>
+            <h3>Supplier Sheet</h3>
+            <p>Track MOQ, samples, trade terms, and communication quality.</p>
+            <strong>Open template</strong>
+          </a>
+        </div>
       </div>
       <aside class="sidebar">
         <div class="notice-box">

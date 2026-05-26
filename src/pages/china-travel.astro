@@ -8,13 +8,24 @@ import BaseLayout from '@layouts/BaseLayout.astro';
   canonical="/china-travel/"
 >
   <section class="content-page">
-    <div class="page-header">
-      <span class="eyebrow">First-time China travel</span>
-      <h1>Plan a smoother first trip to China.</h1>
-      <p>
-        Focus on the practical details that affect every day of the trip: how you pay, how you get online, where you
-        stay, how you show addresses, and how you move between places.
-      </p>
+    <div class="hub-hero">
+      <div class="page-header">
+        <span class="eyebrow">First-time China travel</span>
+        <h1>Plan a smoother first trip to China.</h1>
+        <p>
+          Focus on the practical details that affect every day of the trip: how you pay, how you get online, where you
+          stay, how you show addresses, and how you move between places.
+        </p>
+        <div class="inline-actions">
+          <a class="button" href="/tools/china-trip-checklist/">Open trip checklist</a>
+          <a class="button secondary" href="/blog/china-travel-checklist-first-time-visitors/">Read travel guide</a>
+        </div>
+      </div>
+      <div class="hub-visual" aria-label="China travel preparation summary">
+        <div class="hub-stat"><span class="icon-badge">1</span><div><strong>Payment</strong><p>Set up mobile payment before arrival.</p></div></div>
+        <div class="hub-stat"><span class="icon-badge">2</span><div><strong>Address</strong><p>Save hotel details in Chinese.</p></div></div>
+        <div class="hub-stat"><span class="icon-badge">3</span><div><strong>Route</strong><p>Plan metro, taxi, and daily areas.</p></div></div>
+      </div>
     </div>
     <div class="content-grid">
       <div class="prose">
@@ -26,7 +37,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
         </p>
 
         <h2>Common problems first-time visitors run into</h2>
-        <ul>
+        <ul class="checklist">
           <li>Arriving without a tested payment app or backup payment method</li>
           <li>Using a hotel address that drivers or map apps cannot easily recognize</li>
           <li>Choosing a hotel that looks central on a map but is inconvenient by metro</li>
@@ -35,7 +46,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
         </ul>
 
         <h2>What to prepare before you travel</h2>
-        <ul>
+        <ul class="checklist">
           <li>Install and test Alipay or WeChat Pay before departure</li>
           <li>Choose an eSIM, roaming plan, or local SIM option for internet access</li>
           <li>Save hotel names and addresses in Chinese, plus nearby landmarks</li>
@@ -44,12 +55,26 @@ import BaseLayout from '@layouts/BaseLayout.astro';
         </ul>
 
         <h2>Recommended guides and tools</h2>
-        <ul>
-          <li><a href="/blog/china-travel-checklist-first-time-visitors/">China Travel Checklist for First-Time Visitors</a></li>
-          <li><a href="/tools/china-trip-checklist/">China Trip Checklist</a></li>
-          <li><a href="/canton-fair/">Canton Fair Guide</a> if your trip includes Guangzhou</li>
-          <li><a href="/china-sourcing/">China Sourcing Guide</a> if you will visit markets or suppliers</li>
-        </ul>
+        <div class="resource-grid">
+          <a class="resource-card" href="/blog/china-travel-checklist-first-time-visitors/">
+            <span class="card-kicker">Guide</span>
+            <h3>China Travel Checklist</h3>
+            <p>Payment, internet, addresses, transport, and realistic daily plans.</p>
+            <strong>Read guide</strong>
+          </a>
+          <a class="resource-card" href="/tools/china-trip-checklist/">
+            <span class="card-kicker">Tool</span>
+            <h3>China Trip Checklist</h3>
+            <p>A copyable pre-trip checklist for first-time visitors.</p>
+            <strong>Open checklist</strong>
+          </a>
+          <a class="resource-card" href="/canton-fair/">
+            <span class="card-kicker">Next path</span>
+            <h3>Canton Fair Guide</h3>
+            <p>Useful if your Guangzhou trip includes trade fair days.</p>
+            <strong>Open hub</strong>
+          </a>
+        </div>
       </div>
       <aside class="sidebar">
         <div class="notice-box">

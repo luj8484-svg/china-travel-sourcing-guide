@@ -8,13 +8,24 @@ import BaseLayout from '@layouts/BaseLayout.astro';
   canonical="/china-sourcing/"
 >
   <section class="content-page">
-    <div class="page-header">
-      <span class="eyebrow">China sourcing</span>
-      <h1>Find better suppliers and avoid beginner sourcing mistakes.</h1>
-      <p>
-        Sourcing goes better when you define the product clearly, compare suppliers on the same terms, test samples,
-        and plan quality checks before shipment.
-      </p>
+    <div class="hub-hero">
+      <div class="page-header">
+        <span class="eyebrow">China sourcing</span>
+        <h1>Find better suppliers and avoid beginner sourcing mistakes.</h1>
+        <p>
+          Sourcing goes better when you define the product clearly, compare suppliers on the same terms, test samples,
+          and plan quality checks before shipment.
+        </p>
+        <div class="inline-actions">
+          <a class="button" href="/tools/supplier-comparison-sheet/">Open comparison sheet</a>
+          <a class="button secondary" href="/blog/china-sourcing-checklist-small-business/">Read sourcing checklist</a>
+        </div>
+      </div>
+      <div class="hub-visual" aria-label="China sourcing preparation summary">
+        <div class="hub-stat"><span class="icon-badge">S</span><div><strong>Spec</strong><p>Write product details before asking for quotes.</p></div></div>
+        <div class="hub-stat"><span class="icon-badge">3</span><div><strong>Compare</strong><p>Review multiple suppliers using the same fields.</p></div></div>
+        <div class="hub-stat"><span class="icon-badge">QC</span><div><strong>Check</strong><p>Plan samples, inspection, and shipment details early.</p></div></div>
+      </div>
     </div>
     <div class="content-grid">
       <div class="prose">
@@ -25,7 +36,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
         </p>
 
         <h2>Common problems sourcing beginners run into</h2>
-        <ul>
+        <ul class="checklist">
           <li>Asking for quotes before product specifications are clear</li>
           <li>Comparing suppliers without matching MOQ, trade terms, packaging, and lead time</li>
           <li>Skipping samples or approving samples without written notes</li>
@@ -34,7 +45,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
         </ul>
 
         <h2>What to prepare</h2>
-        <ul>
+        <ul class="checklist">
           <li>Product specifications with size, material, color, packaging, and target market</li>
           <li>A standard supplier comparison sheet</li>
           <li>Sample request notes and approval criteria</li>
@@ -43,11 +54,26 @@ import BaseLayout from '@layouts/BaseLayout.astro';
         </ul>
 
         <h2>Helpful sourcing resources</h2>
-        <ul>
-          <li><a href="/blog/china-sourcing-checklist-small-business/">China Sourcing Checklist for Small Business Importers</a></li>
-          <li><a href="/tools/supplier-comparison-sheet/">Supplier Comparison Sheet</a></li>
-          <li><a href="/tools/canton-fair-buyer-checklist/">Canton Fair Buyer Checklist</a> if you are meeting suppliers at the fair</li>
-        </ul>
+        <div class="resource-grid">
+          <a class="resource-card" href="/blog/china-sourcing-checklist-small-business/">
+            <span class="card-kicker">Guide</span>
+            <h3>Sourcing Checklist</h3>
+            <p>Product specs, suppliers, samples, payment terms, QC, and shipment prep.</p>
+            <strong>Read guide</strong>
+          </a>
+          <a class="resource-card" href="/tools/supplier-comparison-sheet/">
+            <span class="card-kicker">Template</span>
+            <h3>Supplier Sheet</h3>
+            <p>Compare quotes and communication quality side by side.</p>
+            <strong>Open template</strong>
+          </a>
+          <a class="resource-card" href="/tools/canton-fair-buyer-checklist/">
+            <span class="card-kicker">Fair tool</span>
+            <h3>Buyer Checklist</h3>
+            <p>Useful if you are meeting suppliers at the Canton Fair.</p>
+            <strong>Open checklist</strong>
+          </a>
+        </div>
       </div>
       <aside class="sidebar">
         <div class="notice-box">

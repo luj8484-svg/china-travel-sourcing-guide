@@ -79,7 +79,7 @@ const checklistCta = checklistCtaByCategory[post.data.category as keyof typeof c
 ---
 
 <BaseLayout
-  title={post.data.title}
+  title={post.data.metaTitle ?? post.data.title}
   description={post.data.description}
   canonical={canonical}
   ogImage={post.data.ogImage}

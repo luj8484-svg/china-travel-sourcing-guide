@@ -1,0 +1,57 @@
+---
+import PrepStatusCard from './PrepStatusCard.astro';
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  description: string;
+  primaryHref: string;
+  primaryLabel: string;
+  secondaryHref?: string;
+  secondaryLabel?: string;
+  statusTitle?: string;
+  progress?: number;
+}
+
+const {
+  eyebrow,
+  title,
+  description,
+  primaryHref,
+  primaryLabel,
+  secondaryHref,
+  secondaryLabel,
+  statusTitle = 'Before You Land',
+  progress = 60
+} = Astro.props;
+---
+
+<div class="hub-hero">
+  <div class="page-header">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span>›</span>
+      <span>{eyebrow}</span>
+    </nav>
+    <span class="badge">{eyebrow}</span>
+    <h1>{title}</h1>
+    <p>{description}</p>
+    <div class="inline-actions">
+      <a class="button" href={primaryHref}>{primaryLabel}</a>
+      {secondaryHref && secondaryLabel && <a class="button secondary" href={secondaryHref}>{secondaryLabel}</a>}
+    </div>
+  </div>
+  <slot name="visual">
+    <PrepStatusCard
+      title={statusTitle}
+      subtitle="Setup Progress"
+      progress={progress}
+      items={[
+        { label: 'Apps Installed', status: 'Alipay, WeChat', done: true },
+        { label: 'Payment Methods Verified', done: true },
+        { label: 'eSIM / VPN Prepared' },
+        { label: 'Hotel Address in Chinese' }
+      ]}
+    />
+  </slot>
+</div>

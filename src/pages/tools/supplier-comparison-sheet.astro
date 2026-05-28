@@ -1,5 +1,11 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import ToolLayout from '@layouts/ToolLayout.astro';
+import PrepStatusCard from '@components/PrepStatusCard.astro';
+import ToolCard from '@components/ToolCard.astro';
+import WarningBox from '@components/WarningBox.astro';
+import CTASection from '@components/CTASection.astro';
+import SidebarCard from '@components/SidebarCard.astro';
 ---
 
 <BaseLayout
@@ -7,63 +13,58 @@ import BaseLayout from '@layouts/BaseLayout.astro';
   description="A simple supplier comparison template for China sourcing beginners comparing MOQ, price, samples, trade terms, lead time, and communication."
   canonical="/tools/supplier-comparison-sheet/"
 >
-  <section class="content-page">
-    <div class="hub-hero">
+  <ToolLayout>
+    <div slot="hero" class="hub-hero">
       <div class="page-header">
-        <span class="eyebrow">Sourcing tool</span>
+        <span class="badge">Sourcing Tool</span>
         <h1>Supplier Comparison Sheet</h1>
-        <p>
-          Use this template when you contact multiple suppliers. The goal is to compare the same details side by side
-          instead of choosing based only on the lowest unit price.
-        </p>
+        <p>Compare MOQ, price, samples, lead time, trade terms, payment terms, certificates, packaging, and communication quality side by side.</p>
+        <div class="inline-actions">
+          <a class="button" href="#fields">Review comparison fields</a>
+        </div>
       </div>
-      <div class="hub-visual" aria-label="Supplier comparison sheet preview">
-        <div class="hub-stat"><span class="icon-badge">MOQ</span><div><strong>Quantity</strong><p>Compare minimum order quantity and price.</p></div></div>
-        <div class="hub-stat"><span class="icon-badge">S</span><div><strong>Samples</strong><p>Track sample cost and lead time.</p></div></div>
-        <div class="hub-stat"><span class="icon-badge">QC</span><div><strong>Quality</strong><p>Record certificates, tests, and inspection notes.</p></div></div>
-      </div>
+      <PrepStatusCard
+        title="Supplier Comparison Score"
+        subtitle="Required fields prepared"
+        progress={44}
+        tone="orange"
+        items={[
+          { label: 'Product specification written', done: true },
+          { label: 'Target quantity defined' },
+          { label: 'Sample criteria prepared' }
+        ]}
+      />
     </div>
-    <div class="content-grid">
-      <div class="prose">
-        <h2>Comparison fields</h2>
-        <table class="simple-table">
-          <thead>
-            <tr>
-              <th>Field</th>
-              <th>What to record</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Supplier name</td>
-              <td>Company name, contact person, booth number, or platform profile.</td>
-            </tr>
-            <tr>
-              <td>Product match</td>
-              <td>How closely the product fits your specification.</td>
-            </tr>
-            <tr>
-              <td>MOQ and price</td>
-              <td>Minimum order quantity, unit price, and quantity breaks.</td>
-            </tr>
-            <tr>
-              <td>Sample details</td>
-              <td>Sample cost, sample lead time, and shipping method.</td>
-            </tr>
-            <tr>
-              <td>Trade terms</td>
-              <td>EXW, FOB, included packaging, and any excluded costs.</td>
-            </tr>
-            <tr>
-              <td>Quality notes</td>
-              <td>Certificates, test reports, inspection options, and known risks.</td>
-            </tr>
-          </tbody>
-        </table>
 
-        <h2>Copyable supplier note</h2>
-        <div class="copy-box">
-          <pre>Supplier comparison:
+    <section id="fields" class="checklist-panel">
+      <div class="checklist-heading">
+        <div>
+          <span class="status-label">Comparison fields</span>
+          <h2>Record the same details for every supplier</h2>
+        </div>
+      </div>
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>Field</th>
+            <th>What to record</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Supplier name</td><td>Company name, contact person, booth number, or platform profile.</td></tr>
+          <tr><td>Product match</td><td>How closely the product fits your specification.</td></tr>
+          <tr><td>MOQ and price</td><td>Minimum order quantity, unit price, and quantity breaks.</td></tr>
+          <tr><td>Sample details</td><td>Sample cost, sample lead time, and shipping method.</td></tr>
+          <tr><td>Trade terms</td><td>EXW, FOB, included packaging, and any excluded costs.</td></tr>
+          <tr><td>Quality notes</td><td>Certificates, test reports, inspection options, and known risks.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section">
+      <h2>Copyable Supplier Note</h2>
+      <div class="copy-box">
+        <pre>Supplier comparison:
 - Supplier:
 - Contact:
 - Product:
@@ -76,21 +77,30 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 - Certificates or tests:
 - Communication notes:
 - Next action:</pre>
-        </div>
-
-        <h2>Related guides</h2>
-        <ul>
-          <li><a href="/china-sourcing/">China Sourcing Guide</a></li>
-          <li><a href="/blog/china-sourcing-checklist-small-business/">China Sourcing Checklist for Small Business Importers</a></li>
-          <li><a href="/tools/canton-fair-buyer-checklist/">Canton Fair Buyer Checklist</a></li>
-        </ul>
       </div>
-      <aside class="sidebar">
-        <div class="notice-box">
-          <h2>Buyer tip</h2>
-          <p>Compare quotes only after you confirm the same product specification, packaging, trade terms, and lead time.</p>
-        </div>
-      </aside>
-    </div>
-  </section>
+    </section>
+
+    <section class="section">
+      <h2>Related Sourcing Resources</h2>
+      <div class="grid-3">
+        <ToolCard icon="Guide" title="China Sourcing Guide" description="Prepare product specs, samples, payment terms, QC, and shipment questions." href="/china-sourcing/" />
+        <ToolCard icon="Fair" title="Canton Fair Buyer Checklist" description="Useful if you are meeting suppliers at the Canton Fair." href="/tools/canton-fair-buyer-checklist/" />
+        <ToolCard icon="Trip" title="China Trip Checklist" description="Prepare payment, internet, transport, and addresses for supplier visits." href="/tools/china-trip-checklist/" />
+      </div>
+    </section>
+
+    <SidebarCard slot="sidebar" title="Buyer tip">
+      <p>Compare quotes only after you confirm the same product specification, packaging, trade terms, and lead time.</p>
+    </SidebarCard>
+    <WarningBox slot="sidebar" title="Do not compare price alone">
+      <p>A lower unit price can hide higher sample costs, longer lead time, weak packaging, or missing quality documents.</p>
+    </WarningBox>
+  </ToolLayout>
+
+  <CTASection
+    title="Get the Supplier Comparison Template"
+    description="Use one structured template to compare supplier quotes and follow-up decisions."
+    buttonLabel="Open the Template"
+    buttonHref="/tools/supplier-comparison-sheet/"
+  />
 </BaseLayout>

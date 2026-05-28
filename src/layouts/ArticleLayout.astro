@@ -1,0 +1,25 @@
+---
+interface Props {
+  tocLabel?: string;
+}
+
+const { tocLabel = 'On this page' } = Astro.props;
+---
+
+<article class="article-shell">
+  <slot name="header" />
+  <div class="article-grid-shell">
+    <div class="prose">
+      <slot />
+    </div>
+    <aside class="sidebar">
+      <slot name="toc-title">
+        <div class="sidebar-card toc">
+          <h3>{tocLabel}</h3>
+          <slot name="toc" />
+        </div>
+      </slot>
+      <slot name="sidebar" />
+    </aside>
+  </div>
+</article>

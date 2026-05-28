@@ -1,0 +1,38 @@
+---
+import ArticleCover from './ArticleCover.astro';
+
+interface Props {
+  href: string;
+  title: string;
+  description: string;
+  category?: string;
+  readTime?: string;
+  updated?: string;
+  image?: string;
+  motif?: 'map' | 'checklist' | 'badge' | 'hotel' | 'supplier';
+}
+
+const {
+  href,
+  title,
+  description,
+  category = 'Guide',
+  readTime = '6 min read',
+  updated,
+  image,
+  motif = 'checklist'
+} = Astro.props;
+---
+
+<a class="article-card" href={href}>
+  <ArticleCover image={image} alt={title} motif={motif} label={category} compact />
+  <div class="article-card-body">
+    <span class="badge">{category}</span>
+    <h2>{title}</h2>
+    <p>{description}</p>
+    <div class="article-meta-row">
+      <span>{readTime}</span>
+      {updated && <span>Updated {updated}</span>}
+    </div>
+  </div>
+</a>

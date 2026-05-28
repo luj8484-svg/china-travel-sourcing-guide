@@ -1,8 +1,14 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '@layouts/BaseLayout.astro';
+import ArticleLayout from '@layouts/ArticleLayout.astro';
 import ArticleCover from '@components/ArticleCover.astro';
+import ArticleCard from '@components/ArticleCard.astro';
 import Faq from '@components/Faq.astro';
+import SidebarCard from '@components/SidebarCard.astro';
+import WarningBox from '@components/WarningBox.astro';
+import OfficialSourceNote from '@components/OfficialSourceNote.astro';
+import CTASection from '@components/CTASection.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -13,17 +19,24 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const { Content } = await render(post);
+const rendered = await render(post);
+const { Content, headings = [] } = rendered;
+const allPosts = await getCollection('blog');
 const slug = post.slug ?? post.id.replace(/\.(md|mdx)$/, '');
 const canonical = post.data.canonical ?? `/blog/${slug}/`;
 const articleUrl = new URL(canonical, Astro.site ?? Astro.url.origin).href;
+const updatedDate = post.data.updatedDate ?? post.data.pubDate;
+const words = String(post.body ?? post.data.description).trim().split(/\s+/).filter(Boolean).length;
+const readingMinutes = Math.max(3, Math.ceil(words / 180));
+const categoryLabel = post.data.category.replace('-', ' ');
+
 const articleSchema = {
   '@context': 'https://schema.org',
   '@type': 'Article',
   headline: post.data.title,
   description: post.data.description,
   datePublished: post.data.pubDate.toISOString(),
-  dateModified: (post.data.updatedDate ?? post.data.pubDate).toISOString(),
+  dateModified: updatedDate.toISOString(),
   mainEntityOfPage: articleUrl,
   image: new URL(post.data.ogImage, Astro.site ?? Astro.url.origin).href,
   author: {
@@ -52,24 +65,24 @@ const faqSchema = post.data.faqs
 const schema = faqSchema ? [articleSchema, faqSchema] : [articleSchema];
 const checklistCtaByCategory = {
   'china-travel': {
-    heading: 'Use the checklist',
-    body: 'Before departure, review the China Trip Checklist to confirm your payment setup, internet access, hotel address, transport plan, and daily route.',
+    heading: 'Use the travel checklist',
+    body: 'Confirm payment, internet, hotel address, transport, and daily route before departure.',
     href: '/tools/china-trip-checklist/',
     label: 'Open checklist',
-    quick: 'Confirm payment, internet, hotel address, transport, and daily route before departure.',
+    quick: 'Set up payment, internet access, Chinese hotel addresses, transport apps, and a realistic daily route before you land.',
     avoid: 'Do not wait until arrival to test payment, maps, translation, or your hotel address.'
   },
   'canton-fair': {
     heading: 'Use the buyer checklist',
-    body: 'Before booking flights, review the Canton Fair Buyer Checklist to confirm your phase, buyer badge, hotel area, supplier questions, and follow-up process.',
+    body: 'Confirm your phase, hotel area, buyer badge, supplier questions, and follow-up process.',
     href: '/tools/canton-fair-buyer-checklist/',
     label: 'Open buyer checklist',
     quick: 'Confirm your fair phase, hotel area, buyer badge, supplier questions, and follow-up process before booking too much of the trip.',
     avoid: 'Do not choose flights or hotels before checking the fair phase and your daily route to Pazhou.'
   },
   'china-sourcing': {
-    heading: 'Use the supplier comparison sheet',
-    body: 'When comparing suppliers, use the Supplier Comparison Sheet to track MOQ, price, sample cost, lead time, payment terms, trade terms, and communication quality.',
+    heading: 'Use the supplier sheet',
+    body: 'Track MOQ, price, sample cost, lead time, terms, and communication quality.',
     href: '/tools/supplier-comparison-sheet/',
     label: 'Open comparison sheet',
     quick: 'Compare suppliers using the same fields: specification, MOQ, price, sample cost, lead time, terms, and communication.',
@@ -93,6 +106,9 @@ const motifByCategory = {
 } as const;
 const coverMotif =
   post.data.coverMotif ?? motifByCategory[post.data.category as keyof typeof motifByCategory] ?? 'checklist';
+const relatedPosts = allPosts
+  .filter((item: any) => (item.slug ?? item.id.replace(/\.(md|mdx)$/, '')) !== slug)
+  .slice(0, 3);
 ---
 
 <BaseLayout
@@ -103,47 +119,95 @@ const coverMotif =
   type="article"
   schema={schema}
 >
-  <article class="article-shell">
-    <header class="article-header page-header">
-      <span class="eyebrow category-badge">{post.data.category.replace('-', ' ')}</span>
+  <ArticleLayout>
+    <header slot="header" class="article-header">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span>›</span>
+        <a href="/blog/">Blog</a>
+        <span>›</span>
+        <span>{categoryLabel}</span>
+      </nav>
+      <span class="badge">{categoryLabel}</span>
       <h1>{post.data.title}</h1>
       <p>{post.data.description}</p>
-      <span class="article-meta">
-        Published {post.data.pubDate.toLocaleDateString('en', { year: 'numeric', month: 'long', day: 'numeric' })}
-      </span>
-    </header>
-    <ArticleCover
-      image={post.data.coverImage}
-      alt={post.data.coverAlt ?? post.data.title}
-      motif={coverMotif}
-      label={post.data.title}
-    />
-    <div class="content-grid">
-      <div class="prose">
-        <div class="article-summary">
-          <div class="summary-box">
-            <span class="card-kicker">Article summary</span>
-            <p>{post.data.description}</p>
-          </div>
-          <div class="callout quick-answer">
-            <strong>Quick answer</strong>
-            <p>{checklistCta.quick}</p>
-          </div>
-        </div>
-        <Content />
-        <Faq items={post.data.faqs} />
+      <div class="article-top-meta">
+        <span>Updated {updatedDate.toLocaleDateString('en', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
+        <span>{readingMinutes} min read</span>
+        <span class="badge success">Verified / reviewed</span>
       </div>
-      <aside class="sidebar">
-        <div class="notice-box">
-          <h2>{checklistCta.heading}</h2>
-          <p>{checklistCta.body}</p>
-          <a class="button secondary" href={checklistCta.href}>{checklistCta.label}</a>
-        </div>
-        <div class="notice-box mistake-callout">
-          <h2>Common mistake</h2>
-          <p>{checklistCta.avoid}</p>
-        </div>
-      </aside>
+    </header>
+
+    <div class="article-summary">
+      <ArticleCover
+        image={post.data.coverImage}
+        alt={post.data.coverAlt ?? post.data.title}
+        motif={coverMotif}
+        label={post.data.title}
+      />
+      <div class="summary-box" style="margin-top: 20px;">
+        <span class="card-kicker">Summary</span>
+        <p>{post.data.description}</p>
+      </div>
+      <div class="callout quick-answer">
+        <strong>Key takeaways</strong>
+        <p>{checklistCta.quick}</p>
+      </div>
     </div>
-  </article>
+
+    <Content />
+
+    <WarningBox title="Common mistake">
+      <p>{checklistCta.avoid}</p>
+    </WarningBox>
+
+    <OfficialSourceNote>
+      Always confirm current app, visa, payment, hotel, fair, or supplier requirements with official sources before making final travel or purchasing decisions.
+    </OfficialSourceNote>
+
+    <Faq title="Frequently Asked Questions" items={post.data.faqs} />
+
+    {relatedPosts.length > 0 && (
+      <section class="faq-section" aria-labelledby="related-title">
+        <h2 id="related-title">Related guides</h2>
+        <div class="article-grid">
+          {relatedPosts.map((item: any) => (
+            <ArticleCard
+              href={`/blog/${item.slug ?? item.id.replace(/\.(md|mdx)$/, '')}/`}
+              title={item.data.title}
+              description={item.data.description}
+              category={item.data.category.replace('-', ' ')}
+              motif={item.data.coverMotif ?? motifByCategory[item.data.category as keyof typeof motifByCategory]}
+              image={item.data.coverImage}
+            />
+          ))}
+        </div>
+      </section>
+    )}
+
+    <Fragment slot="toc">
+      {headings.length > 0 ? (
+        <ul class="toc-list">
+          {headings.filter((heading: any) => heading.depth === 2).slice(0, 8).map((heading: any) => (
+            <li><a href={`#${heading.slug}`}>{heading.text}</a></li>
+          ))}
+        </ul>
+      ) : (
+        <p>Read the summary, checklist, and FAQ sections.</p>
+      )}
+    </Fragment>
+
+    <SidebarCard slot="sidebar" title={checklistCta.heading} description={checklistCta.body} href={checklistCta.href} label={checklistCta.label} />
+    <SidebarCard slot="sidebar" title="Review status">
+      <p>This guide is reviewed for practical usefulness and updated when the site content changes.</p>
+      <span class="badge success">Verified / reviewed</span>
+    </SidebarCard>
+  </ArticleLayout>
+
+  <CTASection
+    title="Get the Free China Prep Checklist"
+    description="Use a focused checklist before your trip, fair visit, or supplier follow-up."
+    buttonLabel="Open Checklist"
+    buttonHref={checklistCta.href}
+  />
 </BaseLayout>

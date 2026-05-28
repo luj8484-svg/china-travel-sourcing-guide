@@ -1,0 +1,41 @@
+---
+interface Item {
+  label: string;
+  description?: string;
+  done?: boolean;
+}
+
+interface Props {
+  title: string;
+  eyebrow?: string;
+  progress?: number;
+  items: Item[];
+}
+
+const { title, eyebrow = 'Overall progress', progress = 38, items } = Astro.props;
+const safeProgress = Math.max(0, Math.min(100, progress));
+---
+
+<section class="checklist-panel" aria-labelledby={`${title.replaceAll(' ', '-').toLowerCase()}-title`}>
+  <div class="checklist-heading">
+    <div>
+      <span class="status-label">{eyebrow}</span>
+      <h2 id={`${title.replaceAll(' ', '-').toLowerCase()}-title`}>{title}</h2>
+    </div>
+    <strong>{safeProgress}%</strong>
+  </div>
+  <div class="progress orange" aria-label={`${safeProgress}% complete`}>
+    <span style={`width: ${safeProgress}%`}></span>
+  </div>
+  <ul class="checklist-list" style="margin-top: 18px;">
+    {items.map((item) => (
+      <li class={`checklist-item ${item.done ? 'done' : ''}`}>
+        <span class={`check-dot ${item.done ? 'done' : ''}`} aria-hidden="true">{item.done ? '✓' : ''}</span>
+        <span class="check-text">
+          <strong>{item.label}</strong>
+          {item.description && <span>{item.description}</span>}
+        </span>
+      </li>
+    ))}
+  </ul>
+</section>

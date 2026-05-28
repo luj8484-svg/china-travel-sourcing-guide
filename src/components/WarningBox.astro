@@ -1,0 +1,13 @@
+---
+interface Props {
+  title: string;
+  tone?: 'warning' | 'danger';
+}
+
+const { title, tone = 'warning' } = Astro.props;
+---
+
+<aside class={`warning-box ${tone === 'danger' ? 'danger' : ''}`}>
+  <h3>{title}</h3>
+  <slot />
+</aside>

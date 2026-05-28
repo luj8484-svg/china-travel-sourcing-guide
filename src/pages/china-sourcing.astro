@@ -1,5 +1,20 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import HubLayout from '@layouts/HubLayout.astro';
+import HubHero from '@components/HubHero.astro';
+import PainPointCard from '@components/PainPointCard.astro';
+import ToolCard from '@components/ToolCard.astro';
+import ArticleCard from '@components/ArticleCard.astro';
+import ChecklistBlock from '@components/ChecklistBlock.astro';
+import WarningBox from '@components/WarningBox.astro';
+import CTASection from '@components/CTASection.astro';
+import Faq from '@components/Faq.astro';
+
+const faqs = [
+  { question: 'What should I prepare before contacting suppliers?', answer: 'Prepare product specifications, target quantity, packaging needs, sample criteria, and questions about trade terms.' },
+  { question: 'Is lowest unit price the best supplier choice?', answer: 'No. Compare MOQ, samples, lead time, trade terms, communication, packaging, and quality risk.' },
+  { question: 'Should I visit factories?', answer: 'Factory visits can help for higher-risk orders, but prepare a clear checklist and follow-up process before you go.' }
+];
 ---
 
 <BaseLayout
@@ -7,81 +22,103 @@ import BaseLayout from '@layouts/BaseLayout.astro';
   description="A practical China sourcing hub for small business importers covering product specs, supplier comparison, samples, payment terms, QC, and shipment preparation."
   canonical="/china-sourcing/"
 >
-  <section class="content-page">
-    <div class="hub-hero">
-      <div class="page-header">
-        <span class="eyebrow">China sourcing</span>
-        <h1>Find better suppliers and avoid beginner sourcing mistakes.</h1>
-        <p>
-          Sourcing goes better when you define the product clearly, compare suppliers on the same terms, test samples,
-          and plan quality checks before shipment.
-        </p>
-        <div class="inline-actions">
-          <a class="button" href="/tools/supplier-comparison-sheet/">Open comparison sheet</a>
-          <a class="button secondary" href="/blog/china-sourcing-checklist-small-business/">Read sourcing checklist</a>
+  <HubLayout>
+    <HubHero
+      slot="hero"
+      eyebrow="Sourcing Guides"
+      title="Find better suppliers and avoid beginner sourcing mistakes"
+      description="Define your product clearly, compare suppliers on the same terms, test samples, and plan quality checks before shipment."
+      primaryHref="/tools/supplier-comparison-sheet/"
+      primaryLabel="Open comparison sheet"
+      secondaryHref="/blog/china-sourcing-checklist-small-business/"
+      secondaryLabel="Read sourcing checklist"
+      statusTitle="Supplier Prep Status"
+      progress={48}
+    />
+
+    <section class="section">
+      <div class="center-heading">
+        <h2>Who This Hub Is For</h2>
+        <p>For buyers who want a cleaner supplier process before visiting markets, factories, or trade shows.</p>
+      </div>
+      <div class="grid-4">
+        <PainPointCard icon="Spec" title="New Importers" description="Turn rough product ideas into requirements suppliers can quote accurately." />
+        <PainPointCard icon="Shop" title="Online Sellers" description="Compare supplier terms before choosing samples or production partners." />
+        <PainPointCard icon="MOQ" title="Small Buyers" description="Understand MOQ, sample cost, trade terms, and realistic lead times." />
+        <PainPointCard icon="QC" title="Quality-Focused Teams" description="Plan samples, inspection, packaging, and shipment checks earlier." />
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <div>
+          <h2>Start Here Before You Compare Suppliers</h2>
+          <p>Clear requirements create better supplier replies and fewer expensive surprises.</p>
         </div>
+        <a class="button secondary" href="/blog/">View all guides</a>
       </div>
-      <div class="hub-visual" aria-label="China sourcing preparation summary">
-        <div class="hub-stat"><span class="icon-badge">S</span><div><strong>Spec</strong><p>Write product details before asking for quotes.</p></div></div>
-        <div class="hub-stat"><span class="icon-badge">3</span><div><strong>Compare</strong><p>Review multiple suppliers using the same fields.</p></div></div>
-        <div class="hub-stat"><span class="icon-badge">QC</span><div><strong>Check</strong><p>Plan samples, inspection, and shipment details early.</p></div></div>
+      <div class="article-grid">
+        <ArticleCard href="/blog/china-sourcing-checklist-small-business/" title="China Sourcing Checklist for Small Business Importers" description="Product specs, suppliers, samples, payment terms, QC, and shipment prep." category="Sourcing" motif="supplier" />
+        <ArticleCard href="/tools/supplier-comparison-sheet/" title="Supplier Comparison Sheet" description="Track MOQ, price, sample cost, lead time, terms, and communication quality." category="Tool" motif="checklist" />
+        <ArticleCard href="/blog/canton-fair-first-time-buyer-guide/" title="Use Canton Fair Conversations for Supplier Follow-Up" description="Convert booth visits into structured quotes and sample requests." category="Canton Fair" motif="badge" />
       </div>
+    </section>
+
+    <section class="section">
+      <div class="content-grid">
+        <div>
+          <span class="eyebrow">Supplier Comparison Checklist</span>
+          <h2>Compare suppliers on the same fields before choosing.</h2>
+          <p>Use one template for requirements, quotes, samples, terms, and quality risk.</p>
+          <div class="inline-actions">
+            <a class="button" href="/tools/supplier-comparison-sheet/">Open comparison sheet</a>
+          </div>
+        </div>
+        <ChecklistBlock
+          title="Sourcing Prep Progress"
+          progress={42}
+          items={[
+            { label: 'Write product specification', description: 'Size, material, packaging, target market, and key tolerances.', done: true },
+            { label: 'Prepare target quantity and budget', description: 'Make MOQ conversations more realistic.', done: true },
+            { label: 'Compare trade terms', description: 'EXW, FOB, packaging, and excluded costs.' },
+            { label: 'Request samples clearly', description: 'Ask for sample lead time, cost, and approval criteria.' },
+            { label: 'Check quality documentation', description: 'Certificates, test reports, and inspection options.' },
+            { label: 'Plan shipment questions', description: 'Lead time, cartons, weights, and export readiness.' }
+          ]}
+        />
+      </div>
+    </section>
+
+    <div class="band">
+      <section class="section">
+        <div class="center-heading">
+          <h2>Related Tools</h2>
+        </div>
+        <div class="grid-3">
+          <ToolCard icon="Sheet" title="Supplier Comparison Sheet" description="Compare multiple suppliers using consistent criteria." href="/tools/supplier-comparison-sheet/" />
+          <ToolCard icon="CF" title="Canton Fair Buyer Checklist" description="Prepare supplier questions and booth notes for fair visits." href="/tools/canton-fair-buyer-checklist/" />
+          <ToolCard icon="Trip" title="China Trip Checklist" description="Prepare travel basics before supplier visits." href="/tools/china-trip-checklist/" />
+        </div>
+      </section>
     </div>
-    <div class="content-grid">
-      <div class="prose">
-        <h2>Who this guide is for</h2>
-        <p>
-          This guide is for small business importers, online sellers, wholesalers, and sourcing beginners who want to
-          contact Chinese suppliers with clearer requirements and fewer expensive surprises.
-        </p>
 
-        <h2>Common problems sourcing beginners run into</h2>
-        <ul class="checklist">
-          <li>Asking for quotes before product specifications are clear</li>
-          <li>Comparing suppliers without matching MOQ, trade terms, packaging, and lead time</li>
-          <li>Skipping samples or approving samples without written notes</li>
-          <li>Focusing only on unit price instead of total landed cost and risk</li>
-          <li>Leaving quality control and shipment details until the last minute</li>
-        </ul>
-
-        <h2>What to prepare</h2>
-        <ul class="checklist">
-          <li>Product specifications with size, material, color, packaging, and target market</li>
-          <li>A standard supplier comparison sheet</li>
-          <li>Sample request notes and approval criteria</li>
-          <li>Clear questions about MOQ, EXW, FOB, lead time, and payment terms</li>
-          <li>A basic QC and shipment preparation checklist</li>
-        </ul>
-
-        <h2>Helpful sourcing resources</h2>
-        <div class="resource-grid">
-          <a class="resource-card" href="/blog/china-sourcing-checklist-small-business/">
-            <span class="card-kicker">Guide</span>
-            <h3>Sourcing Checklist</h3>
-            <p>Product specs, suppliers, samples, payment terms, QC, and shipment prep.</p>
-            <strong>Read guide</strong>
-          </a>
-          <a class="resource-card" href="/tools/supplier-comparison-sheet/">
-            <span class="card-kicker">Template</span>
-            <h3>Supplier Sheet</h3>
-            <p>Compare quotes and communication quality side by side.</p>
-            <strong>Open template</strong>
-          </a>
-          <a class="resource-card" href="/tools/canton-fair-buyer-checklist/">
-            <span class="card-kicker">Fair tool</span>
-            <h3>Buyer Checklist</h3>
-            <p>Useful if you are meeting suppliers at the Canton Fair.</p>
-            <strong>Open checklist</strong>
-          </a>
-        </div>
+    <section class="section">
+      <div class="center-heading">
+        <h2>Common Sourcing Mistakes</h2>
       </div>
-      <aside class="sidebar">
-        <div class="notice-box">
-          <h2>Start with clear requirements</h2>
-          <p>Start by clarifying whether your goal is travel planning, trade fair preparation, or supplier sourcing, then follow the guide that matches your trip.</p>
-          <a class="button secondary" href="/blog/china-sourcing-checklist-small-business/">Read sourcing checklist</a>
-        </div>
-      </aside>
-    </div>
-  </section>
+      <div class="grid-3">
+        <WarningBox title="Asking For Quotes Too Early"><p>Without clear specs, supplier quotes are hard to compare and may hide important assumptions.</p></WarningBox>
+        <WarningBox title="Choosing By Unit Price Alone"><p>The lowest unit price may exclude packaging, testing, trade terms, or quality safeguards.</p></WarningBox>
+        <WarningBox title="Skipping Sample Notes"><p>Sample approval should be written down so production can be checked against the same standard.</p></WarningBox>
+      </div>
+      <Faq title="Sourcing FAQs" items={faqs} />
+    </section>
+  </HubLayout>
+
+  <CTASection
+    title="Get the Supplier Comparison Template"
+    description="Use a structured sheet to compare MOQ, price, samples, terms, lead time, communication, and quality risk."
+    buttonLabel="Open the Template"
+    buttonHref="/tools/supplier-comparison-sheet/"
+  />
 </BaseLayout>

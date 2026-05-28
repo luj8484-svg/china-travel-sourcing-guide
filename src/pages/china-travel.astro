@@ -1,5 +1,22 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import HubLayout from '@layouts/HubLayout.astro';
+import HubHero from '@components/HubHero.astro';
+import PainPointCard from '@components/PainPointCard.astro';
+import ToolCard from '@components/ToolCard.astro';
+import ArticleCard from '@components/ArticleCard.astro';
+import ChecklistBlock from '@components/ChecklistBlock.astro';
+import WarningBox from '@components/WarningBox.astro';
+import CTASection from '@components/CTASection.astro';
+import Faq from '@components/Faq.astro';
+
+const faqs = [
+  { question: 'Do I need a Chinese bank account to use Alipay or WeChat Pay?', answer: 'Most first-time visitors can try linking an international card, but you should test the app before departure and keep a backup card or cash.' },
+  { question: 'Is cash still accepted in China?', answer: 'Cash is legal tender, but many daily situations are much easier with mobile payment. Treat cash as a backup, not the primary plan.' },
+  { question: 'Which is better: eSIM or VPN?', answer: 'An eSIM or roaming plan helps you get online. A VPN may be useful depending on the apps and sites you need. Confirm your setup before flying.' },
+  { question: 'Can I use Uber or Lyft in China?', answer: 'No. Plan to use local ride-hailing options, hotel help, metro, taxis, or a prearranged transfer depending on the city.' },
+  { question: 'Will my WhatsApp work in China?', answer: 'Access can be unreliable. Prepare backup contact methods and confirm your internet setup before arrival.' }
+];
 ---
 
 <BaseLayout
@@ -7,82 +24,106 @@ import BaseLayout from '@layouts/BaseLayout.astro';
   description="A practical China travel hub for first-time visitors covering payment apps, internet access, hotels, addresses, transport, and itinerary planning."
   canonical="/china-travel/"
 >
-  <section class="content-page">
-    <div class="hub-hero">
-      <div class="page-header">
-        <span class="eyebrow">First-time China travel</span>
-        <h1>Plan a smoother first trip to China.</h1>
-        <p>
-          Focus on the practical details that affect every day of the trip: how you pay, how you get online, where you
-          stay, how you show addresses, and how you move between places.
-        </p>
-        <div class="inline-actions">
-          <a class="button" href="/tools/china-trip-checklist/">Open trip checklist</a>
-          <a class="button secondary" href="/blog/china-travel-checklist-first-time-visitors/">Read travel guide</a>
+  <HubLayout>
+    <HubHero
+      slot="hero"
+      eyebrow="Travel Setup"
+      title="China Travel Setup Guide for First-Time Visitors"
+      description="Prepare your phone, payment apps, internet, maps, transport, hotel address, and backup plan before you land in China."
+      primaryHref="/tools/china-trip-checklist/"
+      primaryLabel="Start the Travel Setup Checklist"
+      secondaryHref="/tools/china-trip-checklist/"
+      secondaryLabel="Use Payment Readiness Checker"
+    />
+
+    <section class="section" aria-labelledby="who-title">
+      <div class="center-heading">
+        <h2 id="who-title">Who This Hub Is For</h2>
+        <p>Tailored advice for different types of travelers to China.</p>
+      </div>
+      <div class="grid-4">
+        <PainPointCard icon="1st" title="First-Time Visitors" description="Step-by-step guidance on setting up payments, navigating the firewall, and basic etiquette." />
+        <PainPointCard icon="Biz" title="Business Travelers" description="Streamlined setups for quick trips, focusing on reliable communication and efficient transport." />
+        <PainPointCard icon="CF" title="Canton Fair Visitors" description="Specific preparation for Guangzhou, registration, local transport, and fair logistics." />
+        <PainPointCard icon="Buy" title="Sourcing Buyers" description="In-depth guides on visiting factories, negotiating with suppliers, and managing logistics." />
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="start-title">
+      <div class="section-heading">
+        <div>
+          <h2 id="start-title">Start Here Before You Land</h2>
+          <p>Essential reading to ensure a smooth arrival.</p>
         </div>
+        <a class="button secondary" href="/blog/">View all guides</a>
       </div>
-      <div class="hub-visual" aria-label="China travel preparation summary">
-        <div class="hub-stat"><span class="icon-badge">1</span><div><strong>Payment</strong><p>Set up mobile payment before arrival.</p></div></div>
-        <div class="hub-stat"><span class="icon-badge">2</span><div><strong>Address</strong><p>Save hotel details in Chinese.</p></div></div>
-        <div class="hub-stat"><span class="icon-badge">3</span><div><strong>Route</strong><p>Plan metro, taxi, and daily areas.</p></div></div>
+      <div class="article-grid">
+        <ArticleCard href="/blog/china-travel-checklist-first-time-visitors/" title="How to Set Up Alipay & WeChat Pay as a Foreigner" description="A complete step-by-step guide to linking your international credit card and verifying your identity before you travel." category="Payment" motif="checklist" />
+        <ArticleCard href="/blog/china-travel-checklist-first-time-visitors/" title="Bypassing the Great Firewall: VPNs vs. eSIMs" description="Understand your options for staying connected to Google, WhatsApp, and other blocked services while in China." category="Internet" motif="map" />
+        <ArticleCard href="/blog/china-travel-checklist-first-time-visitors/" title="Navigating China: DiDi, Maps, and Trains" description="The essential apps you need to get around cities and travel between them efficiently." category="Transport" motif="map" />
       </div>
+    </section>
+
+    <section class="section" aria-labelledby="checklist-title">
+      <div class="content-grid">
+        <div>
+          <span class="eyebrow">Your China Travel Setup Checklist</span>
+          <h2 id="checklist-title">Follow these 8 critical steps before you board your flight.</h2>
+          <p>Use this as a practical readiness list before arrival, not a generic packing checklist.</p>
+          <div class="inline-actions">
+            <a class="button" href="/tools/china-trip-checklist/">Download free PDF checklist</a>
+          </div>
+        </div>
+        <ChecklistBlock
+          title="Before You Land"
+          progress={62}
+          items={[
+            { label: 'Install and verify Alipay / WeChat', description: 'Download both apps, register with your phone number, and connect a card.', done: true },
+            { label: 'Link international credit cards', description: 'Add Visa, Mastercard, or JCB where available and test a small payment.', done: true },
+            { label: 'Purchase an eSIM or configure VPN', description: 'Pick an internet setup that supports your required apps.' },
+            { label: 'Download offline maps or local map app', description: 'Save hotel and daily destination names in Chinese.' },
+            { label: 'Set up ride-hailing', description: 'Confirm how you will handle taxis or ride-hailing from arrival.' },
+            { label: 'Save hotel address in Chinese', description: 'Keep screenshots for drivers and check-in.' },
+            { label: 'Download translation apps', description: 'Prepare offline translation for menus and transport.' },
+            { label: 'Inform your bank', description: 'Reduce the chance of payment blocks during the trip.' }
+          ]}
+        />
+      </div>
+    </section>
+
+    <div class="band">
+      <section class="section" aria-labelledby="tools-title">
+        <div class="center-heading">
+          <h2 id="tools-title">Tools for Travel Setup</h2>
+          <p>Interactive tools to speed up your preparation.</p>
+        </div>
+        <div class="grid-4">
+          <ToolCard icon="Pay" title="Payment Readiness Checker" description="Verify your Alipay and WeChat setup." href="/tools/china-trip-checklist/" />
+          <ToolCard icon="App" title="App Checklist" description="Make sure you have every essential app downloaded." href="/tools/china-trip-checklist/" />
+          <ToolCard icon="Visa" title="Visa-Free Checker" description="Check if your passport qualifies for visa-free entry." href="/tools/china-trip-checklist/" />
+          <ToolCard icon="SIM" title="eSIM/VPN Prep" description="Compare internet setups for your trip." href="/tools/china-trip-checklist/" />
+        </div>
+      </section>
     </div>
-    <div class="content-grid">
-      <div class="prose">
-        <h2>Who this guide is for</h2>
-        <p>
-          This guide is for first-time visitors who want a simple, reliable setup before arriving in China. It is useful
-          for tourists, business travelers, trade fair visitors adding a few travel days, and anyone who feels unsure
-          about payment, maps, transport, or hotel location.
-        </p>
 
-        <h2>Common problems first-time visitors run into</h2>
-        <ul class="checklist">
-          <li>Arriving without a tested payment app or backup payment method</li>
-          <li>Using a hotel address that drivers or map apps cannot easily recognize</li>
-          <li>Choosing a hotel that looks central on a map but is inconvenient by metro</li>
-          <li>Planning too many cross-city stops in one day</li>
-          <li>Depending on English signs or English-speaking staff everywhere</li>
-        </ul>
-
-        <h2>What to prepare before you travel</h2>
-        <ul class="checklist">
-          <li>Install and test Alipay or WeChat Pay before departure</li>
-          <li>Choose an eSIM, roaming plan, or local SIM option for internet access</li>
-          <li>Save hotel names and addresses in Chinese, plus nearby landmarks</li>
-          <li>Check metro access before booking hotels</li>
-          <li>Group each day by neighborhood instead of crossing the city repeatedly</li>
-        </ul>
-
-        <h2>Recommended guides and tools</h2>
-        <div class="resource-grid">
-          <a class="resource-card" href="/blog/china-travel-checklist-first-time-visitors/">
-            <span class="card-kicker">Guide</span>
-            <h3>China Travel Checklist</h3>
-            <p>Payment, internet, addresses, transport, and realistic daily plans.</p>
-            <strong>Read guide</strong>
-          </a>
-          <a class="resource-card" href="/tools/china-trip-checklist/">
-            <span class="card-kicker">Tool</span>
-            <h3>China Trip Checklist</h3>
-            <p>A copyable pre-trip checklist for first-time visitors.</p>
-            <strong>Open checklist</strong>
-          </a>
-          <a class="resource-card" href="/canton-fair/">
-            <span class="card-kicker">Next path</span>
-            <h3>Canton Fair Guide</h3>
-            <p>Useful if your Guangzhou trip includes trade fair days.</p>
-            <strong>Open hub</strong>
-          </a>
-        </div>
+    <section class="section" aria-labelledby="mistakes-title">
+      <div class="center-heading">
+        <h2 id="mistakes-title">Common Mistakes First-Time Visitors Make</h2>
+        <p>Avoid these pitfalls that can ruin your first few days in China.</p>
       </div>
-      <aside class="sidebar">
-        <div class="notice-box">
-          <h2>Starter guide</h2>
-          <p>Use the checklist to confirm payment, internet, hotel location, address, and transport basics before departure.</p>
-          <a class="button secondary" href="/blog/china-travel-checklist-first-time-visitors/">Read checklist</a>
-        </div>
-      </aside>
-    </div>
-  </section>
+      <div class="grid-3">
+        <WarningBox title="Waiting To Download Apps"><p>Do not wait until you land to download VPNs, payment apps, or map tools. Some setup steps are harder inside China.</p></WarningBox>
+        <WarningBox title="Relying Only on Google Maps"><p>Google Maps is highly inaccurate in some locations. Prepare local alternatives and Chinese names.</p></WarningBox>
+        <WarningBox title="Not Informing Banks"><p>If your card is blocked for suspicious overseas activity, it can be painful to resolve while traveling.</p></WarningBox>
+      </div>
+      <Faq title="Travel Setup FAQs" items={faqs} />
+    </section>
+  </HubLayout>
+
+  <CTASection
+    title="Don't Get Stranded Without Payment or Maps"
+    description="Get our comprehensive pre-departure checklist. Print it out or save it to your phone to ensure you have covered every base before you fly."
+    buttonLabel="Send Me the Checklist"
+    buttonHref="/tools/china-trip-checklist/"
+  />
 </BaseLayout>

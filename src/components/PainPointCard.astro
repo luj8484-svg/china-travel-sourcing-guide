@@ -1,0 +1,18 @@
+---
+interface Props {
+  icon?: string;
+  title: string;
+  description: string;
+  href?: string;
+}
+
+const { icon = '!', title, description, href } = Astro.props;
+const Tag = href ? 'a' : 'div';
+---
+
+<Tag class="pain-card" href={href}>
+  <span class="icon-tile" aria-hidden="true">{icon}</span>
+  <h3>{title}</h3>
+  <p>{description}</p>
+  {href && <strong>Read guide →</strong>}
+</Tag>

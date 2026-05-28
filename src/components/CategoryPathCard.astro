@@ -1,0 +1,20 @@
+---
+interface Props {
+  icon?: string;
+  title: string;
+  description: string;
+  href: string;
+  label?: string;
+}
+
+const { icon = '→', title, description, href, label = 'Start here' } = Astro.props;
+---
+
+<a class="path-card" href={href}>
+  <span class="icon-tile" aria-hidden="true">{icon}</span>
+  <div>
+    <h3>{title}</h3>
+    <p>{description}</p>
+    <strong>{label} →</strong>
+  </div>
+</a>

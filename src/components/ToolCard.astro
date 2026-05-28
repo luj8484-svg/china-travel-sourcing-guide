@@ -1,0 +1,19 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+  icon?: string;
+  label?: string;
+  compact?: boolean;
+}
+
+const { title, description, href, icon = '□', label = 'Open tool', compact = false } = Astro.props;
+---
+
+<a class={`tool-card ${compact ? 'compact' : ''}`} href={href}>
+  <span class="icon-tile" aria-hidden="true">{icon}</span>
+  <h2>{title}</h2>
+  <p>{description}</p>
+  <strong>{label} →</strong>
+</a>

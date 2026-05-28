@@ -1,0 +1,18 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  href?: string;
+  label?: string;
+  tone?: 'normal' | 'warning';
+}
+
+const { title, description, href, label = 'Open resource', tone = 'normal' } = Astro.props;
+---
+
+<aside class={`sidebar-card ${tone === 'warning' ? 'mistake-callout' : ''}`}>
+  <h3>{title}</h3>
+  {description && <p>{description}</p>}
+  <slot />
+  {href && <a class="button secondary" href={href}>{label}</a>}
+</aside>

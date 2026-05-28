@@ -1,5 +1,14 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import ToolLayout from '@layouts/ToolLayout.astro';
+import PrepStatusCard from '@components/PrepStatusCard.astro';
+import ChecklistBlock from '@components/ChecklistBlock.astro';
+import ToolCard from '@components/ToolCard.astro';
+import ArticleCard from '@components/ArticleCard.astro';
+import WarningBox from '@components/WarningBox.astro';
+import OfficialSourceNote from '@components/OfficialSourceNote.astro';
+import CTASection from '@components/CTASection.astro';
+import SidebarCard from '@components/SidebarCard.astro';
 ---
 
 <BaseLayout
@@ -7,62 +16,96 @@ import BaseLayout from '@layouts/BaseLayout.astro';
   description="A practical China trip checklist for first-time visitors covering payment apps, internet access, hotel location, addresses, and transport planning."
   canonical="/tools/china-trip-checklist/"
 >
-  <section class="content-page">
-    <div class="hub-hero">
+  <ToolLayout>
+    <div slot="hero" class="hub-hero">
       <div class="page-header">
-        <span class="eyebrow">Travel tool</span>
-        <h1>China Trip Checklist</h1>
-        <p>
-          Use this checklist before your first China trip. It focuses on the everyday details that can slow travelers
-          down: payment, internet, addresses, hotels, transport, and daily planning.
-        </p>
-      </div>
-      <div class="hub-visual" aria-label="China trip checklist preview">
-        <div class="hub-stat"><span class="icon-badge">$</span><div><strong>Payment</strong><p>Set up mobile payment and backup options.</p></div></div>
-        <div class="hub-stat"><span class="icon-badge">SIM</span><div><strong>Internet</strong><p>Choose eSIM, roaming, or local SIM.</p></div></div>
-        <div class="hub-stat"><span class="icon-badge">MAP</span><div><strong>Routes</strong><p>Save addresses and transport plans.</p></div></div>
-      </div>
-    </div>
-    <div class="content-grid">
-      <div class="prose">
-        <h2>Pre-trip checklist</h2>
-        <ul class="checklist">
-          <li>Install Alipay or WeChat Pay and connect a payment card before departure.</li>
-          <li>Keep a backup card and a small amount of cash for emergencies.</li>
-          <li>Choose an eSIM, roaming plan, or local SIM option for internet access.</li>
-          <li>Save your hotel name, address, and nearby landmark in Chinese.</li>
-          <li>Book hotels near a metro line or the area where you will spend most of your time.</li>
-          <li>Install a map app, translation app, ride-hailing app, and train booking option.</li>
-          <li>Group each day by neighborhood to avoid long cross-city travel.</li>
-          <li>Save passport scans, hotel bookings, tickets, and emergency contacts offline.</li>
-        </ul>
-
-        <h2>Copyable planning note</h2>
-        <div class="copy-box">
-          <pre>China trip basics:
-- Arrival city:
-- Hotel Chinese name and address:
-- Nearby metro station:
-- Internet plan:
-- Payment app tested:
-- Day 1 route:
-- Backup payment:
-- Emergency contact:</pre>
+        <span class="badge">Free China Travel Tool</span>
+        <h1>Are You Ready to Pay and Travel in China?</h1>
+        <p>Check your Alipay, WeChat Pay, international cards, backup cash, internet access, hotel address, and transport plan before you land.</p>
+        <p><em>Best for first-time China visitors, Canton Fair buyers, business travelers, and sourcing trips.</em></p>
+        <div class="inline-actions">
+          <a class="button" href="#checklist">Start the check</a>
         </div>
-
-        <h2>Related guides</h2>
-        <ul>
-          <li><a href="/china-travel/">First-Time China Travel Guide</a></li>
-          <li><a href="/blog/china-travel-checklist-first-time-visitors/">China Travel Checklist for First-Time Visitors</a></li>
-          <li><a href="/tools/">All tools</a></li>
-        </ul>
+        <span class="article-meta">Takes about 2 minutes</span>
       </div>
-      <aside class="sidebar">
-        <div class="notice-box">
-          <h2>Quick tip</h2>
-          <p>Save Chinese addresses before you land. It makes taxis, ride-hailing, and hotel check-in much easier.</p>
-        </div>
-      </aside>
+      <PrepStatusCard
+        title="Payment Readiness Score"
+        subtitle="Status: Needs attention"
+        progress={38}
+        tone="orange"
+        items={[
+          { label: 'Installed Alipay App', done: true },
+          { label: 'Linked international card' },
+          { label: 'Prepared backup cash' }
+        ]}
+      />
     </div>
-  </section>
+
+    <ChecklistBlock
+      title="Payment Readiness Checklist"
+      progress={38}
+      items={[
+        { label: 'Installed Alipay app', description: 'Download the app before arriving in China and complete basic setup.', done: true },
+        { label: 'Installed WeChat app', description: 'Required for communication and useful as a payment backup.', done: true },
+        { label: 'Linked an international card', description: 'Add Visa, Mastercard, or JCB where supported.', done: true },
+        { label: 'Completed identity verification', description: 'Upload passport details if required by the payment app.' },
+        { label: 'Tested a small payment', description: 'Try a small top-up or test transaction before relying on the app.' },
+        { label: 'Prepared backup cash', description: 'Keep a small amount of RMB for emergencies.' },
+        { label: 'Saved hotel address in Chinese', description: 'Useful for taxis, hotels, and payment verification situations.' },
+        { label: 'Know what to do if payment fails', description: 'Prepare a backup card, cash, and support contact plan.' }
+      ]}
+    />
+
+    <section class="section" aria-labelledby="backup-title">
+      <h2 id="backup-title">Your Payment Backup Plan</h2>
+      <div class="grid-3">
+        <ToolCard icon="1" title="Primary Payment - Alipay" description="Use as the main app once card linking and identity checks are complete." href="/blog/china-travel-checklist-first-time-visitors/" label="Read setup guide" />
+        <ToolCard icon="2" title="Backup Payment - WeChat Pay" description="Prepare as a backup for shops, restaurants, taxis, and contacts." href="/blog/china-travel-checklist-first-time-visitors/" label="Review backup" />
+        <ToolCard icon="3" title="Emergency Backup - Cash + Card" description="Carry RMB and a second card in case app payment fails." href="/china-travel/" label="Plan backup" />
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="fix-title">
+      <h2 id="fix-title">What to Fix Before You Land</h2>
+      <div class="grid-4">
+        <ToolCard compact icon="Pay" title="Set up Alipay" description="The most reliable option for foreign visitors." href="/blog/china-travel-checklist-first-time-visitors/" />
+        <ToolCard compact icon="Chat" title="Prepare WeChat Pay" description="Useful where vendors only accept WeChat." href="/blog/china-travel-checklist-first-time-visitors/" />
+        <ToolCard compact icon="Cash" title="Keep backup options" description="Arrange cash and second-card fallback." href="/china-travel/" />
+        <ToolCard compact icon="CN" title="Save Chinese addresses" description="Hotel and destination names in Chinese characters." href="/china-travel/" />
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="guides-title">
+      <h2 id="guides-title">Practical Payment Guides</h2>
+      <div class="article-grid">
+        <ArticleCard href="/blog/china-travel-checklist-first-time-visitors/" title="How to Use Alipay as a Foreigner in China" description="A step-by-step guide to downloading, verifying, and testing your payment setup." category="Travel Setup" motif="checklist" />
+        <ArticleCard href="/blog/china-travel-checklist-first-time-visitors/" title="How to Use WeChat Pay for International Visitors" description="What to prepare, what can fail, and how to keep a backup." category="Travel Setup" motif="checklist" />
+        <ArticleCard href="/china-travel/" title="Best Apps for China Travel" description="A curated list of must-have apps for maps, translation, and payment." category="Travel Setup" motif="map" />
+      </div>
+    </section>
+
+    <OfficialSourceNote>
+      This checklist is for travel preparation only. Payment app requirements and regulations may change. Always confirm the latest setup inside the official apps.
+    </OfficialSourceNote>
+
+    <SidebarCard slot="sidebar" title="Needs Attention" tone="warning">
+      <p>You may still run into payment problems after landing. Fix the items below before your trip.</p>
+      <ul class="recommendation-list">
+        <li class="recommendation-item"><span>Set up Alipay</span><strong>!</strong></li>
+        <li class="recommendation-item"><span>Prepare WeChat Pay backup</span><strong>!</strong></li>
+        <li class="recommendation-item"><span>Carry RMB cash</span><strong>!</strong></li>
+        <li class="recommendation-item"><span>Save addresses in Chinese</span><strong>!</strong></li>
+      </ul>
+    </SidebarCard>
+    <WarningBox slot="sidebar" title="Travel-only checklist">
+      <p>This tool is a preparation guide, not financial or legal advice. Confirm your bank and app requirements before departure.</p>
+    </WarningBox>
+  </ToolLayout>
+
+  <CTASection
+    title="Get the Full China Payment Setup Checklist"
+    description="A practical checklist covering everything you need to know directly in your inbox to ensure you are prepared before your flight."
+    buttonLabel="Send Me the Checklist"
+    buttonHref="/tools/china-trip-checklist/"
+  />
 </BaseLayout>

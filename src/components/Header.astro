@@ -1,20 +1,29 @@
 ---
 const navItems = [
-  { href: '/china-travel/', label: 'China Travel' },
+  { href: '/china-travel/', label: 'Travel Setup' },
+  { href: '/china-travel/', label: 'Visa & Entry' },
   { href: '/canton-fair/', label: 'Canton Fair' },
-  { href: '/china-sourcing/', label: 'Sourcing' },
-  { href: '/blog/', label: 'Blog' },
+  { href: '/china-sourcing/', label: 'Sourcing Guides' },
   { href: '/tools/', label: 'Tools' },
-  { href: '/contact/', label: 'Contact' }
+  { href: '/blog/', label: 'Blog' }
 ];
+
+const pathname = Astro.url.pathname;
+const isCurrent = (href: string) =>
+  href === '/'
+    ? pathname === '/'
+    : pathname === href || (href !== '/china-travel/' && pathname.startsWith(href));
 ---
 
 <header class="site-header">
-  <a class="brand" href="/" aria-label="China Buyer Prep home">
-    <span class="brand-mark">CB</span>
-    <span>China Buyer Prep</span>
-  </a>
-  <nav class="site-nav" aria-label="Primary navigation">
-    {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
-  </nav>
+  <div class="site-header-inner">
+    <a class="brand" href="/" aria-label="China Buyer Prep home">
+      <span class="brand-mark">CB</span>
+      <span>China Buyer Prep</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary navigation">
+      {navItems.map((item) => <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a>)}
+    </nav>
+    <a class="header-action" href="/tools/china-trip-checklist/">Get Free Checklist</a>
+  </div>
 </header>

@@ -1,5 +1,20 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import HubLayout from '@layouts/HubLayout.astro';
+import HubHero from '@components/HubHero.astro';
+import PainPointCard from '@components/PainPointCard.astro';
+import ToolCard from '@components/ToolCard.astro';
+import ArticleCard from '@components/ArticleCard.astro';
+import ChecklistBlock from '@components/ChecklistBlock.astro';
+import WarningBox from '@components/WarningBox.astro';
+import CTASection from '@components/CTASection.astro';
+import Faq from '@components/Faq.astro';
+
+const faqs = [
+  { question: 'Which Canton Fair phase should I attend?', answer: 'Choose the phase that matches your product category before booking flights or hotels.' },
+  { question: 'Where should I stay for the Canton Fair?', answer: 'Prioritize practical access to Pazhou, metro connections, and evening food options over room size alone.' },
+  { question: 'Should I prepare supplier questions before the fair?', answer: 'Yes. Using the same questions at each booth makes comparison and follow-up much easier.' }
+];
 ---
 
 <BaseLayout
@@ -7,82 +22,103 @@ import BaseLayout from '@layouts/BaseLayout.astro';
   description="A practical Canton Fair hub for overseas buyers covering phases, registration, hotels, booth planning, supplier questions, and follow-up."
   canonical="/canton-fair/"
 >
-  <section class="content-page">
-    <div class="hub-hero">
-      <div class="page-header">
-        <span class="eyebrow">Canton Fair Guide</span>
-        <h1>Prepare for the Canton Fair like a serious buyer.</h1>
-        <p>
-          The fair is easier to use when you know which phase to attend, where to stay, how to organize booth visits, and
-          what information to collect from suppliers.
-        </p>
-        <div class="inline-actions">
-          <a class="button" href="/tools/canton-fair-buyer-checklist/">Open buyer checklist</a>
-          <a class="button secondary" href="/blog/best-area-to-stay-guangzhou-canton-fair/">Choose hotel area</a>
+  <HubLayout>
+    <HubHero
+      slot="hero"
+      eyebrow="Canton Fair"
+      title="Prepare for the Canton Fair like a serious buyer"
+      description="Confirm your phase, buyer badge, hotel area, booth strategy, supplier questions, and post-fair follow-up before you arrive in Guangzhou."
+      primaryHref="/tools/canton-fair-buyer-checklist/"
+      primaryLabel="Open buyer checklist"
+      secondaryHref="/blog/best-area-to-stay-guangzhou-canton-fair/"
+      secondaryLabel="Choose hotel area"
+      statusTitle="Fair Visit Readiness"
+      progress={58}
+    />
+
+    <section class="section">
+      <div class="center-heading">
+        <h2>Who This Hub Is For</h2>
+        <p>For overseas buyers who want the fair to produce clear supplier decisions, not just a stack of brochures.</p>
+      </div>
+      <div class="grid-4">
+        <PainPointCard icon="P1" title="First-Time Buyers" description="Understand phases, badge setup, registration, and what to expect on fair days." />
+        <PainPointCard icon="SMB" title="Small Importers" description="Build a focused visit plan that fits realistic MOQs, samples, and budgets." />
+        <PainPointCard icon="B2B" title="Wholesale Buyers" description="Compare suppliers across booths using consistent questions and notes." />
+        <PainPointCard icon="QC" title="Follow-Up Teams" description="Turn booth conversations into quotes, sample requests, and quality checks." />
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <div>
+          <h2>Start Here Before You Book</h2>
+          <p>These are the decisions that shape your whole Guangzhou visit.</p>
         </div>
+        <a class="button secondary" href="/blog/">View all guides</a>
       </div>
-      <div class="hub-visual" aria-label="Canton Fair preparation summary">
-        <div class="hub-stat"><span class="icon-badge">P1</span><div><strong>Phase</strong><p>Match fair dates to your product category.</p></div></div>
-        <div class="hub-stat"><span class="icon-badge">ID</span><div><strong>Badge</strong><p>Prepare registration details and business cards.</p></div></div>
-        <div class="hub-stat"><span class="icon-badge">Q</span><div><strong>Questions</strong><p>Ask suppliers the same comparison questions.</p></div></div>
+      <div class="article-grid">
+        <ArticleCard href="/blog/canton-fair-first-time-buyer-guide/" title="Canton Fair Guide for First-Time Overseas Buyers" description="Phases, buyer badge basics, booth planning, supplier questions, and follow-up." category="Canton Fair" motif="badge" />
+        <ArticleCard href="/blog/best-area-to-stay-guangzhou-canton-fair/" title="Best Area to Stay in Guangzhou for the Canton Fair" description="How to choose a hotel area with practical fair access and better evening logistics." category="Hotel Area" motif="hotel" />
+        <ArticleCard href="/tools/canton-fair-buyer-checklist/" title="Canton Fair Buyer Checklist" description="A practical checklist for phase, badge, hotel, booth notes, and supplier follow-up." category="Tool" motif="checklist" />
       </div>
+    </section>
+
+    <section class="section">
+      <div class="content-grid">
+        <div>
+          <span class="eyebrow">Canton Fair Buyer Checklist</span>
+          <h2>Prepare the decisions that matter before you enter the halls.</h2>
+          <p>The fair gets much easier when your phase, route, supplier notes, and follow-up questions are ready.</p>
+          <div class="inline-actions">
+            <a class="button" href="/tools/canton-fair-buyer-checklist/">Open buyer checklist</a>
+          </div>
+        </div>
+        <ChecklistBlock
+          title="Fair Prep Progress"
+          progress={55}
+          items={[
+            { label: 'Confirm product phase', description: 'Match your category to Phase 1, 2, or 3.', done: true },
+            { label: 'Prepare buyer registration', description: 'Passport details, business cards, and company info.', done: true },
+            { label: 'Choose hotel area', description: 'Prioritize access to Pazhou and metro routes.' },
+            { label: 'Create booth note template', description: 'Record MOQ, price, samples, lead time, and contact.' },
+            { label: 'Prepare supplier questions', description: 'Ask each supplier the same comparison questions.' },
+            { label: 'Plan post-fair follow-up', description: 'Schedule quote, sample, and QC conversations quickly.' }
+          ]}
+        />
+      </div>
+    </section>
+
+    <div class="band">
+      <section class="section">
+        <div class="center-heading">
+          <h2>Related Tools</h2>
+        </div>
+        <div class="grid-3">
+          <ToolCard icon="CF" title="Canton Fair Buyer Checklist" description="Phase, badge, hotel, booth notes, supplier questions, and follow-up." href="/tools/canton-fair-buyer-checklist/" />
+          <ToolCard icon="Sheet" title="Supplier Comparison Sheet" description="Compare supplier conversations using the same fields." href="/tools/supplier-comparison-sheet/" />
+          <ToolCard icon="Trip" title="China Trip Checklist" description="Prepare payment, internet, transport, and Chinese addresses." href="/tools/china-trip-checklist/" />
+        </div>
+      </section>
     </div>
-    <div class="content-grid">
-      <div class="prose">
-        <h2>Who this guide is for</h2>
-        <p>
-          This guide is for overseas buyers attending the Canton Fair for the first time or returning with a more
-          focused product list. It is especially useful for small importers, Amazon and Shopify sellers, wholesalers,
-          and business owners comparing Chinese suppliers in person.
-        </p>
 
-        <h2>Common problems buyers run into</h2>
-        <ul class="checklist">
-          <li>Booking flights before confirming the correct fair phase</li>
-          <li>Choosing a hotel that adds too much daily transport time</li>
-          <li>Collecting brochures without clear supplier notes</li>
-          <li>Asking different questions at each booth, making comparison difficult</li>
-          <li>Waiting too long after the fair to request quotes, samples, and follow-up details</li>
-        </ul>
-
-        <h2>What to prepare</h2>
-        <ul class="checklist">
-          <li>Confirm whether your products fit Phase 1, Phase 2, or Phase 3</li>
-          <li>Prepare buyer badge registration details and business cards</li>
-          <li>Book a hotel with practical access to the Pazhou exhibition area</li>
-          <li>Create a booth note template before entering the halls</li>
-          <li>Prepare supplier questions about MOQ, samples, certificates, lead time, and payment terms</li>
-        </ul>
-
-        <h2>Helpful resources for buyers</h2>
-        <div class="resource-grid">
-          <a class="resource-card" href="/blog/canton-fair-first-time-buyer-guide/">
-            <span class="card-kicker">Guide</span>
-            <h3>First-Time Buyer Guide</h3>
-            <p>Phases, badge basics, booth planning, supplier questions, and follow-up.</p>
-            <strong>Read guide</strong>
-          </a>
-          <a class="resource-card" href="/tools/canton-fair-buyer-checklist/">
-            <span class="card-kicker">Tool</span>
-            <h3>Buyer Checklist</h3>
-            <p>Confirm phase, badge, hotel area, questions, and follow-up process.</p>
-            <strong>Open checklist</strong>
-          </a>
-          <a class="resource-card" href="/tools/supplier-comparison-sheet/">
-            <span class="card-kicker">Template</span>
-            <h3>Supplier Sheet</h3>
-            <p>Track MOQ, samples, trade terms, and communication quality.</p>
-            <strong>Open template</strong>
-          </a>
-        </div>
+    <section class="section">
+      <div class="center-heading">
+        <h2>Common Canton Fair Mistakes</h2>
       </div>
-      <aside class="sidebar">
-        <div class="notice-box">
-          <h2>First visit tip</h2>
-          <p>Confirm your phase and hotel area before booking flights so your fair days stay focused and efficient.</p>
-          <a class="button secondary" href="/blog/canton-fair-first-time-buyer-guide/">Read buyer guide</a>
-        </div>
-      </aside>
-    </div>
-  </section>
+      <div class="grid-3">
+        <WarningBox title="Booking Before Checking Phase"><p>Flights and hotels should follow the correct product phase, not the other way around.</p></WarningBox>
+        <WarningBox title="Collecting Brochures Without Notes"><p>Supplier details blur together quickly. Write structured notes after every meaningful booth visit.</p></WarningBox>
+        <WarningBox title="Waiting Too Long To Follow Up"><p>Request quotes and samples while conversations are still fresh.</p></WarningBox>
+      </div>
+      <Faq title="Canton Fair FAQs" items={faqs} />
+    </section>
+  </HubLayout>
+
+  <CTASection
+    title="Get the Canton Fair Buyer Prep Checklist"
+    description="Use one checklist for phase, badge, hotel area, booth notes, supplier questions, and post-fair follow-up."
+    buttonLabel="Send Me the Checklist"
+    buttonHref="/tools/canton-fair-buyer-checklist/"
+  />
 </BaseLayout>

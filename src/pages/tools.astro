@@ -1,5 +1,9 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import HubLayout from '@layouts/HubLayout.astro';
+import HubHero from '@components/HubHero.astro';
+import ToolCard from '@components/ToolCard.astro';
+import CTASection from '@components/CTASection.astro';
 ---
 
 <BaseLayout
@@ -7,43 +11,33 @@ import BaseLayout from '@layouts/BaseLayout.astro';
   description="Simple China travel, Canton Fair, and sourcing checklists for visitors and overseas buyers preparing for China."
   canonical="/tools/"
 >
-  <section class="content-page">
-    <div class="hub-hero">
-      <div class="page-header">
-        <span class="eyebrow">Tools</span>
-        <h1>Checklists and templates for planning your China trip.</h1>
-        <p>Use these simple checklists and templates to prepare your China trip, trade fair visit, or supplier comparison process.</p>
+  <HubLayout>
+    <HubHero
+      slot="hero"
+      eyebrow="Tools"
+      title="Checklists and templates for planning your China trip"
+      description="Use these simple tools to prepare your China trip, trade fair visit, or supplier comparison process without relying on memory."
+      primaryHref="/tools/china-trip-checklist/"
+      primaryLabel="Start travel checklist"
+      secondaryHref="/tools/supplier-comparison-sheet/"
+      secondaryLabel="Open supplier sheet"
+      statusTitle="Resource Center"
+      progress={66}
+    />
+
+    <section class="section">
+      <div class="tool-grid">
+        <ToolCard icon="Trip" title="China Trip Checklist" description="Documents, payment apps, internet, hotel, transport, and daily route planning." href="/tools/china-trip-checklist/" label="Open checklist" />
+        <ToolCard icon="Fair" title="Canton Fair Buyer Checklist" description="Badge, phase selection, supplier questions, booth notes, samples, and post-fair follow-up." href="/tools/canton-fair-buyer-checklist/" label="Open buyer checklist" />
+        <ToolCard icon="Sheet" title="Supplier Comparison Sheet" description="Compare MOQ, price, lead time, trade terms, sample cost, payment terms, and communication quality." href="/tools/supplier-comparison-sheet/" label="Open comparison sheet" />
       </div>
-      <div class="hub-visual" aria-label="China Buyer Prep resource center">
-        <div class="hub-stat"><span class="icon-badge">TR</span><div><strong>Travel setup</strong><p>Payment, internet, addresses, and routes.</p></div></div>
-        <div class="hub-stat"><span class="icon-badge">CF</span><div><strong>Fair visit</strong><p>Phase, badge, hotel area, and booth notes.</p></div></div>
-        <div class="hub-stat"><span class="icon-badge">SO</span><div><strong>Supplier compare</strong><p>MOQ, sample cost, lead time, and terms.</p></div></div>
-      </div>
-    </div>
-    <div class="tool-grid">
-      <a class="tool-card" href="/tools/china-trip-checklist/">
-        <h2>China Trip Checklist</h2>
-        <p>Documents, payment apps, internet, hotel, transport, and daily route planning.</p>
-        <span class="button secondary">Open checklist</span>
-      </a>
-      <a class="tool-card" href="/tools/canton-fair-buyer-checklist/">
-        <h2>Canton Fair Buyer Checklist</h2>
-        <p>Badge, phase selection, supplier questions, booth notes, samples, and post-fair follow-up.</p>
-        <span class="button secondary">Open buyer checklist</span>
-      </a>
-      <a class="tool-card" href="/tools/supplier-comparison-sheet/">
-        <h2>Supplier Comparison Sheet</h2>
-        <p>Compare MOQ, price, lead time, trade terms, sample cost, payment terms, and communication quality.</p>
-        <span class="button secondary">Open comparison sheet</span>
-      </a>
-    </div>
-    <div class="save-notice">
-      <div>
-        <span class="eyebrow">Coming soon</span>
-        <h2>Save these checklists for your trip</h2>
-        <p>A downloadable version will be available soon. For now, use the online checklists and templates.</p>
-      </div>
-      <a class="button secondary" href="/contact/">Contact us</a>
-    </div>
-  </section>
+    </section>
+  </HubLayout>
+
+  <CTASection
+    title="Save These Checklists Before You Travel"
+    description="Start with the travel checklist, then use the fair and sourcing tools if your trip includes buyer meetings."
+    buttonLabel="Open Travel Checklist"
+    buttonHref="/tools/china-trip-checklist/"
+  />
 </BaseLayout>

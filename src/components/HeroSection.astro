@@ -1,0 +1,38 @@
+---
+import PrepStatusCard from './PrepStatusCard.astro';
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  description: string;
+  primaryHref: string;
+  primaryLabel: string;
+  secondaryHref?: string;
+  secondaryLabel?: string;
+}
+
+const { eyebrow, title, description, primaryHref, primaryLabel, secondaryHref, secondaryLabel } = Astro.props;
+---
+
+<section class="hero">
+  <div class="hero-copy">
+    <span class="badge">{eyebrow}</span>
+    <h1>{title}</h1>
+    <p>{description}</p>
+    <div class="hero-actions">
+      <a class="button" href={primaryHref}>{primaryLabel}</a>
+      {secondaryHref && secondaryLabel && <a class="button secondary" href={secondaryHref}>{secondaryLabel}</a>}
+    </div>
+  </div>
+  <slot name="visual">
+    <PrepStatusCard
+      progress={50}
+      items={[
+        { label: 'Payment Ready', status: 'Success', done: true },
+        { label: 'Apps Installed', status: 'Pending' },
+        { label: 'Canton Fair Plan', status: 'Ready', done: true },
+        { label: 'Supplier Questions Prepared', status: '5/10' }
+      ]}
+    />
+  </slot>
+</section>

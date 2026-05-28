@@ -7,7 +7,6 @@ import ToolCard from '@components/ToolCard.astro';
 import ArticleCard from '@components/ArticleCard.astro';
 import ChecklistBlock from '@components/ChecklistBlock.astro';
 import WarningBox from '@components/WarningBox.astro';
-import CTASection from '@components/CTASection.astro';
 import Faq from '@components/Faq.astro';
 
 const faqs = [
@@ -119,11 +118,4 @@ const faqs = [
       <Faq title="Travel Setup FAQs" items={faqs} />
     </section>
   </HubLayout>
-
-  <CTASection
-    title="Don't Get Stranded Without Payment or Maps"
-    description="Get our comprehensive pre-departure checklist. Print it out or save it to your phone to ensure you have covered every base before you fly."
-    buttonLabel="Send Me the Checklist"
-    buttonHref="/tools/china-trip-checklist/"
-  />
 </BaseLayout>

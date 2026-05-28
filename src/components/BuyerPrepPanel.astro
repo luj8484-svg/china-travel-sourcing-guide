@@ -1,0 +1,41 @@
+---
+const items = [
+  { label: 'Payment setup', detail: 'Alipay, WeChat Pay, backup card', done: true },
+  { label: 'Internet access', detail: 'eSIM, roaming, or VPN plan', done: true },
+  { label: 'Canton Fair plan', detail: 'Phase, badge, route to Pazhou', done: false },
+  { label: 'Hotel area', detail: 'Metro access and Chinese address', done: false },
+  { label: 'Supplier questions', detail: 'MOQ, samples, terms, certificates', done: false },
+  { label: 'Follow-up sheet', detail: 'Quote, sample, QC, next action', done: false }
+];
+---
+
+<aside class="buyer-prep-panel" aria-label="China Buyer Prep checklist overview">
+  <div class="prep-panel-map" aria-hidden="true">
+    <svg viewBox="0 0 360 120">
+      <path d="M28 82 C72 28, 118 92, 166 48 S252 36, 326 78" />
+      <circle cx="28" cy="82" r="7" />
+      <circle cx="166" cy="48" r="7" />
+      <circle cx="326" cy="78" r="7" />
+    </svg>
+  </div>
+  <div class="prep-panel-header">
+    <span class="status-label">China Buyer Prep Checklist</span>
+    <h2>Before you land, know what is ready.</h2>
+    <p>A practical readiness snapshot for first-time visitors, Canton Fair buyers, and sourcing beginners.</p>
+  </div>
+  <ol class="prep-panel-list">
+    {items.map((item, index) => (
+      <li class={item.done ? 'done' : ''}>
+        <span class="prep-panel-index">{index + 1}</span>
+        <span>
+          <strong>{item.label}</strong>
+          <small>{item.detail}</small>
+        </span>
+      </li>
+    ))}
+  </ol>
+  <div class="prep-panel-footer">
+    <strong>2 of 6 ready</strong>
+    <span>Finish the basics before booking too much of the trip.</span>
+  </div>
+</aside>

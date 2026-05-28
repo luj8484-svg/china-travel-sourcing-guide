@@ -16,7 +16,7 @@ const { title, eyebrow = 'Overall progress', progress = 38, items } = Astro.prop
 const safeProgress = Math.max(0, Math.min(100, progress));
 ---
 
-<section class="checklist-panel" aria-labelledby={`${title.replaceAll(' ', '-').toLowerCase()}-title`}>
+<section id="checklist" class="checklist-panel" aria-labelledby={`${title.replaceAll(' ', '-').toLowerCase()}-title`}>
   <div class="checklist-heading">
     <div>
       <span class="status-label">{eyebrow}</span>

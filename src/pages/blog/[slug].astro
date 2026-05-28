@@ -8,7 +8,6 @@ import Faq from '@components/Faq.astro';
 import SidebarCard from '@components/SidebarCard.astro';
 import WarningBox from '@components/WarningBox.astro';
 import OfficialSourceNote from '@components/OfficialSourceNote.astro';
-import CTASection from '@components/CTASection.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -99,13 +98,13 @@ const checklistCtaByCategory = {
 };
 const checklistCta = checklistCtaByCategory[post.data.category as keyof typeof checklistCtaByCategory];
 const motifByCategory = {
-  'china-travel': 'map',
-  'canton-fair': slug.includes('stay-guangzhou') ? 'hotel' : 'badge',
-  'china-sourcing': 'supplier',
-  tools: 'checklist'
+  'china-travel': 'travel',
+  'canton-fair': 'canton-fair',
+  'china-sourcing': 'sourcing',
+  tools: 'tools'
 } as const;
 const coverMotif =
-  post.data.coverMotif ?? motifByCategory[post.data.category as keyof typeof motifByCategory] ?? 'checklist';
+  post.data.coverMotif ?? motifByCategory[post.data.category as keyof typeof motifByCategory] ?? 'tools';
 const relatedPosts = allPosts
   .filter((item: any) => (item.slug ?? item.id.replace(/\.(md|mdx)$/, '')) !== slug)
   .slice(0, 3);
@@ -123,9 +122,9 @@ const relatedPosts = allPosts
     <header slot="header" class="article-header">
       <nav class="breadcrumb" aria-label="Breadcrumb">
         <a href="/">Home</a>
-        <span>›</span>
+        <span>/</span>
         <a href="/blog/">Blog</a>
-        <span>›</span>
+        <span>/</span>
         <span>{categoryLabel}</span>
       </nav>
       <span class="badge">{categoryLabel}</span>
@@ -150,7 +149,7 @@ const relatedPosts = allPosts
         <p>{post.data.description}</p>
       </div>
       <div class="callout quick-answer">
-        <strong>Key takeaways</strong>
+        <strong>Quick answer</strong>
         <p>{checklistCta.quick}</p>
       </div>
     </div>
@@ -164,6 +163,15 @@ const relatedPosts = allPosts
     <OfficialSourceNote>
       Always confirm current app, visa, payment, hotel, fair, or supplier requirements with official sources before making final travel or purchasing decisions.
     </OfficialSourceNote>
+
+    <section class="faq-section" aria-labelledby="related-tool-title">
+      <div class="resource-card">
+        <span class="card-kicker">Related tool</span>
+        <h2 id="related-tool-title">{checklistCta.heading}</h2>
+        <p>{checklistCta.body}</p>
+        <a class="button secondary" href={checklistCta.href}>{checklistCta.label}</a>
+      </div>
+    </section>
 
     <Faq title="Frequently Asked Questions" items={post.data.faqs} />
 
@@ -203,11 +211,4 @@ const relatedPosts = allPosts
       <span class="badge success">Verified / reviewed</span>
     </SidebarCard>
   </ArticleLayout>
-
-  <CTASection
-    title="Get the Free China Prep Checklist"
-    description="Use a focused checklist before your trip, fair visit, or supplier follow-up."
-    buttonLabel="Open Checklist"
-    buttonHref={checklistCta.href}
-  />
 </BaseLayout>

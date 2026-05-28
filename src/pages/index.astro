@@ -2,22 +2,20 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import HeroSection from '@components/HeroSection.astro';
-import PrepStatusCard from '@components/PrepStatusCard.astro';
-import PainPointCard from '@components/PainPointCard.astro';
+import BuyerPrepPanel from '@components/BuyerPrepPanel.astro';
 import CategoryPathCard from '@components/CategoryPathCard.astro';
 import ToolCard from '@components/ToolCard.astro';
 import ArticleCard from '@components/ArticleCard.astro';
-import CTASection from '@components/CTASection.astro';
 
 const posts = (await getCollection('blog'))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 6);
+  .slice(0, 3);
 
 const motifByCategory = {
-  'china-travel': 'map',
-  'canton-fair': 'badge',
-  'china-sourcing': 'supplier',
-  tools: 'checklist'
+  'china-travel': 'travel',
+  'canton-fair': 'canton-fair',
+  'china-sourcing': 'sourcing',
+  tools: 'tools'
 } as const;
 
 const schema = [
@@ -39,77 +37,77 @@ const schema = [
   schema={schema}
 >
   <HeroSection
-    eyebrow="Updated for 2026 China travel and sourcing"
-    title="Prepare for China Travel, Canton Fair, and Sourcing Trips Without Getting Stuck"
-    description="Practical step-by-step guides and tools for first-time visitors, visa-free entry, Alipay, WeChat Pay, travel apps, transport, Canton Fair, Yiwu Market, Shenzhen sourcing, and supplier visits."
+    eyebrow="Practical China preparation for first-time buyers"
+    title="Arrive in China with the basics already handled."
+    description="China Buyer Prep helps first-time visitors, Canton Fair buyers, and sourcing beginners prepare payment, internet, hotels, fair logistics, supplier questions, and follow-up notes before the trip starts."
     primaryHref="/china-travel/"
-    primaryLabel="Start the Travel Setup Checklist"
-    secondaryHref="/canton-fair/"
-    secondaryLabel="Explore Canton Fair Guide"
+    primaryLabel="Start with travel setup"
+    secondaryHref="/tools/"
+    secondaryLabel="Open preparation tools"
   >
-    <PrepStatusCard
-      slot="visual"
-      progress={50}
-      footer="Supplier questions prepared: 5/10"
-      items={[
-        { label: 'Payment Ready', status: 'Success', done: true },
-        { label: 'Apps Installed', status: 'Pending' },
-        { label: 'Canton Fair Plan', status: 'Ready', done: true }
-      ]}
-    />
+    <BuyerPrepPanel slot="visual" />
   </HeroSection>
 
-  <div class="band">
-    <section class="section" aria-labelledby="pain-title">
-      <div class="center-heading">
-        <h2 id="pain-title">What First-Time China Visitors Usually Get Stuck On</h2>
-        <p>Do not let these common roadblocks derail your trip. We map out exactly how to bypass them.</p>
-      </div>
-      <div class="grid-3">
-        <PainPointCard icon="ID" title="Visa-Free Entry" description="Know visa policy, fill out passport qualifiers, and what documents you need to show at border control." href="/blog/china-travel-checklist-first-time-visitors/" />
-        <PainPointCard icon="Pay" title="Alipay & WeChat Pay" description="Cash is rarely useful. Learn how to bind your foreign card and test payment before your trip." href="/tools/china-trip-checklist/" />
-        <PainPointCard icon="App" title="Travel Apps" description="Google Maps will not work as expected. Discover essential local apps for maps, translation, and daily survival." href="/china-travel/" />
-        <PainPointCard icon="Rail" title="Trains & Taxis" description="Navigate high-speed rail networks and ride-hailing with practical route planning." href="/china-travel/" />
-        <PainPointCard icon="Fair" title="Canton Fair" description="Plan registration, hotel area, and a focused supplier visit strategy before arriving in Guangzhou." href="/canton-fair/" />
-        <PainPointCard icon="Factory" title="Supplier Visits" description="Know what to ask, what to look for on the factory floor, and how to follow up after meetings." href="/china-sourcing/" />
-      </div>
-    </section>
-  </div>
-
   <section class="section" aria-labelledby="path-title">
-    <div class="center-heading">
-      <h2 id="path-title">Choose Your China Prep Path</h2>
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">Choose the right starting point</span>
+        <h2 id="path-title">Three practical paths, one preparation system.</h2>
+      </div>
+      <p>Each path is built around what can actually slow you down in China: payment, movement, fair logistics, supplier comparison, and follow-up.</p>
     </div>
-    <div class="grid-2">
-      <CategoryPathCard icon="Fly" title="First-Time China Travel" description="The complete foundation: SIM cards, VPNs, essential apps, and basic survival tips for your first arrival." href="/china-travel/" />
-      <CategoryPathCard icon="Visa" title="Visa & Entry" description="Navigate the complexities of business visas, tourist visas, and the new visa-free transit policies." href="/china-travel/" label="Check requirements" />
-      <CategoryPathCard icon="CF" title="Canton Fair" description="Phase schedules, buyer badge registration, pavilion maps, and tactics to efficiently source from thousands of booths." href="/canton-fair/" label="Plan your fair" />
-      <CategoryPathCard icon="Buy" title="Sourcing Trip" description="Beyond the fair: visiting wholesale markets like Yiwu, auditing factories in Shenzhen, and negotiating terms." href="/china-sourcing/" label="View guides" />
+    <div class="grid-3">
+      <CategoryPathCard
+        icon="01"
+        title="Travel setup"
+        description="Payment apps, internet access, Chinese hotel addresses, transport basics, and a realistic first-day plan."
+        href="/china-travel/"
+        label="Prepare arrival"
+      />
+      <CategoryPathCard
+        icon="02"
+        title="Canton Fair prep"
+        description="Fair phase, buyer badge, hotel area, booth notes, supplier questions, and post-fair follow-up."
+        href="/canton-fair/"
+        label="Plan fair visit"
+      />
+      <CategoryPathCard
+        icon="03"
+        title="Supplier sourcing"
+        description="Product specs, supplier comparison, samples, trade terms, quality checks, and shipment readiness."
+        href="/china-sourcing/"
+        label="Compare suppliers"
+      />
     </div>
   </section>
 
   <div class="band">
     <section class="section" aria-labelledby="tools-title">
-      <div class="section-heading">
-        <div>
-          <span class="eyebrow">Practical China Trip Tools</span>
-          <h2 id="tools-title">Interactive checklists and checkers to ensure you are ready.</h2>
+      <div class="home-feature-grid">
+        <div class="home-feature-lead">
+          <span class="status-label">Resource center</span>
+          <h2 id="tools-title">Use the tools when a decision needs a checklist.</h2>
+          <p>These are not calculators for show. They are simple preparation sheets for the moments where memory is unreliable: payment setup, fair planning, and supplier comparison.</p>
+          <div class="inline-actions">
+            <a class="button" href="/tools/">View all tools</a>
+          </div>
         </div>
-        <a class="button secondary" href="/tools/">View all tools</a>
-      </div>
-      <div class="grid-5">
-        <ToolCard compact icon="Visa" title="Visa-Free Checker" description="Instantly check if your passport requires a visa." href="/tools/china-trip-checklist/" />
-        <ToolCard compact icon="Pay" title="Payment Readiness" description="Step-by-step setup for Alipay and WeChat Pay." href="/tools/china-trip-checklist/" />
-        <ToolCard compact icon="Apps" title="App Checklist" description="The essential apps to download before flying." href="/tools/china-trip-checklist/" />
-        <ToolCard compact icon="CF" title="Canton Fair Finder" description="Find which phase your product category is in." href="/tools/canton-fair-buyer-checklist/" />
-        <ToolCard compact icon="Quote" title="Question Generator" description="Create a custom supplier question list." href="/tools/supplier-comparison-sheet/" />
+        <div class="grid-3">
+          <ToolCard icon="Pay" title="China Trip Checklist" description="Best for first-time travel setup: payment, internet, hotel address, maps, and route planning." href="/tools/china-trip-checklist/" label="Open checklist" />
+          <ToolCard icon="Fair" title="Canton Fair Buyer Checklist" description="Best for Canton Fair preparation: phase, badge, hotel area, booth notes, and follow-up." href="/tools/canton-fair-buyer-checklist/" label="Open fair tool" />
+          <ToolCard icon="Sheet" title="Supplier Comparison Sheet" description="Best for supplier comparison: MOQ, samples, lead time, terms, and quality notes." href="/tools/supplier-comparison-sheet/" label="Open sheet" />
+        </div>
       </div>
     </section>
   </div>
 
   <section class="section" aria-labelledby="guides-title">
-    <div class="center-heading">
-      <h2 id="guides-title">Start With These Guides</h2>
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">Latest preparation guides</span>
+        <h2 id="guides-title">Start with the guides buyers actually need before arrival.</h2>
+      </div>
+      <a class="button secondary" href="/blog/">View all guides</a>
     </div>
     <div class="article-grid">
       {posts.map((post: any) => (
@@ -126,10 +124,11 @@ const schema = [
     </div>
   </section>
 
-  <CTASection
-    title="Get the Free China Prep Checklist"
-    description="Download our comprehensive 4-week countdown checklist. We will send you exactly what to prepare and when, right to your inbox."
-    buttonLabel="Send Me the Checklist"
-    buttonHref="/tools/china-trip-checklist/"
-  />
+  <section class="section" aria-labelledby="editorial-title">
+    <div class="editorial-note">
+      <span class="eyebrow">Editorial promise</span>
+      <h2 id="editorial-title">Practical, specific, and kept lightweight.</h2>
+      <p>China Buyer Prep stays focused on preparation details that affect real trips: what to install, what to save, what to ask, and what to compare. No heavy app shell, no generic travel inspiration wall, and no external image dependencies.</p>
+    </div>
+  </section>
 </BaseLayout>

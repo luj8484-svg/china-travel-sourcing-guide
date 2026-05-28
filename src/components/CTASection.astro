@@ -15,10 +15,8 @@ const { eyebrow = 'Free Resource', title, description, buttonLabel = 'Open check
     <span class="badge">{eyebrow}</span>
     <h2>{title}</h2>
     <p>{description}</p>
-    <form class="email-form" action={buttonHref}>
-      <input type="email" name="email" placeholder="Enter your email address" aria-label="Email address" />
-      <button class="button" type="submit">{buttonLabel}</button>
-    </form>
-    <p class="status-label">No spam. Useful China prep resources only.</p>
+    <div class="cta-actions">
+      <a class="button" href={buttonHref}>{buttonLabel}</a>
+    </div>
   </div>
 </section>

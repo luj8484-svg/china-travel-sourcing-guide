@@ -3,7 +3,6 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import HubLayout from '@layouts/HubLayout.astro';
 import HubHero from '@components/HubHero.astro';
 import ToolCard from '@components/ToolCard.astro';
-import CTASection from '@components/CTASection.astro';
 ---
 
 <BaseLayout
@@ -26,18 +25,16 @@ import CTASection from '@components/CTASection.astro';
     />
 
     <section class="section">
+      <div class="editorial-note" style="margin-bottom: 24px;">
+        <span class="eyebrow">Resource center</span>
+        <h2>Choose the tool that matches the decision in front of you.</h2>
+        <p>Use these pages as preparation worksheets. They are intentionally static, copyable, and fast so the important details stay visible to search engines and readers.</p>
+      </div>
       <div class="tool-grid">
-        <ToolCard icon="Trip" title="China Trip Checklist" description="Documents, payment apps, internet, hotel, transport, and daily route planning." href="/tools/china-trip-checklist/" label="Open checklist" />
-        <ToolCard icon="Fair" title="Canton Fair Buyer Checklist" description="Badge, phase selection, supplier questions, booth notes, samples, and post-fair follow-up." href="/tools/canton-fair-buyer-checklist/" label="Open buyer checklist" />
-        <ToolCard icon="Sheet" title="Supplier Comparison Sheet" description="Compare MOQ, price, lead time, trade terms, sample cost, payment terms, and communication quality." href="/tools/supplier-comparison-sheet/" label="Open comparison sheet" />
+        <ToolCard icon="Trip" title="China Trip Checklist" description="Best for first-time travel setup: documents, payment apps, internet, hotel, transport, and daily route planning." href="/tools/china-trip-checklist/" label="Open checklist" />
+        <ToolCard icon="Fair" title="Canton Fair Buyer Checklist" description="Best for Canton Fair preparation: badge, phase selection, supplier questions, booth notes, and post-fair follow-up." href="/tools/canton-fair-buyer-checklist/" label="Open buyer checklist" />
+        <ToolCard icon="Sheet" title="Supplier Comparison Sheet" description="Best for supplier comparison: MOQ, price, lead time, trade terms, sample cost, payment terms, and communication quality." href="/tools/supplier-comparison-sheet/" label="Open comparison sheet" />
       </div>
     </section>
   </HubLayout>
-
-  <CTASection
-    title="Save These Checklists Before You Travel"
-    description="Start with the travel checklist, then use the fair and sourcing tools if your trip includes buyer meetings."
-    buttonLabel="Open Travel Checklist"
-    buttonHref="/tools/china-trip-checklist/"
-  />
 </BaseLayout>

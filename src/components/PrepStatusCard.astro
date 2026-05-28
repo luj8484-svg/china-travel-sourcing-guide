@@ -11,7 +11,7 @@ interface Props {
   progress?: number;
   items?: Item[];
   footer?: string;
-  tone?: 'blue' | 'orange';
+  tone?: 'green' | 'orange' | 'blue';
 }
 
 const {
@@ -20,12 +20,12 @@ const {
   progress = 50,
   items = [],
   footer,
-  tone = 'blue'
+  tone = 'green'
 } = Astro.props;
 const safeProgress = Math.max(0, Math.min(100, progress));
 ---
 
-<div class="prep-card">
+<div class={`prep-card tone-${tone}`}>
   <div class="prep-card-header">
     <div class="prep-card-title-row">
       <h3>{title}</h3>
@@ -33,7 +33,7 @@ const safeProgress = Math.max(0, Math.min(100, progress));
     </div>
     <div class="progress-label-row">
       <span>{subtitle}</span>
-      <span>{safeProgress === 100 ? 'Complete' : 'In Progress'}</span>
+      <span>{safeProgress === 100 ? 'Complete' : 'In progress'}</span>
     </div>
     <div class={`progress ${tone === 'orange' ? 'orange' : ''}`} aria-label={`${safeProgress}% complete`}>
       <span style={`width: ${safeProgress}%`}></span>
@@ -42,7 +42,7 @@ const safeProgress = Math.max(0, Math.min(100, progress));
   <ul class="prep-card-list">
     {items.map((item) => (
       <li class={`check-item ${item.done ? 'done' : ''}`}>
-        <span class={`check-dot ${item.done ? 'done' : ''}`} aria-hidden="true">{item.done ? '✓' : ''}</span>
+        <span class={`check-dot ${item.done ? 'done' : ''}`} aria-hidden="true">{item.done ? 'OK' : ''}</span>
         <span class="check-text">
           <strong>{item.label}</strong>
           {item.status && <span>{item.status}</span>}
@@ -50,5 +50,5 @@ const safeProgress = Math.max(0, Math.min(100, progress));
       </li>
     ))}
   </ul>
-  {footer && <div class="progress-label-row" style="padding: 0 22px 18px;"><span>{footer}</span></div>}
+  {footer && <div class="progress-label-row prep-card-footer"><span>{footer}</span></div>}
 </div>

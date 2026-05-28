@@ -7,7 +7,6 @@ import ToolCard from '@components/ToolCard.astro';
 import ArticleCard from '@components/ArticleCard.astro';
 import ChecklistBlock from '@components/ChecklistBlock.astro';
 import WarningBox from '@components/WarningBox.astro';
-import CTASection from '@components/CTASection.astro';
 import Faq from '@components/Faq.astro';
 
 const faqs = [
@@ -114,11 +113,4 @@ const faqs = [
       <Faq title="Sourcing FAQs" items={faqs} />
     </section>
   </HubLayout>
-
-  <CTASection
-    title="Get the Supplier Comparison Template"
-    description="Use a structured sheet to compare MOQ, price, samples, terms, lead time, communication, and quality risk."
-    buttonLabel="Open the Template"
-    buttonHref="/tools/supplier-comparison-sheet/"
-  />
 </BaseLayout>

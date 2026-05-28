@@ -9,7 +9,7 @@ interface Props {
   readTime?: string;
   updated?: string;
   image?: string;
-  motif?: 'map' | 'checklist' | 'badge' | 'hotel' | 'supplier';
+  motif?: 'travel' | 'canton-fair' | 'sourcing' | 'tools' | 'map' | 'checklist' | 'badge' | 'hotel' | 'supplier';
 }
 
 const {
@@ -20,14 +20,14 @@ const {
   readTime = '6 min read',
   updated,
   image,
-  motif = 'checklist'
+  motif = 'tools'
 } = Astro.props;
 ---
 
 <a class="article-card" href={href}>
   <ArticleCover image={image} alt={title} motif={motif} label={category} compact />
   <div class="article-card-body">
-    <span class="badge">{category}</span>
+    <span class="card-kicker">{category}</span>
     <h2>{title}</h2>
     <p>{description}</p>
     <div class="article-meta-row">

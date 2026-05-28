@@ -2,7 +2,7 @@
 interface Props {
   image?: string;
   alt?: string;
-  motif?: 'map' | 'checklist' | 'badge' | 'hotel' | 'supplier';
+  motif?: 'travel' | 'canton-fair' | 'sourcing' | 'tools' | 'map' | 'checklist' | 'badge' | 'hotel' | 'supplier';
   label?: string;
   compact?: boolean;
 }
@@ -10,10 +10,27 @@ interface Props {
 const {
   image,
   alt = '',
-  motif = 'checklist',
+  motif = 'tools',
   label = 'China Buyer Prep guide visual',
   compact = false
 } = Astro.props;
+
+type Motif = NonNullable<Props['motif']>;
+type CoverVariant = 'travel' | 'canton-fair' | 'sourcing' | 'tools';
+
+const motifMap: Record<Motif, CoverVariant> = {
+  travel: 'travel',
+  'canton-fair': 'canton-fair',
+  sourcing: 'sourcing',
+  tools: 'tools',
+  map: 'travel',
+  badge: 'canton-fair',
+  supplier: 'sourcing',
+  checklist: 'tools',
+  hotel: 'travel'
+};
+
+const normalizedMotif = motifMap[motif];
 ---
 
 {
@@ -23,48 +40,42 @@ const {
     </figure>
   ) : (
     <div
-      class={`article-cover placeholder ${motif} ${compact ? 'compact' : ''}`}
+      class={`article-cover placeholder ${normalizedMotif} ${compact ? 'compact' : ''}`}
       role="img"
       aria-label={label}
     >
-      <div class="cover-grid" aria-hidden="true"></div>
+      <div class="cover-paper" aria-hidden="true"></div>
       <div class="cover-motif" aria-hidden="true">
-        {motif === 'map' && (
+        {normalizedMotif === 'travel' && (
           <svg viewBox="0 0 320 180">
-            <path d="M42 122 C82 50, 126 144, 168 84 S250 54, 282 114" />
-            <circle cx="42" cy="122" r="12" />
-            <circle cx="168" cy="84" r="12" />
-            <circle cx="282" cy="114" r="12" />
+            <path d="M44 122 C88 48, 132 138, 174 82 S250 54, 282 116" />
+            <circle cx="44" cy="122" r="10" />
+            <circle cx="174" cy="82" r="10" />
+            <path d="M96 42 h48 M94 62 h30 M214 120 h46" />
+            <path d="M238 36 l18 18 l-18 18 l-18 -18z" />
           </svg>
         )}
-        {motif === 'checklist' && (
+        {normalizedMotif === 'canton-fair' && (
           <svg viewBox="0 0 320 180">
-            <rect x="72" y="34" width="176" height="118" rx="16" />
+            <rect x="86" y="30" width="148" height="120" rx="14" />
+            <path d="M126 30 v-16 h68 v16" />
+            <circle cx="134" cy="84" r="20" />
+            <path d="M172 70 h42 M172 94 h42 M112 124 h96" />
+          </svg>
+        )}
+        {normalizedMotif === 'sourcing' && (
+          <svg viewBox="0 0 320 180">
+            <rect x="56" y="42" width="208" height="104" rx="12" />
+            <path d="M56 76 h208 M126 42 v104 M194 42 v104" />
+            <path d="M82 103 h24 M150 103 h24 M218 103 h22 M82 126 h24 M150 126 h24 M218 126 h22" />
+          </svg>
+        )}
+        {normalizedMotif === 'tools' && (
+          <svg viewBox="0 0 320 180">
+            <rect x="72" y="34" width="176" height="118" rx="14" />
             <path d="M104 72 l13 13 l28 -33" />
             <path d="M104 112 l13 13 l28 -33" />
-            <path d="M166 70 H220 M166 112 H220" />
-          </svg>
-        )}
-        {motif === 'badge' && (
-          <svg viewBox="0 0 320 180">
-            <rect x="84" y="30" width="152" height="120" rx="18" />
-            <path d="M126 30 v-16 h68 v16" />
-            <circle cx="136" cy="82" r="22" />
-            <path d="M176 70 H214 M176 94 H214 M112 124 H208" />
-          </svg>
-        )}
-        {motif === 'hotel' && (
-          <svg viewBox="0 0 320 180">
-            <path d="M160 32 C124 32, 100 58, 100 92 c0 42 60 80 60 80 s60 -38 60 -80 c0 -34 -24 -60 -60 -60z" />
-            <circle cx="160" cy="90" r="24" />
-            <path d="M142 91 h36 M142 108 h36" />
-          </svg>
-        )}
-        {motif === 'supplier' && (
-          <svg viewBox="0 0 320 180">
-            <rect x="58" y="42" width="204" height="104" rx="14" />
-            <path d="M58 78 H262 M126 42 V146 M194 42 V146" />
-            <path d="M82 104 h24 M150 104 h24 M218 104 h20 M82 126 h24 M150 126 h24 M218 126 h20" />
+            <path d="M166 70 h54 M166 112 h54" />
           </svg>
         )}
       </div>

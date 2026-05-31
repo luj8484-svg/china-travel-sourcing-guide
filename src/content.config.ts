@@ -8,6 +8,7 @@ const blog = defineCollection({
     title: z.string(),
     metaTitle: z.string().optional(),
     description: z.string(),
+    quickAnswer: z.string().optional(),
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
     category: z.enum(['china-travel', 'canton-fair', 'china-sourcing', 'tools']),

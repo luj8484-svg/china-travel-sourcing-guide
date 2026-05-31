@@ -79,7 +79,7 @@ const normalizedMotif = motifMap[motif];
           </svg>
         )}
       </div>
-      <span class="cover-label">{label}</span>
+      {!compact && <span class="cover-label">{label}</span>}
     </div>
   )
 }

@@ -27,7 +27,10 @@ const articleUrl = new URL(canonical, Astro.site ?? Astro.url.origin).href;
 const updatedDate = post.data.updatedDate ?? post.data.pubDate;
 const words = String(post.body ?? post.data.description).trim().split(/\s+/).filter(Boolean).length;
 const readingMinutes = Math.max(3, Math.ceil(words / 180));
-const categoryLabel = post.data.category.replace('-', ' ');
+const categoryLabel = post.data.category
+  .split('-')
+  .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
+  .join(' ');
 
 const articleSchema = {
   '@context': 'https://schema.org',
@@ -97,6 +100,7 @@ const checklistCtaByCategory = {
   }
 };
 const checklistCta = checklistCtaByCategory[post.data.category as keyof typeof checklistCtaByCategory];
+const quickAnswer = post.data.quickAnswer ?? checklistCta.quick;
 const motifByCategory = {
   'china-travel': 'travel',
   'canton-fair': 'canton-fair',
@@ -150,7 +154,7 @@ const relatedPosts = allPosts
       </div>
       <div class="callout quick-answer">
         <strong>Quick answer</strong>
-        <p>{checklistCta.quick}</p>
+        <p>{quickAnswer}</p>
       </div>
     </div>
 

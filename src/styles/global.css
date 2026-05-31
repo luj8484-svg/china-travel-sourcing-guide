@@ -1100,6 +1100,10 @@ details p {
   font-weight: 750;
 }
 
+.article-cover.compact .cover-label {
+  display: none;
+}
+
 .site-footer {
   background: var(--navy);
   color: white;

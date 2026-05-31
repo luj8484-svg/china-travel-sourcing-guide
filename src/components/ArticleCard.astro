@@ -22,12 +22,18 @@ const {
   image,
   motif = 'tools'
 } = Astro.props;
+
+const displayCategory = category
+  .split(/[\s-]+/)
+  .filter(Boolean)
+  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+  .join(' ');
 ---
 
 <a class="article-card" href={href}>
-  <ArticleCover image={image} alt={title} motif={motif} label={category} compact />
+  <ArticleCover image={image} alt={title} motif={motif} label={displayCategory} compact />
   <div class="article-card-body">
-    <span class="card-kicker">{category}</span>
+    <span class="card-kicker">{displayCategory}</span>
     <h2>{title}</h2>
     <p>{description}</p>
     <div class="article-meta-row">

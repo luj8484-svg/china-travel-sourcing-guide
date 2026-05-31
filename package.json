@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro check && astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "qa:content": "node scripts/qa-content.mjs",
+    "qa": "npm run build && npm run qa:content"
   },
   "dependencies": {
     "@astrojs/mdx": "latest",

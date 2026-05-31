@@ -183,7 +183,7 @@ const relatedPosts = allPosts
     {relatedPosts.length > 0 && (
       <section class="faq-section" aria-labelledby="related-title">
         <h2 id="related-title">Related guides</h2>
-        <div class="article-grid">
+        <div class="article-grid related-guides-grid">
           {relatedPosts.map((item: any) => (
             <ArticleCard
               href={`/blog/${item.slug ?? item.id.replace(/\.(md|mdx)$/, '')}/`}

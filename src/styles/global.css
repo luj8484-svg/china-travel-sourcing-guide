@@ -795,6 +795,64 @@ h3 {
   text-underline-offset: 4px;
 }
 
+.prose .related-guides-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.prose .related-guides-grid .article-card,
+.prose .related-guides-grid .article-card * {
+  text-decoration: none;
+}
+
+.prose .related-guides-grid .article-card {
+  height: 100%;
+  color: inherit;
+  font-weight: inherit;
+}
+
+.prose .related-guides-grid .article-card:hover {
+  background: rgba(255, 255, 255, 0.98);
+  text-decoration: none;
+}
+
+.prose .related-guides-grid .article-card-body {
+  width: 100%;
+  min-height: 210px;
+}
+
+.prose .related-guides-grid .article-cover.compact {
+  height: 150px;
+}
+
+.prose .related-guides-grid .article-card h2 {
+  display: -webkit-box;
+  margin: 6px 0 8px;
+  padding: 0;
+  overflow: hidden;
+  color: var(--ink);
+  font-size: 1.02rem;
+  line-height: 1.32;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.prose .related-guides-grid .article-card p {
+  display: -webkit-box;
+  margin: 0;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+
+.prose .related-guides-grid .article-meta-row {
+  margin-top: auto;
+  padding-top: 14px;
+  text-decoration: none;
+}
+
 .prose ul,
 .prose ol {
   padding-left: 1.2rem;
@@ -1381,6 +1439,7 @@ details p {
   .grid-5,
   .entry-grid,
   .article-grid,
+  .prose .related-guides-grid,
   .tool-grid,
   .resource-grid,
   .icon-grid {

@@ -11,10 +11,17 @@ const allPosts = (await getCollection('blog')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 const getSlug = (post: any) => post.slug ?? post.id.replace(/\.(md|mdx)$/, '');
-const featuredLatestSlugs = [
-  'canton-fair-phase-1-2-3-explained',
-  'best-area-to-stay-guangzhou-canton-fair'
+const featuredLatestGuides = [
+  {
+    slug: 'canton-fair-phase-1-2-3-explained',
+    title: 'Canton Fair Phase 1, 2, and 3 Explained for Overseas Buyers'
+  },
+  {
+    slug: 'best-area-to-stay-guangzhou-canton-fair',
+    title: 'Best Area to Stay in Guangzhou for Canton Fair First-Time Buyers'
+  }
 ];
+const featuredLatestSlugs = featuredLatestGuides.map((guide) => guide.slug);
 const featuredLatestPosts = featuredLatestSlugs
   .map((slug) => allPosts.find((post: any) => getSlug(post) === slug))
   .filter(Boolean);

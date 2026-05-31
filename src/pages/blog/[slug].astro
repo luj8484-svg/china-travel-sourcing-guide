@@ -31,6 +31,7 @@ const categoryLabel = post.data.category
   .split('-')
   .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
   .join(' ');
+const showCategoryBadge = !post.data.title.toLowerCase().startsWith(categoryLabel.toLowerCase());
 
 const articleSchema = {
   '@context': 'https://schema.org',
@@ -79,7 +80,7 @@ const checklistCtaByCategory = {
     body: 'Confirm your phase, hotel area, buyer badge, supplier questions, and follow-up process.',
     href: '/tools/canton-fair-buyer-checklist/',
     label: 'Open buyer checklist',
-    quick: 'Confirm your fair phase, hotel area, buyer badge, supplier questions, and follow-up process before booking too much of the trip.',
+    quick: 'Confirm the Canton Fair phase, buyer badge, hotel route, supplier questions, and follow-up process before locking in travel plans.',
     avoid: 'Do not choose flights or hotels before checking the fair phase and your daily route to Pazhou.'
   },
   'china-sourcing': {
@@ -131,7 +132,7 @@ const relatedPosts = allPosts
         <span>/</span>
         <span>Guide</span>
       </nav>
-      <span class="badge">{categoryLabel}</span>
+      {showCategoryBadge && <span class="badge">{categoryLabel}</span>}
       <h1>{post.data.title}</h1>
       <p>{post.data.description}</p>
       <div class="article-top-meta">
@@ -209,10 +210,12 @@ const relatedPosts = allPosts
       )}
     </Fragment>
 
-    <SidebarCard slot="sidebar" title={checklistCta.heading} description={checklistCta.body} href={checklistCta.href} label={checklistCta.label} />
-    <SidebarCard slot="sidebar" title="Review status">
-      <p>This guide is reviewed for practical usefulness and updated when the site content changes.</p>
-      <span class="badge success">Verified / reviewed</span>
-    </SidebarCard>
+    <Fragment slot="sidebar">
+      <SidebarCard title={checklistCta.heading} description={checklistCta.body} href={checklistCta.href} label={checklistCta.label} />
+      <SidebarCard title="Review status">
+        <p>This guide is reviewed for practical usefulness and updated when the site content changes.</p>
+        <span class="badge success">Verified / reviewed</span>
+      </SidebarCard>
+    </Fragment>
   </ArticleLayout>
 </BaseLayout>

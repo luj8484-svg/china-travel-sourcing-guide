@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const srcDir = path.join(root, 'src');
+const distDir = path.join(root, 'dist');
 const failures = [];
 
 const requiredPhaseTitle = 'Canton Fair Phase 1, 2, and 3 Explained for Overseas Buyers';
@@ -15,6 +16,11 @@ const duplicateLabels = [
   'canton fair canton fair',
   'china sourcing china sourcing',
   'china travel china travel'
+];
+const distDuplicateLabels = [
+  'Canton Fair Canton Fair',
+  'China Sourcing China Sourcing',
+  'China Travel China Travel'
 ];
 
 async function listFiles(dir) {
@@ -39,8 +45,18 @@ function fail(message) {
 const sourceFiles = (await listFiles(srcDir)).filter((file) =>
   /\.(astro|md|mdx|js|mjs|ts|tsx|json|css)$/.test(file)
 );
+const distHtmlFiles = existsSync(distDir)
+  ? (await listFiles(distDir)).filter((file) => /\.html$/.test(file))
+  : [];
 const sourceContents = await Promise.all(
   sourceFiles.map(async (file) => ({
+    file,
+    relative: path.relative(root, file).replaceAll(path.sep, '/'),
+    text: await readFile(file, 'utf8')
+  }))
+);
+const distContents = await Promise.all(
+  distHtmlFiles.map(async (file) => ({
     file,
     relative: path.relative(root, file).replaceAll(path.sep, '/'),
     text: await readFile(file, 'utf8')
@@ -86,6 +102,35 @@ if (sourceBlob.includes('/privacy/') && !existsSync(path.join(root, 'src/pages/p
 }
 if (sourceBlob.includes('/terms/') && !existsSync(path.join(root, 'src/pages/terms.astro'))) {
   fail('Route existence check failed: "/terms/" is linked but src/pages/terms.astro does not exist.');
+}
+
+if (!existsSync(distDir)) {
+  fail('Built HTML check failed: dist directory does not exist. Run npm run build before npm run qa:content.');
+}
+
+for (const { relative, text } of distContents) {
+  const plainText = text
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  for (const duplicateLabel of distDuplicateLabels) {
+    if (plainText.includes(duplicateLabel)) {
+      fail(`Built HTML duplicate label check failed: "${duplicateLabel}" found in ${relative}.`);
+    }
+  }
+}
+
+const hotelHtmlPath = path.join(distDir, 'blog/best-area-to-stay-guangzhou-canton-fair/index.html');
+if (existsSync(hotelHtmlPath)) {
+  const hotelHtml = await readFile(hotelHtmlPath, 'utf8');
+  const reviewStatusCount = (hotelHtml.match(/Review status/g) ?? []).length;
+
+  if (reviewStatusCount > 1) {
+    fail(`Hotel article sidebar check failed: expected at most one "Review status", found ${reviewStatusCount}.`);
+  }
+} else {
+  fail('Hotel article sidebar check failed: built hotel article HTML was not found.');
 }
 
 if (failures.length > 0) {

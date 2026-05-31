@@ -1,18 +1,18 @@
 ---
 const navItems = [
   { href: '/china-travel/', label: 'Travel Setup' },
-  { href: '/china-travel/', label: 'Visa & Entry' },
   { href: '/canton-fair/', label: 'Canton Fair' },
-  { href: '/china-sourcing/', label: 'Sourcing Guides' },
+  { href: '/china-sourcing/', label: 'Sourcing' },
+  { href: '/blog/', label: 'Blog' },
   { href: '/tools/', label: 'Tools' },
-  { href: '/blog/', label: 'Blog' }
+  { href: '/contact/', label: 'Contact' }
 ];
 
 const pathname = Astro.url.pathname;
 const isCurrent = (href: string) =>
   href === '/'
     ? pathname === '/'
-    : pathname === href || (href !== '/china-travel/' && pathname.startsWith(href));
+    : pathname === href || pathname.startsWith(href);
 ---
 
 <header class="site-header">

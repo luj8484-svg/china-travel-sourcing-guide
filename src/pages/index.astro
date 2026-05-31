@@ -7,9 +7,21 @@ import CategoryPathCard from '@components/CategoryPathCard.astro';
 import ToolCard from '@components/ToolCard.astro';
 import ArticleCard from '@components/ArticleCard.astro';
 
-const posts = (await getCollection('blog'))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 3);
+const allPosts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+const getSlug = (post: any) => post.slug ?? post.id.replace(/\.(md|mdx)$/, '');
+const featuredLatestSlugs = [
+  'canton-fair-phase-1-2-3-explained',
+  'best-area-to-stay-guangzhou-canton-fair'
+];
+const featuredLatestPosts = featuredLatestSlugs
+  .map((slug) => allPosts.find((post: any) => getSlug(post) === slug))
+  .filter(Boolean);
+const posts = [
+  ...featuredLatestPosts,
+  ...allPosts.filter((post: any) => !featuredLatestSlugs.includes(getSlug(post)))
+].slice(0, 3);
 
 const motifByCategory = {
   'china-travel': 'travel',
@@ -112,7 +124,7 @@ const schema = [
     <div class="article-grid">
       {posts.map((post: any) => (
         <ArticleCard
-          href={`/blog/${post.slug ?? post.id.replace(/\.(md|mdx)$/, '')}/`}
+          href={`/blog/${getSlug(post)}/`}
           title={post.data.title}
           description={post.data.description}
           category={post.data.category.replace('-', ' ')}

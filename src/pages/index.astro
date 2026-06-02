@@ -13,8 +13,8 @@ const allPosts = (await getCollection('blog')).sort(
 const getSlug = (post: any) => post.slug ?? post.id.replace(/\.(md|mdx)$/, '');
 const featuredLatestGuides = [
   {
-    slug: 'supplier-questions-to-ask-at-canton-fair',
-    title: 'Supplier Questions to Ask at the Canton Fair'
+    slug: 'canton-fair-buyer-badge-registration-guide',
+    title: 'Canton Fair Buyer Badge and Registration Guide for First-Time Visitors'
   },
   {
     slug: 'canton-fair-phase-1-2-3-explained',

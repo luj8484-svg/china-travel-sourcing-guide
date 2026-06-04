@@ -335,8 +335,8 @@ Article covers now use a lightweight local visual system:
 
 - Add `coverImage` to blog frontmatter when a local image is available, for example `/images/covers/canton-fair-hotel-area.jpg`.
 - Add `coverAlt` for the image description.
-- Add `coverMotif` when using a CSS/SVG placeholder instead of an image. Supported motifs: `map`, `checklist`, `badge`, `hotel`, `supplier`.
-- If no cover image is provided, blog cards and article headers render an editorial placeholder with warm off-white, deep green, terracotta, and sand accents.
+- Add `coverMotif` when using CSS/SVG cover art instead of an image. Supported motifs: `map`, `checklist`, `badge`, `hotel`, `supplier`.
+- If no cover image is provided, blog cards and article headers render editorial cover art with warm off-white, deep green, terracotta, and sand accents.
 
 Image rules:
 

@@ -1082,7 +1082,7 @@ details p {
   object-fit: cover;
 }
 
-.article-cover.placeholder {
+.article-cover.cover-art {
   display: grid;
   min-height: 240px;
   place-items: center;
@@ -1092,7 +1092,7 @@ details p {
   isolation: isolate;
 }
 
-.article-cover.placeholder.compact {
+.article-cover.cover-art.compact {
   min-height: 0;
 }
 
@@ -1105,28 +1105,28 @@ details p {
     var(--surface-muted);
 }
 
-.article-cover.placeholder.travel .cover-paper {
+.article-cover.cover-art.travel .cover-paper {
   background:
     linear-gradient(135deg, rgba(230, 240, 236, 0.95), rgba(255, 255, 255, 0.45)),
     repeating-linear-gradient(90deg, rgba(23, 79, 73, 0.07) 0 1px, transparent 1px 28px),
     #f7f2e9;
 }
 
-.article-cover.placeholder.canton-fair .cover-paper {
+.article-cover.cover-art.canton-fair .cover-paper {
   background:
     linear-gradient(135deg, rgba(255, 244, 232, 0.96), rgba(255, 255, 255, 0.46)),
     repeating-linear-gradient(0deg, rgba(200, 102, 40, 0.08) 0 1px, transparent 1px 22px),
     #fbf1e8;
 }
 
-.article-cover.placeholder.sourcing .cover-paper {
+.article-cover.cover-art.sourcing .cover-paper {
   background:
     linear-gradient(135deg, rgba(245, 241, 230, 0.98), rgba(255, 255, 255, 0.42)),
     repeating-linear-gradient(90deg, rgba(17, 24, 39, 0.07) 0 1px, transparent 1px 26px),
     #f7f1e3;
 }
 
-.article-cover.placeholder.tools .cover-paper {
+.article-cover.cover-art.tools .cover-paper {
   background:
     linear-gradient(135deg, rgba(237, 245, 251, 0.96), rgba(255, 255, 255, 0.4)),
     repeating-linear-gradient(0deg, rgba(47, 111, 163, 0.08) 0 1px, transparent 1px 20px),

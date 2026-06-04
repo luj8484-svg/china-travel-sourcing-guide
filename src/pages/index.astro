@@ -13,6 +13,10 @@ const allPosts = (await getCollection('blog')).sort(
 const getSlug = (post: any) => post.slug ?? post.id.replace(/\.(md|mdx)$/, '');
 const featuredLatestGuides = [
   {
+    slug: 'china-payment-apps-for-foreign-visitors',
+    title: 'China Payment Apps for Foreign Visitors: Alipay, WeChat Pay, and Backup Options'
+  },
+  {
     slug: 'canton-fair-buyer-badge-registration-guide',
     title: 'Canton Fair Buyer Badge and Registration Guide for First-Time Visitors'
   },

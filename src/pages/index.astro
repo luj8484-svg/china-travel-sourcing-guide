@@ -13,6 +13,10 @@ const allPosts = (await getCollection('blog')).sort(
 const getSlug = (post: any) => post.slug ?? post.id.replace(/\.(md|mdx)$/, '');
 const featuredLatestGuides = [
   {
+    slug: 'how-to-get-around-in-china',
+    title: 'How to Get Around in China: Metro, Taxi, Maps, and Ride-Hailing Basics'
+  },
+  {
     slug: 'china-hotel-location-guide-first-time-visitors',
     title: 'China Hotel Location Guide for First-Time Visitors'
   },

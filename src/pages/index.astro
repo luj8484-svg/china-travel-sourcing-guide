@@ -13,6 +13,10 @@ const allPosts = (await getCollection('blog')).sort(
 const getSlug = (post: any) => post.slug ?? post.id.replace(/\.(md|mdx)$/, '');
 const featuredLatestGuides = [
   {
+    slug: 'how-to-request-samples-from-chinese-suppliers',
+    title: 'How to Request Samples from Chinese Suppliers'
+  },
+  {
     slug: 'how-to-compare-chinese-suppliers-before-sample-order',
     title: 'How to Compare Chinese Suppliers Before Ordering Samples'
   },

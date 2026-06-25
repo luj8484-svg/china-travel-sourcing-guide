@@ -13,6 +13,10 @@ const allPosts = (await getCollection('blog')).sort(
 const getSlug = (post: any) => post.slug ?? post.id.replace(/\.(md|mdx)$/, '');
 const featuredLatestGuides = [
   {
+    slug: 'what-to-confirm-before-first-order-chinese-supplier',
+    title: 'What to Confirm Before Your First Order with a Chinese Supplier'
+  },
+  {
     slug: 'how-to-negotiate-moq-price-chinese-suppliers',
     title: 'How to Negotiate MOQ and Price with Chinese Suppliers'
   },

@@ -4,6 +4,8 @@ import HeroSection from '@components/HeroSection.astro';
 import ToolCard from '@components/ToolCard.astro';
 import ChecklistBlock from '@components/ChecklistBlock.astro';
 import WarningBox from '@components/WarningBox.astro';
+
+const checklistFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSebO1lQAN1H0HHNXqSNxu98wLHfp8hATqe1CqDVptvbFrikBA/viewform';
 ---
 
 <BaseLayout
@@ -15,8 +17,10 @@ import WarningBox from '@components/WarningBox.astro';
     eyebrow="Free preparation checklist"
     title="Get the free China Buyer Prep checklist."
     description="A practical preparation checklist for first-time China visitors, Canton Fair buyers, and small importers planning payment, internet, hotels, transport, supplier questions, and sourcing follow-up."
-    primaryHref="/contact/"
+    primaryHref={checklistFormUrl}
     primaryLabel="Request the checklist"
+    primaryTarget="_blank"
+    primaryRel="noopener noreferrer"
     secondaryHref="/blog/"
     secondaryLabel="Browse preparation guides"
   />
@@ -26,9 +30,9 @@ import WarningBox from '@components/WarningBox.astro';
       <div>
         <span class="eyebrow">How it works</span>
         <h2 id="request-title">Tell us what you are preparing for.</h2>
-        <p>Send a short note about your trip, fair visit, or sourcing plan. We will send or point you to the most relevant checklist version for your situation.</p>
+        <p>Use the form to tell us what you are preparing for, and we will point you to the most relevant checklist or guide.</p>
         <div class="inline-actions">
-          <a class="button" href="/contact/">Request the checklist</a>
+          <a class="button" href={checklistFormUrl} target="_blank" rel="noopener noreferrer">Request the checklist</a>
           <a class="button secondary" href="/tools/">View online tools</a>
         </div>
       </div>

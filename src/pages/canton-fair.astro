@@ -14,6 +14,8 @@ const faqs = [
   { question: 'Where should I stay for the Canton Fair?', answer: 'Prioritize practical access to Pazhou, metro connections, and evening food options over room size alone.' },
   { question: 'Should I prepare supplier questions before the fair?', answer: 'Yes. Using the same questions at each booth makes comparison and follow-up much easier.' }
 ];
+
+const checklistFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSebO1lQAN1H0HHNXqSNxu98wLHfp8hATqe1CqDVptvbFrikBA/viewform';
 ---
 
 <BaseLayout
@@ -73,7 +75,7 @@ const faqs = [
           <p>The fair gets much easier when your phase, route, supplier notes, and follow-up questions are ready.</p>
           <div class="inline-actions">
             <a class="button" href="/tools/canton-fair-buyer-checklist/">Open buyer checklist</a>
-            <a class="button secondary" href="/free-checklist/">Request free checklist</a>
+            <a class="button secondary" href={checklistFormUrl} target="_blank" rel="noopener noreferrer">Request free checklist</a>
           </div>
         </div>
         <ChecklistBlock

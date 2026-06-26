@@ -14,6 +14,8 @@ const faqs = [
   { question: 'Is lowest unit price the best supplier choice?', answer: 'No. Compare MOQ, samples, lead time, trade terms, communication, packaging, and quality risk.' },
   { question: 'Should I visit factories?', answer: 'Factory visits can help for higher-risk orders, but prepare a clear checklist and follow-up process before you go.' }
 ];
+
+const checklistFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSebO1lQAN1H0HHNXqSNxu98wLHfp8hATqe1CqDVptvbFrikBA/viewform';
 ---
 
 <BaseLayout
@@ -76,7 +78,7 @@ const faqs = [
           <p>Use one template for requirements, quotes, samples, terms, and quality risk.</p>
           <div class="inline-actions">
             <a class="button" href="/tools/supplier-comparison-sheet/">Open comparison sheet</a>
-            <a class="button secondary" href="/free-checklist/">Request free checklist</a>
+            <a class="button secondary" href={checklistFormUrl} target="_blank" rel="noopener noreferrer">Request free checklist</a>
           </div>
         </div>
         <ChecklistBlock

@@ -16,6 +16,8 @@ const faqs = [
   { question: 'Can I use Uber or Lyft in China?', answer: 'No. Plan to use local ride-hailing options, hotel help, metro, taxis, or a prearranged transfer depending on the city.' },
   { question: 'Will my WhatsApp work in China?', answer: 'Access can be unreliable. Prepare backup contact methods and confirm your internet setup before arrival.' }
 ];
+
+const checklistFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSebO1lQAN1H0HHNXqSNxu98wLHfp8hATqe1CqDVptvbFrikBA/viewform';
 ---
 
 <BaseLayout
@@ -74,7 +76,7 @@ const faqs = [
           <p>Use this as a practical readiness list before arrival, not a generic packing checklist.</p>
           <div class="inline-actions">
             <a class="button" href="/tools/china-trip-checklist/">Open online checklist</a>
-            <a class="button secondary" href="/free-checklist/">Request free checklist</a>
+            <a class="button secondary" href={checklistFormUrl} target="_blank" rel="noopener noreferrer">Request free checklist</a>
           </div>
         </div>
         <ChecklistBlock

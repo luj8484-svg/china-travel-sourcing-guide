@@ -13,6 +13,10 @@ const allPosts = (await getCollection('blog')).sort(
 const getSlug = (post: any) => post.slug ?? post.id.replace(/\.(md|mdx)$/, '');
 const featuredLatestGuides = [
   {
+    slug: 'exw-fob-cif-ddp-china-sourcing',
+    title: 'EXW, FOB, CIF, and DDP Explained for China Sourcing'
+  },
+  {
     slug: 'what-to-confirm-before-first-order-chinese-supplier',
     title: 'What to Confirm Before Your First Order with a Chinese Supplier'
   },

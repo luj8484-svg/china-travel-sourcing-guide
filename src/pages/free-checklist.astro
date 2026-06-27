@@ -20,6 +20,10 @@ const checklistFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSebO1lQAN1H0H
     primaryLabel="Request the checklist"
     primaryTarget="_blank"
     primaryRel="noopener noreferrer"
+    primaryTrackEvent="checklist_cta_click"
+    primaryCtaLocation="free_checklist_hero"
+    primaryCtaLabel="Request the checklist"
+    primaryCtaDestination="google_form"
     secondaryHref="/"
     secondaryLabel="Browse preparation guides"
   />
@@ -45,7 +49,7 @@ const checklistFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSebO1lQAN1H0H
         <span class="icon-tile" aria-hidden="true">Trip</span>
         <h2>First China Trip Checklist</h2>
         <p>For first-time visitors preparing payment apps, internet access, hotel location, Chinese addresses, and getting around in China.</p>
-        <a class="button" href="/tools/china-trip-checklist/">View China Travel Checklist</a>
+        <a class="button" href="/tools/china-trip-checklist/" data-track-event="checklist_cta_click" data-cta-location="free_checklist_trip_path" data-cta-label="View China Travel Checklist" data-cta-destination="/tools/china-trip-checklist/">View China Travel Checklist</a>
         <ul>
           <li><a href="/china-travel/">China Travel Hub</a></li>
           <li><a href="/blog/china-payment-apps-for-foreign-visitors/">China Payment Apps Guide</a></li>
@@ -57,7 +61,7 @@ const checklistFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSebO1lQAN1H0H
         <span class="icon-tile" aria-hidden="true">Fair</span>
         <h2>Canton Fair Buyer Checklist</h2>
         <p>For overseas buyers preparing Canton Fair registration, buyer badge basics, phases, supplier questions, hotel area, and fair planning.</p>
-        <a class="button" href="/tools/canton-fair-buyer-checklist/">View Canton Fair Checklist</a>
+        <a class="button" href="/tools/canton-fair-buyer-checklist/" data-track-event="checklist_cta_click" data-cta-location="free_checklist_canton_fair_path" data-cta-label="View Canton Fair Checklist" data-cta-destination="/tools/canton-fair-buyer-checklist/">View Canton Fair Checklist</a>
         <ul>
           <li><a href="/canton-fair/">Canton Fair Hub</a></li>
           <li><a href="/blog/canton-fair-first-time-buyer-guide/">Canton Fair First-Time Buyer Guide</a></li>
@@ -69,7 +73,7 @@ const checklistFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSebO1lQAN1H0H
         <span class="icon-tile" aria-hidden="true">Source</span>
         <h2>China Sourcing Checklist</h2>
         <p>For small importers preparing supplier comparison, samples, quality control, MOQ, trade terms, freight forwarder questions, and landed cost.</p>
-        <a class="button" href="/tools/china-sourcing-checklist/">View China Sourcing Checklist</a>
+        <a class="button" href="/tools/china-sourcing-checklist/" data-track-event="checklist_cta_click" data-cta-location="free_checklist_sourcing_path" data-cta-label="View China Sourcing Checklist" data-cta-destination="/tools/china-sourcing-checklist/">View China Sourcing Checklist</a>
         <ul>
           <li><a href="/china-sourcing/">China Sourcing Hub</a></li>
           <li><a href="/tools/supplier-comparison-sheet/">Supplier Comparison Sheet</a></li>
@@ -86,7 +90,7 @@ const checklistFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSebO1lQAN1H0H
         <h2 id="unsure-title">Tell us what you are preparing for.</h2>
         <p>If you are not sure where to start, tell us what you are preparing for and we will point you to the most relevant checklist or guide.</p>
         <div class="inline-actions">
-          <a class="button" href={checklistFormUrl} target="_blank" rel="noopener noreferrer">Request the checklist</a>
+          <a class="button" href={checklistFormUrl} target="_blank" rel="noopener noreferrer" data-track-event="checklist_cta_click" data-cta-location="free_checklist_unsure" data-cta-label="Request the checklist" data-cta-destination="google_form">Request the checklist</a>
           <a class="button secondary" href="/tools/">Browse online tools</a>
         </div>
       </div>
@@ -113,7 +117,7 @@ const checklistFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSebO1lQAN1H0H
       <h2>Prepare before you travel, visit suppliers, or place your first order</h2>
       <p>Use the right checklist before you arrive in China, attend the Canton Fair, compare suppliers, or pay for a first order.</p>
       <div class="cta-actions">
-        <a class="button" href={checklistFormUrl} target="_blank" rel="noopener noreferrer">Request the checklist</a>
+        <a class="button" href={checklistFormUrl} target="_blank" rel="noopener noreferrer" data-track-event="checklist_cta_click" data-cta-location="free_checklist_final" data-cta-label="Request the checklist" data-cta-destination="google_form">Request the checklist</a>
         <a class="button secondary" href="/tools/">Browse preparation tools</a>
       </div>
     </div>

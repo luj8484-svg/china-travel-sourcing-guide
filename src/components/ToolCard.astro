@@ -6,14 +6,36 @@ interface Props {
   icon?: string;
   label?: string;
   compact?: boolean;
+  trackEvent?: string;
+  ctaLocation?: string;
+  ctaLabel?: string;
+  ctaDestination?: string;
 }
 
-const { title, description, href, icon = '□', label = 'Open tool', compact = false } = Astro.props;
+const {
+  title,
+  description,
+  href,
+  icon = 'Tool',
+  label = 'Open tool',
+  compact = false,
+  trackEvent,
+  ctaLocation,
+  ctaLabel,
+  ctaDestination
+} = Astro.props;
 ---
 
-<a class={`tool-card ${compact ? 'compact' : ''}`} href={href}>
+<a
+  class={`tool-card ${compact ? 'compact' : ''}`}
+  href={href}
+  data-track-event={trackEvent}
+  data-cta-location={ctaLocation}
+  data-cta-label={ctaLabel}
+  data-cta-destination={ctaDestination}
+>
   <span class="icon-tile" aria-hidden="true">{icon}</span>
   <h2>{title}</h2>
   <p>{description}</p>
-  <strong>{label} →</strong>
+  <strong>{label} &rarr;</strong>
 </a>

@@ -31,5 +31,26 @@ const { title, description, canonical, ogImage, type = 'website', schema = [] } 
       <slot />
     </main>
     <Footer />
+    <script is:inline>
+      (() => {
+        document.addEventListener('click', (event) => {
+          const target = event.target;
+          if (!(target instanceof Element)) return;
+
+          const cta = target.closest('[data-track-event="checklist_cta_click"]');
+          if (!(cta instanceof HTMLElement)) return;
+
+          const gtag = window.gtag;
+          if (typeof gtag !== 'function') return;
+
+          gtag('event', 'checklist_cta_click', {
+            cta_location: cta.dataset.ctaLocation || '',
+            cta_label: cta.dataset.ctaLabel || cta.textContent?.trim() || '',
+            destination: cta.dataset.ctaDestination || cta.getAttribute('href') || '',
+            page_path: window.location.pathname
+          });
+        });
+      })();
+    </script>
   </body>
 </html>

@@ -4,8 +4,6 @@ import ToolLayout from '@layouts/ToolLayout.astro';
 import PrepStatusCard from '@components/PrepStatusCard.astro';
 import WarningBox from '@components/WarningBox.astro';
 import SidebarCard from '@components/SidebarCard.astro';
-
-const checklistFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSebO1lQAN1H0HHNXqSNxu98wLHfp8hATqe1CqDVptvbFrikBA/viewform';
 ---
 
 <BaseLayout
@@ -20,7 +18,7 @@ const checklistFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSebO1lQAN1H0H
         <h1>China Sourcing Checklist for Small Importers</h1>
         <p>A practical step-by-step checklist for comparing suppliers, requesting samples, checking quality, confirming first orders, understanding trade terms, asking freight forwarder questions, and estimating landed cost before buying from China.</p>
         <div class="inline-actions">
-          <a class="button" href={checklistFormUrl} target="_blank" rel="noopener noreferrer">Get Free Checklist</a>
+          <a class="button" href="/free-checklist/" data-track-event="checklist_cta_click" data-cta-location="china_sourcing_checklist_tool" data-cta-label="Get Free Checklist" data-cta-destination="/free-checklist/">Get Free Checklist</a>
           <a class="button secondary" href="/china-sourcing/">Read the China Sourcing Guide</a>
         </div>
       </div>
@@ -269,7 +267,7 @@ const checklistFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSebO1lQAN1H0H
         <h2>Prepare your China sourcing plan before payment</h2>
         <p>Use the checklist to organize supplier comparison, sample review, first order details, shipping questions, and landed cost before you commit to payment.</p>
         <div class="cta-actions">
-          <a class="button" href={checklistFormUrl} target="_blank" rel="noopener noreferrer">Get Free Checklist</a>
+          <a class="button" href="/free-checklist/" data-track-event="checklist_cta_click" data-cta-location="china_sourcing_checklist_tool" data-cta-label="Get Free Checklist" data-cta-destination="/free-checklist/">Get Free Checklist</a>
           <a class="button secondary" href="/china-sourcing/">Back to China Sourcing Guide</a>
         </div>
       </div>

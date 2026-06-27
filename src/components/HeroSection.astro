@@ -9,10 +9,18 @@ interface Props {
   primaryLabel: string;
   primaryTarget?: string;
   primaryRel?: string;
+  primaryTrackEvent?: string;
+  primaryCtaLocation?: string;
+  primaryCtaLabel?: string;
+  primaryCtaDestination?: string;
   secondaryHref?: string;
   secondaryLabel?: string;
   secondaryTarget?: string;
   secondaryRel?: string;
+  secondaryTrackEvent?: string;
+  secondaryCtaLocation?: string;
+  secondaryCtaLabel?: string;
+  secondaryCtaDestination?: string;
 }
 
 const {
@@ -23,10 +31,18 @@ const {
   primaryLabel,
   primaryTarget,
   primaryRel,
+  primaryTrackEvent,
+  primaryCtaLocation,
+  primaryCtaLabel,
+  primaryCtaDestination,
   secondaryHref,
   secondaryLabel,
   secondaryTarget,
-  secondaryRel
+  secondaryRel,
+  secondaryTrackEvent,
+  secondaryCtaLocation,
+  secondaryCtaLabel,
+  secondaryCtaDestination
 } = Astro.props;
 ---
 
@@ -36,8 +52,8 @@ const {
     <h1>{title}</h1>
     <p>{description}</p>
     <div class="hero-actions">
-      <a class="button" href={primaryHref} target={primaryTarget} rel={primaryRel}>{primaryLabel}</a>
-      {secondaryHref && secondaryLabel && <a class="button secondary" href={secondaryHref} target={secondaryTarget} rel={secondaryRel}>{secondaryLabel}</a>}
+      <a class="button" href={primaryHref} target={primaryTarget} rel={primaryRel} data-track-event={primaryTrackEvent} data-cta-location={primaryCtaLocation} data-cta-label={primaryCtaLabel} data-cta-destination={primaryCtaDestination}>{primaryLabel}</a>
+      {secondaryHref && secondaryLabel && <a class="button secondary" href={secondaryHref} target={secondaryTarget} rel={secondaryRel} data-track-event={secondaryTrackEvent} data-cta-location={secondaryCtaLocation} data-cta-label={secondaryCtaLabel} data-cta-destination={secondaryCtaDestination}>{secondaryLabel}</a>}
     </div>
   </div>
   <slot name="visual">

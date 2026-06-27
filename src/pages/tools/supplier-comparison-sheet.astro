@@ -9,7 +9,7 @@ import SidebarCard from '@components/SidebarCard.astro';
 
 <BaseLayout
   title="Supplier Comparison Sheet"
-  description="A simple supplier comparison template for China sourcing beginners comparing MOQ, price, samples, trade terms, lead time, and communication."
+  description="A simple supplier comparison template for China sourcing beginners comparing suppliers, samples, quality control, MOQ, first order details, trade terms, freight questions, and landed cost."
   canonical="/tools/supplier-comparison-sheet/"
 >
   <ToolLayout>
@@ -17,7 +17,7 @@ import SidebarCard from '@components/SidebarCard.astro';
       <div class="page-header">
         <span class="badge">Sourcing Tool</span>
         <h1>Supplier Comparison Sheet</h1>
-        <p>Compare MOQ, price, samples, lead time, trade terms, payment terms, certificates, packaging, and communication quality side by side.</p>
+        <p>Compare suppliers across the full sourcing flow: product fit, MOQ, samples, quality control, first order details, trade terms, freight questions, landed cost, and communication quality.</p>
         <div class="inline-actions">
           <a class="button" href="#fields">Review comparison fields</a>
         </div>
@@ -55,6 +55,8 @@ import SidebarCard from '@components/SidebarCard.astro';
           <tr><td>MOQ and price</td><td>Minimum order quantity, unit price, and quantity breaks.</td></tr>
           <tr><td>Sample details</td><td>Sample cost, sample lead time, and shipping method.</td></tr>
           <tr><td>Trade terms</td><td>EXW, FOB, included packaging, and any excluded costs.</td></tr>
+          <tr><td>Freight questions</td><td>Shipping method, included costs, excluded costs, delivery address, and who handles customs support.</td></tr>
+          <tr><td>Landed cost notes</td><td>Packaging, freight, duties, taxes, destination charges, inspection, and buffer assumptions to confirm in writing.</td></tr>
           <tr><td>Quality notes</td><td>Certificates, test reports, inspection options, and known risks.</td></tr>
         </tbody>
       </table>
@@ -83,13 +85,13 @@ import SidebarCard from '@components/SidebarCard.astro';
       <h2>Related Sourcing Resources</h2>
       <div class="grid-3">
         <ToolCard icon="Guide" title="Supplier Comparison Guide" description="Compare product fit, MOQ, price, samples, lead time, terms, and communication before ordering samples." href="/blog/how-to-compare-chinese-suppliers-before-sample-order/" />
-        <ToolCard icon="Terms" title="EXW, FOB, CIF, and DDP Guide" description="Understand quote scope, named place, freight responsibility, documents, risk, and what to confirm before payment." href="/blog/exw-fob-cif-ddp-china-sourcing/" />
-        <ToolCard icon="Cost" title="Landed Cost Estimate Guide" description="Estimate product cost, packaging, freight, duties, taxes, destination charges, inspection, and buffer before comparing quotes." href="/blog/how-to-estimate-landed-cost-importing-from-china/" />
-        <ToolCard icon="Ship" title="Freight Forwarder Questions" description="Ask about shipping method, included costs, documents, customs support, duties and taxes, insurance, timeline, and final delivery." href="/blog/what-to-ask-freight-forwarder-shipping-from-china/" />
         <ToolCard icon="Sample" title="Sample Request Guide" description="Confirm sample cost, lead time, shipping, specifications, quality checks, and follow-up before a bulk order." href="/blog/how-to-request-samples-from-chinese-suppliers/" />
         <ToolCard icon="QC" title="Quality Control Checklist" description="Confirm samples, specs, packaging, inspection, defect handling, and written order details." href="/blog/chinese-supplier-quality-control-checklist-before-bulk-order/" />
         <ToolCard icon="MOQ" title="MOQ and Price Negotiation Guide" description="Negotiate MOQ, price breaks, trial orders, packaging costs, samples, and written terms." href="/blog/how-to-negotiate-moq-price-chinese-suppliers/" />
         <ToolCard icon="Order" title="First Order Confirmation Guide" description="Confirm specs, samples, MOQ, price, payment terms, packaging, QC, lead time, and written details." href="/blog/what-to-confirm-before-first-order-chinese-supplier/" />
+        <ToolCard icon="Terms" title="EXW, FOB, CIF, and DDP Guide" description="Understand quote scope, named place, freight responsibility, documents, risk, and what to confirm before payment." href="/blog/exw-fob-cif-ddp-china-sourcing/" />
+        <ToolCard icon="Ship" title="Freight Forwarder Questions" description="Ask about shipping method, included costs, documents, customs support, duties and taxes, insurance, timeline, and final delivery." href="/blog/what-to-ask-freight-forwarder-shipping-from-china/" />
+        <ToolCard icon="Cost" title="Landed Cost Estimate Guide" description="Estimate product cost, packaging, freight, duties, taxes, destination charges, inspection, and buffer before comparing quotes." href="/blog/how-to-estimate-landed-cost-importing-from-china/" />
         <ToolCard icon="Fair" title="Supplier Questions at Canton Fair" description="Use consistent supplier questions for MOQ, samples, pricing, lead time, payment terms, QC, and follow-up." href="/blog/supplier-questions-to-ask-at-canton-fair/" />
       </div>
     </section>

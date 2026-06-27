@@ -1,0 +1,285 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ToolLayout from '@layouts/ToolLayout.astro';
+import PrepStatusCard from '@components/PrepStatusCard.astro';
+import WarningBox from '@components/WarningBox.astro';
+import SidebarCard from '@components/SidebarCard.astro';
+
+const checklistFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSebO1lQAN1H0HHNXqSNxu98wLHfp8hATqe1CqDVptvbFrikBA/viewform';
+---
+
+<BaseLayout
+  title="China Sourcing Checklist for Small Importers"
+  description="A practical China sourcing checklist for small importers, covering supplier comparison, samples, quality control, MOQ, first order confirmation, trade terms, freight forwarder questions, and landed cost."
+  canonical="/tools/china-sourcing-checklist/"
+>
+  <ToolLayout>
+    <div slot="hero" class="hub-hero">
+      <div class="page-header">
+        <span class="badge">Sourcing Tool</span>
+        <h1>China Sourcing Checklist for Small Importers</h1>
+        <p>A practical step-by-step checklist for comparing suppliers, requesting samples, checking quality, confirming first orders, understanding trade terms, asking freight forwarder questions, and estimating landed cost before buying from China.</p>
+        <div class="inline-actions">
+          <a class="button" href={checklistFormUrl} target="_blank" rel="noopener noreferrer">Get Free Checklist</a>
+          <a class="button secondary" href="/china-sourcing/">Read the China Sourcing Guide</a>
+        </div>
+      </div>
+      <PrepStatusCard
+        title="Sourcing Checklist Progress"
+        subtitle="Steps to review before payment"
+        progress={50}
+        tone="orange"
+        items={[
+          { label: 'Supplier comparison prepared', done: true },
+          { label: 'Sample review planned', done: true },
+          { label: 'Shipping and landed cost checked' }
+        ]}
+      />
+    </div>
+
+    <section class="summary-box">
+      <span class="card-kicker">Quick answer</span>
+      <p>Small importers should not move from supplier quote to payment too quickly. Before placing an order, compare suppliers, request and review samples, confirm quality expectations, understand MOQ and pricing, check order details in writing, clarify trade terms, ask freight forwarder questions, and estimate landed cost.</p>
+    </section>
+
+    <section class="section">
+      <h2>How to use this checklist</h2>
+      <ul>
+        <li>Use it before paying a supplier.</li>
+        <li>Use it when comparing two or more suppliers.</li>
+        <li>Use it when preparing your first bulk order.</li>
+        <li>Use it when checking whether a supplier quote is complete.</li>
+        <li>This is practical preparation guidance, not legal, tax, customs, or logistics advice.</li>
+      </ul>
+    </section>
+
+    <section id="checklist" class="section">
+      <h2>Step-by-step China sourcing checklist</h2>
+      <div class="grid-2">
+        <section class="checklist-panel">
+          <div class="checklist-heading">
+            <div>
+              <span class="status-label">Step 1</span>
+              <h3>Supplier comparison</h3>
+            </div>
+          </div>
+          <ul class="checklist-list">
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Confirm supplier name and contact details.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Compare at least two or three supplier options if possible.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Save product photos, specs, and quote details.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Check whether the supplier understands your target product clearly.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Compare communication quality, response speed, and clarity.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Ask what is included and excluded in the quote.</strong></span></li>
+          </ul>
+          <div class="inline-actions">
+            <a class="button secondary" href="/blog/how-to-compare-chinese-suppliers-before-sample-order/">Read supplier comparison guide</a>
+            <a class="button secondary" href="/tools/supplier-comparison-sheet/">Open supplier sheet</a>
+          </div>
+        </section>
+
+        <section class="checklist-panel">
+          <div class="checklist-heading">
+            <div>
+              <span class="status-label">Step 2</span>
+              <h3>Sample request</h3>
+            </div>
+          </div>
+          <ul class="checklist-list">
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Confirm sample price.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Confirm sample shipping cost.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Confirm whether the sample fee can be deducted from a bulk order.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Ask whether the sample matches mass production materials and packaging.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Save photos and videos of the sample.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Compare the received sample against the promised product details.</strong></span></li>
+          </ul>
+          <div class="inline-actions">
+            <a class="button secondary" href="/blog/how-to-request-samples-from-chinese-suppliers/">Read sample request guide</a>
+          </div>
+        </section>
+
+        <section class="checklist-panel">
+          <div class="checklist-heading">
+            <div>
+              <span class="status-label">Step 3</span>
+              <h3>Quality control</h3>
+            </div>
+          </div>
+          <ul class="checklist-list">
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Define acceptable quality before production.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Confirm material, size, color, packaging, labeling, and key specs.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Ask how defects will be handled.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Decide whether inspection or testing is needed.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Confirm inspection timing before final payment when relevant.</strong></span></li>
+          </ul>
+          <p>Inspection needs can vary by product and market. Use professional inspection or compliance support when needed.</p>
+          <div class="inline-actions">
+            <a class="button secondary" href="/blog/chinese-supplier-quality-control-checklist-before-bulk-order/">Read quality control checklist</a>
+          </div>
+        </section>
+
+        <section class="checklist-panel">
+          <div class="checklist-heading">
+            <div>
+              <span class="status-label">Step 4</span>
+              <h3>MOQ and price</h3>
+            </div>
+          </div>
+          <ul class="checklist-list">
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Confirm MOQ.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Ask about price breaks by quantity.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Confirm whether packaging or customization changes price.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Ask what is included in the unit price.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Do not compare unit price without checking quote scope.</strong></span></li>
+          </ul>
+          <div class="inline-actions">
+            <a class="button secondary" href="/blog/how-to-negotiate-moq-price-chinese-suppliers/">Read MOQ and price guide</a>
+          </div>
+        </section>
+
+        <section class="checklist-panel">
+          <div class="checklist-heading">
+            <div>
+              <span class="status-label">Step 5</span>
+              <h3>First order confirmation</h3>
+            </div>
+          </div>
+          <ul class="checklist-list">
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Confirm final product specification.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Confirm quantity.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Confirm production lead time.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Confirm payment terms.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Confirm packaging.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Confirm shipping plan.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Confirm documents.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Save all key details in writing before payment.</strong></span></li>
+          </ul>
+          <div class="inline-actions">
+            <a class="button secondary" href="/blog/what-to-confirm-before-first-order-chinese-supplier/">Read first order checklist</a>
+          </div>
+        </section>
+
+        <section class="checklist-panel">
+          <div class="checklist-heading">
+            <div>
+              <span class="status-label">Step 6</span>
+              <h3>Trade terms</h3>
+            </div>
+          </div>
+          <ul class="checklist-list">
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Confirm whether quote is EXW, FOB, CIF, DDP, or another agreed term.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Confirm named place, port, or delivery address.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Confirm what supplier handles.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Confirm what buyer handles.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Confirm what is excluded.</strong></span></li>
+          </ul>
+          <div class="inline-actions">
+            <a class="button secondary" href="/blog/exw-fob-cif-ddp-china-sourcing/">Read trade terms guide</a>
+          </div>
+        </section>
+
+        <section class="checklist-panel">
+          <div class="checklist-heading">
+            <div>
+              <span class="status-label">Step 7</span>
+              <h3>Freight forwarder questions</h3>
+            </div>
+          </div>
+          <ul class="checklist-list">
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Ask what shipping method is quoted.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Ask what costs are included.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Ask what costs are excluded.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Ask who handles customs.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Ask whether duties and taxes are included or excluded.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Ask what documents are needed.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Ask how tracking and delays are handled.</strong></span></li>
+          </ul>
+          <p>Shipping details can vary by product, destination, forwarder, supplier, and trade term. Confirm details in writing before payment.</p>
+          <div class="inline-actions">
+            <a class="button secondary" href="/blog/what-to-ask-freight-forwarder-shipping-from-china/">Read freight forwarder guide</a>
+          </div>
+        </section>
+
+        <section class="checklist-panel">
+          <div class="checklist-heading">
+            <div>
+              <span class="status-label">Step 8</span>
+              <h3>Landed cost estimate</h3>
+            </div>
+          </div>
+          <ul class="checklist-list">
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Add supplier product cost.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Add packaging or customization cost.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Add freight.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Add insurance if used.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Add duties and taxes if applicable.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Add customs or broker support if needed.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Add destination charges.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Add final delivery.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Add inspection or QC cost.</strong></span></li>
+            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Add a practical risk buffer.</strong></span></li>
+          </ul>
+          <p>Use professional freight, customs, inspection, legal, tax, or compliance support when needed.</p>
+          <div class="inline-actions">
+            <a class="button secondary" href="/blog/how-to-estimate-landed-cost-importing-from-china/">Read landed cost guide</a>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Copyable sourcing preparation table</h2>
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>Step</th>
+            <th>What to confirm</th>
+            <th>Who to ask</th>
+            <th>Status</th>
+            <th>Notes</th>
+            <th>Related guide</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Supplier comparison</td><td>Product fit, quote scope, communication</td><td>Supplier</td><td></td><td></td><td><a href="/blog/how-to-compare-chinese-suppliers-before-sample-order/">Comparison guide</a></td></tr>
+          <tr><td>Sample request</td><td>Sample cost, shipping, sample match</td><td>Supplier</td><td></td><td></td><td><a href="/blog/how-to-request-samples-from-chinese-suppliers/">Sample guide</a></td></tr>
+          <tr><td>Quality control</td><td>Specs, defects, inspection timing</td><td>Supplier or inspector</td><td></td><td></td><td><a href="/blog/chinese-supplier-quality-control-checklist-before-bulk-order/">QC checklist</a></td></tr>
+          <tr><td>MOQ and price</td><td>MOQ, price breaks, included costs</td><td>Supplier</td><td></td><td></td><td><a href="/blog/how-to-negotiate-moq-price-chinese-suppliers/">MOQ guide</a></td></tr>
+          <tr><td>First order</td><td>Specs, payment terms, lead time, documents</td><td>Supplier</td><td></td><td></td><td><a href="/blog/what-to-confirm-before-first-order-chinese-supplier/">First order checklist</a></td></tr>
+          <tr><td>Trade terms</td><td>EXW, FOB, CIF, DDP, named place, exclusions</td><td>Supplier or forwarder</td><td></td><td></td><td><a href="/blog/exw-fob-cif-ddp-china-sourcing/">Trade terms guide</a></td></tr>
+          <tr><td>Freight</td><td>Method, included costs, documents, customs support</td><td>Freight forwarder</td><td></td><td></td><td><a href="/blog/what-to-ask-freight-forwarder-shipping-from-china/">Forwarder guide</a></td></tr>
+          <tr><td>Landed cost</td><td>Freight, duties, taxes, destination charges, buffer</td><td>Forwarder, customs broker, accountant, supplier</td><td></td><td></td><td><a href="/blog/how-to-estimate-landed-cost-importing-from-china/">Landed cost guide</a></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section">
+      <h2>Common mistakes to avoid</h2>
+      <div class="grid-3">
+        <WarningBox title="Comparing only unit price"><p>Unit price can miss packaging, freight, duties, taxes, inspection, and destination charges.</p></WarningBox>
+        <WarningBox title="Paying before quote scope is clear"><p>Confirm included costs, excluded costs, trade terms, and documents in writing before payment.</p></WarningBox>
+        <WarningBox title="Skipping samples"><p>Samples help you check product details before a bulk order, but sample approval does not guarantee bulk quality.</p></WarningBox>
+        <WarningBox title="Not confirming packaging"><p>Packaging can affect cost, damage risk, labeling, carton size, and sales channel readiness.</p></WarningBox>
+        <WarningBox title="Assuming shipping quote includes duties and taxes"><p>Duties and taxes may be included, excluded, or estimated separately depending on quote scope and destination.</p></WarningBox>
+        <WarningBox title="Not saving written confirmation"><p>Keep supplier quotes, freight quotes, payment terms, trade terms, and order details in one place.</p></WarningBox>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="section">
+        <h2>Prepare your China sourcing plan before payment</h2>
+        <p>Use the checklist to organize supplier comparison, sample review, first order details, shipping questions, and landed cost before you commit to payment.</p>
+        <div class="cta-actions">
+          <a class="button" href={checklistFormUrl} target="_blank" rel="noopener noreferrer">Get Free Checklist</a>
+          <a class="button secondary" href="/china-sourcing/">Back to China Sourcing Guide</a>
+        </div>
+      </div>
+    </section>
+
+    <SidebarCard slot="sidebar" title="Use before payment">
+      <p>Work through the checklist before deposit or final payment, especially when quote scope, trade terms, shipping, or landed cost are still unclear.</p>
+    </SidebarCard>
+    <WarningBox slot="sidebar" title="Preparation guidance only">
+      <p>This is practical preparation guidance, not legal, tax, customs, or logistics advice. Requirements can vary by product and market.</p>
+    </WarningBox>
+  </ToolLayout>
+</BaseLayout>

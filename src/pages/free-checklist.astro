@@ -2,118 +2,120 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import HeroSection from '@components/HeroSection.astro';
 import ToolCard from '@components/ToolCard.astro';
-import ChecklistBlock from '@components/ChecklistBlock.astro';
 import WarningBox from '@components/WarningBox.astro';
 
 const checklistFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSebO1lQAN1H0HHNXqSNxu98wLHfp8hATqe1CqDVptvbFrikBA/viewform';
 ---
 
 <BaseLayout
-  title="Get the Free China Buyer Prep Checklist"
-  description="Request a practical China Buyer Prep checklist for first-time China visitors, Canton Fair buyers, and small importers preparing payment, internet, hotels, transport, supplier questions, and sourcing follow-up."
+  title="Get the Right China Buyer Prep Checklist"
+  description="Choose the China Buyer Prep checklist for a first China trip, Canton Fair visit, or China sourcing plan."
   canonical="/free-checklist/"
 >
   <HeroSection
-    eyebrow="Free preparation checklist"
-    title="Get the free China Buyer Prep checklist."
-    description="A practical preparation checklist for first-time China visitors, Canton Fair buyers, and small importers planning payment, internet, hotels, transport, supplier questions, and sourcing follow-up."
+    eyebrow="Checklist routing"
+    title="Get the Right China Buyer Prep Checklist"
+    description="Choose the checklist that matches what you are preparing for: a first China trip, Canton Fair visit, or China sourcing plan."
     primaryHref={checklistFormUrl}
     primaryLabel="Request the checklist"
     primaryTarget="_blank"
     primaryRel="noopener noreferrer"
-    secondaryHref="/blog/"
+    secondaryHref="/"
     secondaryLabel="Browse preparation guides"
   />
 
-  <section class="section" aria-labelledby="request-title">
+  <section class="section" aria-labelledby="choose-title">
+    <div class="summary-box">
+      <span class="card-kicker">Choose your path</span>
+      <h2 id="choose-title">China preparation depends on your trip goal.</h2>
+      <p>China preparation is different depending on whether you are planning your first trip, visiting the Canton Fair, or preparing to source products from Chinese suppliers. Use this page to choose the most relevant checklist and guide path.</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="paths-title">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">Checklist paths</span>
+        <h2 id="paths-title">Start with the checklist that matches your situation.</h2>
+      </div>
+      <a class="button secondary" href="/tools/">View all online tools</a>
+    </div>
+    <div class="grid-3">
+      <article class="tool-card">
+        <span class="icon-tile" aria-hidden="true">Trip</span>
+        <h2>First China Trip Checklist</h2>
+        <p>For first-time visitors preparing payment apps, internet access, hotel location, Chinese addresses, and getting around in China.</p>
+        <a class="button" href="/tools/china-trip-checklist/">View China Travel Checklist</a>
+        <ul>
+          <li><a href="/china-travel/">China Travel Hub</a></li>
+          <li><a href="/blog/china-payment-apps-for-foreign-visitors/">China Payment Apps Guide</a></li>
+          <li><a href="/blog/china-esim-internet-access-guide/">China eSIM and Internet Access Guide</a></li>
+        </ul>
+      </article>
+
+      <article class="tool-card">
+        <span class="icon-tile" aria-hidden="true">Fair</span>
+        <h2>Canton Fair Buyer Checklist</h2>
+        <p>For overseas buyers preparing Canton Fair registration, buyer badge basics, phases, supplier questions, hotel area, and fair planning.</p>
+        <a class="button" href="/tools/canton-fair-buyer-checklist/">View Canton Fair Checklist</a>
+        <ul>
+          <li><a href="/canton-fair/">Canton Fair Hub</a></li>
+          <li><a href="/blog/canton-fair-first-time-buyer-guide/">Canton Fair First-Time Buyer Guide</a></li>
+          <li><a href="/blog/supplier-questions-to-ask-at-canton-fair/">Supplier Questions to Ask at the Canton Fair</a></li>
+        </ul>
+      </article>
+
+      <article class="tool-card">
+        <span class="icon-tile" aria-hidden="true">Source</span>
+        <h2>China Sourcing Checklist</h2>
+        <p>For small importers preparing supplier comparison, samples, quality control, MOQ, trade terms, freight forwarder questions, and landed cost.</p>
+        <a class="button" href="/tools/china-sourcing-checklist/">View China Sourcing Checklist</a>
+        <ul>
+          <li><a href="/china-sourcing/">China Sourcing Hub</a></li>
+          <li><a href="/tools/supplier-comparison-sheet/">Supplier Comparison Sheet</a></li>
+          <li><a href="/blog/how-to-estimate-landed-cost-importing-from-china/">Landed Cost Guide</a></li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="unsure-title">
     <div class="content-grid">
       <div>
-        <span class="eyebrow">How it works</span>
-        <h2 id="request-title">Tell us what you are preparing for.</h2>
-        <p>Use the form to tell us what you are preparing for, and we will point you to the most relevant checklist or guide.</p>
+        <span class="eyebrow">Not sure which checklist you need?</span>
+        <h2 id="unsure-title">Tell us what you are preparing for.</h2>
+        <p>If you are not sure where to start, tell us what you are preparing for and we will point you to the most relevant checklist or guide.</p>
         <div class="inline-actions">
           <a class="button" href={checklistFormUrl} target="_blank" rel="noopener noreferrer">Request the checklist</a>
-          <a class="button secondary" href="/tools/">View online tools</a>
+          <a class="button secondary" href="/tools/">Browse online tools</a>
         </div>
       </div>
-      <ChecklistBlock
-        title="Checklist Coverage"
-        eyebrow="Preparation areas"
-        progress={72}
-        items={[
-          { label: 'China travel basics', description: 'Payment, internet, addresses, hotels, and transport.', done: true },
-          { label: 'Canton Fair planning', description: 'Phase, badge, hotel area, booth notes, and buyer questions.', done: true },
-          { label: 'Supplier preparation', description: 'Questions, sample notes, comparison fields, and follow-up.', done: true },
-          { label: 'First order readiness', description: 'MOQ, price, quality control, and written confirmation.' }
-        ]}
-      />
+      <WarningBox title="Practical preparation guidance">
+        <p>Requirements can change. Confirm current details with official sources or service providers when needed. This is practical preparation guidance, not legal, tax, customs, or official event advice.</p>
+      </WarningBox>
     </div>
   </section>
 
-  <section class="section" aria-labelledby="prepare-title">
+  <section class="section" aria-labelledby="also-use-title">
     <div class="center-heading">
-      <h2 id="prepare-title">What it helps you prepare</h2>
-      <p>Use it as a practical pre-trip and pre-sourcing checklist, not a general travel inspiration list.</p>
+      <h2 id="also-use-title">Useful preparation hubs</h2>
+      <p>Each hub gives you a more detailed guide path after you choose the right checklist.</p>
     </div>
     <div class="grid-3">
-      <ToolCard icon="Pay" title="Payment setup" description="Prepare payment apps, backup payment, and a small fallback plan before arrival." href="/tools/china-trip-checklist/" label="Open travel checklist" />
-      <ToolCard icon="SIM" title="Internet access" description="Plan eSIM, roaming, Wi-Fi, and backup internet access before relying on apps in China." href="/china-travel/" label="Open travel hub" />
-      <ToolCard icon="CN" title="Chinese addresses" description="Save hotel, venue, supplier, and map details in Chinese before travel days get busy." href="/china-travel/" label="Open guide hub" />
-      <ToolCard icon="Hotel" title="Hotel location" description="Choose practical hotel areas for transport, food, fair access, and supplier visits." href="/china-travel/" label="Open travel hub" />
-      <ToolCard icon="Map" title="Getting around" description="Prepare metro, taxi, maps, ride-hailing backup, and daily routes before you land." href="/tools/china-trip-checklist/" label="Open checklist" />
-      <ToolCard icon="Buy" title="Canton Fair and supplier preparation" description="Prepare buyer badge basics, supplier questions, comparison notes, samples, and follow-up." href="/tools/supplier-comparison-sheet/" label="Open sourcing tool" />
+      <ToolCard icon="Travel" title="First China trip" description="Prepare payment, internet, Chinese addresses, hotel location, transport, and daily routes." href="/china-travel/" label="Open travel hub" />
+      <ToolCard icon="Fair" title="Canton Fair preparation" description="Prepare registration, phases, hotel area, booth notes, supplier questions, and follow-up." href="/canton-fair/" label="Open fair hub" />
+      <ToolCard icon="Source" title="China sourcing preparation" description="Prepare supplier comparison, samples, first order details, trade terms, freight questions, and landed cost." href="/china-sourcing/" label="Open sourcing hub" />
     </div>
   </section>
 
-  <section class="section" aria-labelledby="who-title">
-    <div class="center-heading">
-      <h2 id="who-title">Who it is for</h2>
-      <p>Designed for overseas visitors and buyers who need clear preparation steps before traveling or placing supplier orders.</p>
+  <section class="cta-section">
+    <div class="section">
+      <h2>Prepare before you travel, visit suppliers, or place your first order</h2>
+      <p>Use the right checklist before you arrive in China, attend the Canton Fair, compare suppliers, or pay for a first order.</p>
+      <div class="cta-actions">
+        <a class="button" href={checklistFormUrl} target="_blank" rel="noopener noreferrer">Request the checklist</a>
+        <a class="button secondary" href="/tools/">Browse preparation tools</a>
+      </div>
     </div>
-    <div class="grid-4">
-      <ToolCard compact icon="1st" title="First-time China visitors" description="Prepare arrival basics before your first trip." href="/china-travel/" label="Start here" />
-      <ToolCard compact icon="CF" title="Canton Fair attendees" description="Prepare phase, badge, hotel route, booth notes, and follow-up." href="/canton-fair/" label="Open fair hub" />
-      <ToolCard compact icon="SMB" title="Small importers" description="Compare suppliers, samples, MOQ, quality, and first order details." href="/china-sourcing/" label="Open sourcing hub" />
-      <ToolCard compact icon="Shop" title="Amazon / Shopify sellers" description="Use structured notes before samples, supplier comparison, or first orders." href="/tools/supplier-comparison-sheet/" label="Open sheet" />
-    </div>
-  </section>
-
-  <section class="section">
-    <ChecklistBlock
-      title="What is included"
-      eyebrow="Practical checklist items"
-      progress={84}
-      items={[
-        { label: 'Payment apps and backup payment', description: 'Prepare mobile payment and fallback options before relying on one method.', done: true },
-        { label: 'eSIM, roaming, and internet backup', description: 'Plan phone data before you need maps, payment, or translation.', done: true },
-        { label: 'Hotel address in Chinese', description: 'Save Chinese names and screenshots for taxis, hotels, and maps.', done: true },
-        { label: 'Metro, taxi, and map preparation', description: 'Prepare daily routes and transport backup before arrival.', done: true },
-        { label: 'Canton Fair phase and badge preparation', description: 'Check fair phase, buyer badge basics, hotel area, and booth plan.' },
-        { label: 'Supplier questions', description: 'Ask consistent questions about MOQ, samples, price, lead time, quality, and follow-up.' },
-        { label: 'Sample and supplier comparison notes', description: 'Track sample cost, lead time, supplier communication, and quality notes.' },
-        { label: 'First order preparation reminders', description: 'Confirm specs, payment terms, packaging, QC, and written details before payment.' }
-      ]}
-    />
-  </section>
-
-  <section class="section" aria-labelledby="guides-title">
-    <div class="center-heading">
-      <h2 id="guides-title">Recommended guides before you go</h2>
-      <p>Use the online guides and tools while the checklist version is being prepared for your request.</p>
-    </div>
-    <div class="grid-3">
-      <ToolCard icon="Trip" title="China Travel Setup" description="Payment, internet, Chinese addresses, hotel location, and transport preparation." href="/china-travel/" label="Open guide" />
-      <ToolCard icon="Fair" title="Canton Fair Guide" description="Phase, badge, hotel area, supplier questions, booth notes, and follow-up." href="/canton-fair/" label="Open guide" />
-      <ToolCard icon="Source" title="China Sourcing Guide" description="Supplier comparison, samples, MOQ, quality control, and first order confirmation." href="/china-sourcing/" label="Open guide" />
-      <ToolCard icon="Pay" title="China Trip Checklist" description="Use the online checklist for payment, internet, addresses, transport, and arrival prep." href="/tools/china-trip-checklist/" label="Open checklist" />
-      <ToolCard icon="CF" title="Canton Fair Buyer Checklist" description="Prepare fair phase, badge, hotel route, booth notes, supplier questions, and follow-up." href="/tools/canton-fair-buyer-checklist/" label="Open checklist" />
-      <ToolCard icon="Sheet" title="Supplier Comparison Sheet" description="Compare suppliers by MOQ, price, samples, lead time, terms, quality, and communication." href="/tools/supplier-comparison-sheet/" label="Open sheet" />
-    </div>
-  </section>
-
-  <section class="section" aria-labelledby="note-title">
-    <WarningBox title="Important note">
-      <p id="note-title">This checklist is for practical preparation only. App features, travel requirements, Canton Fair details, payment support, and supplier requirements can change. Always verify current details with official sources, your hotel, suppliers, or relevant service providers before making final travel or purchasing decisions.</p>
-    </WarningBox>
   </section>
 </BaseLayout>

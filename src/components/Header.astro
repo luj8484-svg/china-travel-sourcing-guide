@@ -13,7 +13,6 @@ const isCurrent = (href: string) =>
   href === '/'
     ? pathname === '/'
     : pathname === href || pathname.startsWith(href);
-const checklistFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSebO1lQAN1H0HHNXqSNxu98wLHfp8hATqe1CqDVptvbFrikBA/viewform';
 ---
 
 <header class="site-header">
@@ -25,6 +24,6 @@ const checklistFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSebO1lQAN1H0H
     <nav class="site-nav" aria-label="Primary navigation">
       {navItems.map((item) => <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a>)}
     </nav>
-    <a class="header-action" href={checklistFormUrl} target="_blank" rel="noopener noreferrer">Get Free Checklist</a>
+    <a class="header-action" href="/free-checklist/">Get Free Checklist</a>
   </div>
 </header>

@@ -1,0 +1,116 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ToolCard from '@components/ToolCard.astro';
+import WarningBox from '@components/WarningBox.astro';
+---
+
+<BaseLayout
+  title="About China Buyer Prep"
+  description="Learn how China Buyer Prep helps first-time China visitors, Canton Fair buyers, and small importers prepare with practical guides, checklists, and sourcing tools."
+  canonical="/about/"
+>
+  <section class="content-page">
+    <div class="page-header">
+      <span class="eyebrow">About</span>
+      <h1>About China Buyer Prep</h1>
+      <p>Practical preparation guides, checklists, and tools for first-time China visitors, Canton Fair buyers, and small importers preparing to source products from China.</p>
+      <div class="inline-actions">
+        <a class="button" href="/free-checklist/">Get Free Checklist</a>
+        <a class="button secondary" href="/tools/">Browse Tools</a>
+      </div>
+    </div>
+
+    <section class="section" aria-labelledby="helps-title">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">Preparation paths</span>
+          <h2 id="helps-title">What China Buyer Prep helps with</h2>
+          <p>The site is built for practical preparation before travel, trade fair visits, supplier conversations, and first sourcing decisions.</p>
+        </div>
+      </div>
+      <div class="grid-3">
+        <div class="resource-card">
+          <span class="icon-tile" aria-hidden="true">Trip</span>
+          <h3>First China trip preparation</h3>
+          <p>Payment apps, internet access, hotel location, Chinese addresses, transportation, and practical arrival preparation.</p>
+          <div class="inline-actions">
+            <a class="button secondary" href="/china-travel/">China Travel Hub</a>
+            <a class="button secondary" href="/tools/china-trip-checklist/">Trip Checklist</a>
+          </div>
+        </div>
+        <div class="resource-card">
+          <span class="icon-tile orange" aria-hidden="true">Fair</span>
+          <h3>Canton Fair preparation</h3>
+          <p>Canton Fair phases, buyer badge basics, supplier questions, hotel area, and fair planning for first-time overseas buyers.</p>
+          <div class="inline-actions">
+            <a class="button secondary" href="/canton-fair/">Canton Fair Hub</a>
+            <a class="button secondary" href="/tools/canton-fair-buyer-checklist/">Buyer Checklist</a>
+          </div>
+        </div>
+        <div class="resource-card">
+          <span class="icon-tile green" aria-hidden="true">Buy</span>
+          <h3>China sourcing preparation</h3>
+          <p>Supplier comparison, sample requests, quality control, MOQ and price, first order confirmation, trade terms, freight forwarder questions, and landed cost.</p>
+          <div class="inline-actions">
+            <a class="button secondary" href="/china-sourcing/">China Sourcing Hub</a>
+            <a class="button secondary" href="/tools/china-sourcing-checklist/">Sourcing Checklist</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="checklists-title">
+      <div class="content-grid">
+        <div>
+          <span class="eyebrow">Practical format</span>
+          <h2 id="checklists-title">Why this site uses checklists</h2>
+          <p>China preparation often fails because small but important details are missed before travel, before a fair visit, or before supplier payment. China Buyer Prep organizes those details into practical checklists and guide paths.</p>
+        </div>
+        <div class="notice-box">
+          <h2>How our guides are designed</h2>
+          <ul class="recommendation-list">
+            <li class="recommendation-item"><span>Written for first-time users and small teams</span></li>
+            <li class="recommendation-item"><span>Focused on preparation steps, questions, and checklists</span></li>
+            <li class="recommendation-item"><span>Designed to help readers compare options before making decisions</span></li>
+            <li class="recommendation-item"><span>Uses cautious language when details may vary</span></li>
+            <li class="recommendation-item"><span>Encourages readers to confirm important details in writing</span></li>
+            <li class="recommendation-item"><span>Points readers to official sources or professional support when needed</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <WarningBox title="What this site is not">
+      <p>China Buyer Prep is not a government website, official Canton Fair website, law firm, tax advisor, customs broker, freight forwarder, visa service, financial advisor, or product compliance advisor.</p>
+      <p>Our guides are practical preparation resources, not legal, tax, customs, visa, official event, logistics, financial, or compliance advice.</p>
+      <p>Requirements can change, and details can vary by product, destination, supplier, service provider, official source, and market. Readers should confirm important details with official sources or qualified professional support when needed.</p>
+    </WarningBox>
+
+    <section class="section" aria-labelledby="start-title">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">Start here</span>
+          <h2 id="start-title">Start with the right path</h2>
+          <p>Choose the checklist closest to your current preparation stage.</p>
+        </div>
+      </div>
+      <div class="tool-grid">
+        <ToolCard icon="Trip" title="First China Trip Checklist" description="Prepare payment, internet, addresses, hotels, transport, and arrival basics." href="/tools/china-trip-checklist/" label="Open checklist" />
+        <ToolCard icon="Fair" title="Canton Fair Buyer Checklist" description="Prepare phases, buyer badge basics, supplier questions, hotel area, and fair planning." href="/tools/canton-fair-buyer-checklist/" label="Open buyer checklist" />
+        <ToolCard icon="Source" title="China Sourcing Checklist" description="Prepare supplier comparison, samples, quality control, trade terms, freight questions, and landed cost." href="/tools/china-sourcing-checklist/" label="Open sourcing checklist" />
+        <ToolCard icon="Free" title="Not sure where to start?" description="Use the Free Checklist page to choose the path that matches your situation." href="/free-checklist/" label="Choose a path" />
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="section">
+        <h2>Tell us what you are preparing for</h2>
+        <p>If you are not sure which guide, checklist, or tool fits your situation, use the request page and tell us what you are preparing for.</p>
+        <div class="cta-actions">
+          <a class="button" href="/contact/">Contact China Buyer Prep</a>
+          <a class="button secondary" href="/free-checklist/">Get Free Checklist</a>
+        </div>
+      </div>
+    </section>
+  </section>
+</BaseLayout>

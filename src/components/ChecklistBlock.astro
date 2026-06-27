@@ -10,32 +10,111 @@ interface Props {
   eyebrow?: string;
   progress?: number;
   items: Item[];
+  interactive?: boolean;
+  storageKey?: string;
 }
 
-const { title, eyebrow = 'Overall progress', progress = 38, items } = Astro.props;
+const { title, eyebrow = 'Overall progress', progress = 0, items, interactive = false, storageKey } = Astro.props;
 const safeProgress = Math.max(0, Math.min(100, progress));
 ---
 
-<section id="checklist" class="checklist-panel" aria-labelledby={`${title.replaceAll(' ', '-').toLowerCase()}-title`}>
+<section
+  id="checklist"
+  class="checklist-panel"
+  aria-labelledby={`${title.replaceAll(' ', '-').toLowerCase()}-title`}
+  data-checklist-block={interactive ? 'true' : undefined}
+  data-storage-key={storageKey}
+>
   <div class="checklist-heading">
     <div>
       <span class="status-label">{eyebrow}</span>
       <h2 id={`${title.replaceAll(' ', '-').toLowerCase()}-title`}>{title}</h2>
     </div>
-    <strong>{safeProgress}%</strong>
+    <strong><span data-checklist-progress-value>{safeProgress}</span>%</strong>
   </div>
   <div class="progress orange" aria-label={`${safeProgress}% complete`}>
-    <span style={`width: ${safeProgress}%`}></span>
+    <span data-checklist-progress-bar style={`width: ${safeProgress}%`}></span>
   </div>
   <ul class="checklist-list" style="margin-top: 18px;">
     {items.map((item) => (
-      <li class={`checklist-item ${item.done ? 'done' : ''}`}>
-        <span class={`check-dot ${item.done ? 'done' : ''}`} aria-hidden="true">{item.done ? '✓' : ''}</span>
-        <span class="check-text">
-          <strong>{item.label}</strong>
-          {item.description && <span>{item.description}</span>}
-        </span>
+      <li class={`checklist-item ${item.done ? 'done' : ''}`} data-checklist-item>
+        {interactive ? (
+          <label class="checklist-control">
+            <input class="checklist-input" type="checkbox" checked={item.done} data-checklist-checkbox />
+            <span class={`check-dot ${item.done ? 'done' : ''}`} aria-hidden="true">{item.done ? '✓' : ''}</span>
+            <span class="check-text">
+              <strong>{item.label}</strong>
+              {item.description && <span>{item.description}</span>}
+            </span>
+          </label>
+        ) : (
+          <>
+            <span class={`check-dot ${item.done ? 'done' : ''}`} aria-hidden="true">{item.done ? '✓' : ''}</span>
+            <span class="check-text">
+              <strong>{item.label}</strong>
+              {item.description && <span>{item.description}</span>}
+            </span>
+          </>
+        )}
       </li>
     ))}
   </ul>
 </section>
+
+<script>
+  const updateChecklistBlock = (block: HTMLElement) => {
+    const checkboxes = Array.from(block.querySelectorAll<HTMLInputElement>('[data-checklist-checkbox]'));
+    if (checkboxes.length === 0) return;
+
+    const checkedCount = checkboxes.filter((checkbox) => checkbox.checked).length;
+    const progress = Math.round((checkedCount / checkboxes.length) * 100);
+    const progressValue = block.querySelector<HTMLElement>('[data-checklist-progress-value]');
+    const progressBar = block.querySelector<HTMLElement>('[data-checklist-progress-bar]');
+
+    if (progressValue) progressValue.textContent = String(progress);
+    if (progressBar) progressBar.style.width = `${progress}%`;
+    block.querySelector('.progress')?.setAttribute('aria-label', `${progress}% complete`);
+
+    checkboxes.forEach((checkbox) => {
+      const item = checkbox.closest('[data-checklist-item]');
+      const dot = item?.querySelector<HTMLElement>('.check-dot');
+      item?.classList.toggle('done', checkbox.checked);
+      dot?.classList.toggle('done', checkbox.checked);
+      if (dot) dot.textContent = checkbox.checked ? '✓' : '';
+    });
+
+    const storageKey = block.dataset.storageKey;
+    if (storageKey) {
+      try {
+        localStorage.setItem(storageKey, JSON.stringify(checkboxes.map((checkbox) => checkbox.checked)));
+      } catch {
+        // Ignore storage failures so the checklist remains usable.
+      }
+    }
+  };
+
+  document.querySelectorAll<HTMLElement>('[data-checklist-block="true"]').forEach((block) => {
+    const storageKey = block.dataset.storageKey;
+    const checkboxes = Array.from(block.querySelectorAll<HTMLInputElement>('[data-checklist-checkbox]'));
+
+    if (storageKey) {
+      try {
+        const savedState = JSON.parse(localStorage.getItem(storageKey) || 'null');
+        if (Array.isArray(savedState)) {
+          checkboxes.forEach((checkbox, index) => {
+            checkbox.checked = savedState[index] === true;
+          });
+        }
+      } catch {
+        // Ignore invalid stored state and use the page defaults.
+      }
+    }
+
+    updateChecklistBlock(block);
+    block.addEventListener('change', (event) => {
+      if (event.target instanceof HTMLInputElement && event.target.matches('[data-checklist-checkbox]')) {
+        updateChecklistBlock(block);
+      }
+    });
+  });
+</script>

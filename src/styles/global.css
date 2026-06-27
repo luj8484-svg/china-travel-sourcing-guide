@@ -671,6 +671,21 @@ h3 {
   align-items: start;
 }
 
+.checklist-control {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: 20px 1fr;
+  gap: 12px;
+  align-items: start;
+  cursor: pointer;
+}
+
+.checklist-input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
 .warning-box {
   border-color: rgba(230, 106, 0, 0.45);
   background: var(--surface-orange);

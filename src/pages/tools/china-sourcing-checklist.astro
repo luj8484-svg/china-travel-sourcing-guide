@@ -24,12 +24,12 @@ import SidebarCard from '@components/SidebarCard.astro';
       </div>
       <PrepStatusCard
         title="Sourcing Checklist Progress"
-        subtitle="Steps to review before payment"
-        progress={50}
+        subtitle="Status: Not started"
+        progress={0}
         tone="orange"
         items={[
-          { label: 'Supplier comparison prepared', done: true },
-          { label: 'Sample review planned', done: true },
+          { label: 'Supplier comparison prepared' },
+          { label: 'Sample review planned' },
           { label: 'Shipping and landed cost checked' }
         ]}
       />

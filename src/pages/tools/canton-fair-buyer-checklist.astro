@@ -25,11 +25,11 @@ import SidebarCard from '@components/SidebarCard.astro';
       </div>
       <PrepStatusCard
         title="Fair Readiness Score"
-        subtitle="Phase and badge setup"
-        progress={55}
+        subtitle="Status: Not started"
+        progress={0}
         tone="orange"
         items={[
-          { label: 'Product phase checked', done: true },
+          { label: 'Product phase checked' },
           { label: 'Buyer badge prepared' },
           { label: 'Hotel area confirmed' }
         ]}
@@ -38,9 +38,11 @@ import SidebarCard from '@components/SidebarCard.astro';
 
     <ChecklistBlock
       title="Canton Fair Buyer Checklist"
-      progress={55}
+      progress={0}
+      interactive
+      storageKey="canton-fair-buyer-checklist"
       items={[
-        { label: 'Confirm the correct fair phase', description: 'Match product category to Phase 1, 2, or 3.', done: true },
+        { label: 'Confirm the correct fair phase', description: 'Match product category to Phase 1, 2, or 3.' },
         { label: 'Prepare buyer registration details', description: 'Passport, company information, and business cards.' },
         { label: 'Book a practical hotel area', description: 'Prioritize route to Pazhou and metro access.' },
         { label: 'Build booth visit priorities', description: 'Know which categories and halls matter most.' },

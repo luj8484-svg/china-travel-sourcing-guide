@@ -29,11 +29,11 @@ import SidebarCard from '@components/SidebarCard.astro';
       </div>
       <PrepStatusCard
         title="Payment Readiness Score"
-        subtitle="Status: Needs attention"
-        progress={38}
+        subtitle="Status: Not started"
+        progress={0}
         tone="orange"
         items={[
-          { label: 'Installed Alipay App', done: true },
+          { label: 'Installed Alipay App' },
           { label: 'Linked international card' },
           { label: 'Prepared backup cash' }
         ]}
@@ -42,11 +42,13 @@ import SidebarCard from '@components/SidebarCard.astro';
 
     <ChecklistBlock
       title="Payment Readiness Checklist"
-      progress={38}
+      progress={0}
+      interactive
+      storageKey="china-trip-checklist"
       items={[
-        { label: 'Installed Alipay app', description: 'Download the app before arriving in China and complete basic setup.', done: true },
-        { label: 'Installed WeChat app', description: 'Required for communication and useful as a payment backup.', done: true },
-        { label: 'Linked an international card', description: 'Add Visa, Mastercard, or JCB where supported.', done: true },
+        { label: 'Installed Alipay app', description: 'Download the app before arriving in China and complete basic setup.' },
+        { label: 'Installed WeChat app', description: 'Required for communication and useful as a payment backup.' },
+        { label: 'Linked an international card', description: 'Add Visa, Mastercard, or JCB where supported.' },
         { label: 'Completed identity verification', description: 'Upload passport details if required by the payment app.' },
         { label: 'Tested a small payment', description: 'Try a small top-up or test transaction before relying on the app.' },
         { label: 'Prepared backup cash', description: 'Keep a small amount of RMB for emergencies.' },

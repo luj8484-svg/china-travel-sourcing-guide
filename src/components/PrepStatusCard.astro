@@ -23,6 +23,7 @@ const {
   tone = 'green'
 } = Astro.props;
 const safeProgress = Math.max(0, Math.min(100, progress));
+const progressStatus = safeProgress === 0 ? 'Not started' : safeProgress === 100 ? 'Complete' : 'In progress';
 ---
 
 <div class={`prep-card tone-${tone}`}>
@@ -33,7 +34,7 @@ const safeProgress = Math.max(0, Math.min(100, progress));
     </div>
     <div class="progress-label-row">
       <span>{subtitle}</span>
-      <span>{safeProgress === 100 ? 'Complete' : 'In progress'}</span>
+      <span>{progressStatus}</span>
     </div>
     <div class={`progress ${tone === 'orange' ? 'orange' : ''}`} aria-label={`${safeProgress}% complete`}>
       <span style={`width: ${safeProgress}%`}></span>

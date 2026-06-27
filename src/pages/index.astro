@@ -13,6 +13,10 @@ const allPosts = (await getCollection('blog')).sort(
 const getSlug = (post: any) => post.slug ?? post.id.replace(/\.(md|mdx)$/, '');
 const featuredLatestGuides = [
   {
+    slug: 'how-to-estimate-landed-cost-importing-from-china',
+    title: 'How to Estimate Landed Cost When Importing from China'
+  },
+  {
     slug: 'what-to-ask-freight-forwarder-shipping-from-china',
     title: 'What to Ask a Freight Forwarder Before Shipping from China'
   },

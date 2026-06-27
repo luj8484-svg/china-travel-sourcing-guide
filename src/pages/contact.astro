@@ -1,37 +1,127 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import ToolCard from '@components/ToolCard.astro';
+import WarningBox from '@components/WarningBox.astro';
+
+const preparationRequestUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSebO1lQAN1H0HHNXqSNxu98wLHfp8hATqe1CqDVptvbFrikBA/viewform';
 ---
 
 <BaseLayout
-  title="Contact"
-  description="Contact China Buyer Prep for China trip planning, Canton Fair questions, or supplier sourcing questions."
+  title="Contact China Buyer Prep"
+  description="Tell China Buyer Prep what you are preparing for so we can point you to the most relevant China travel, Canton Fair, or sourcing guide, checklist, or tool."
   canonical="/contact/"
 >
   <section class="content-page">
     <div class="page-header">
       <span class="eyebrow">Contact</span>
-      <h1>Ask a China travel or sourcing question.</h1>
-      <p>
-        Have a question about your China trip, Canton Fair visit, or sourcing plan? Send the key details and we will
-        review your request.
-      </p>
-    </div>
-    <div class="content-grid">
-      <div class="prose">
-        <h2>What to include</h2>
-        <ul>
-          <li>Your destination or trade fair dates</li>
-          <li>Your product category or sourcing goal</li>
-          <li>Your timeline, budget range, and preferred language</li>
-          <li>Whether you need travel guidance, fair preparation, or supplier comparison help</li>
-        </ul>
+      <h1>Contact China Buyer Prep</h1>
+      <p>Tell us what you are preparing for: a first China trip, Canton Fair visit, or China sourcing plan. We will point you to the most relevant checklist, guide, or tool.</p>
+      <div class="inline-actions">
+        <a
+          class="button"
+          href={preparationRequestUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-track-event="checklist_cta_click"
+          data-cta-location="contact_page"
+          data-cta-label="Send your preparation request"
+          data-cta-destination="google_form"
+        >Send your preparation request</a>
+        <a class="button secondary" href="/free-checklist/">Get Free Checklist</a>
       </div>
-      <aside class="sidebar">
-        <div class="notice-box">
-          <h2>Email</h2>
-          <p><a href="mailto:hello@chinabuyerprep.com">hello@chinabuyerprep.com</a></p>
-        </div>
-      </aside>
     </div>
+
+    <section class="section" aria-labelledby="help-title">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">Preparation paths</span>
+          <h2 id="help-title">What we can help you prepare</h2>
+          <p>Choose the path closest to your situation, then use the related hub or checklist before sending a request.</p>
+        </div>
+      </div>
+      <div class="grid-3">
+        <div class="resource-card">
+          <span class="icon-tile" aria-hidden="true">Trip</span>
+          <h3>First China trip preparation</h3>
+          <p>Payment apps, internet access, hotel location, Chinese addresses, transportation, and practical arrival preparation.</p>
+          <div class="inline-actions">
+            <a class="button secondary" href="/china-travel/">China Travel Hub</a>
+            <a class="button secondary" href="/tools/china-trip-checklist/">Trip Checklist</a>
+          </div>
+        </div>
+        <div class="resource-card">
+          <span class="icon-tile orange" aria-hidden="true">Fair</span>
+          <h3>Canton Fair preparation</h3>
+          <p>Buyer badge basics, Canton Fair phases, supplier questions, hotel area, and first-time fair planning.</p>
+          <div class="inline-actions">
+            <a class="button secondary" href="/canton-fair/">Canton Fair Hub</a>
+            <a class="button secondary" href="/tools/canton-fair-buyer-checklist/">Buyer Checklist</a>
+          </div>
+        </div>
+        <div class="resource-card">
+          <span class="icon-tile green" aria-hidden="true">Buy</span>
+          <h3>China sourcing preparation</h3>
+          <p>Supplier comparison, sample requests, quality control, MOQ, first order confirmation, trade terms, freight questions, and landed cost.</p>
+          <div class="inline-actions">
+            <a class="button secondary" href="/china-sourcing/">China Sourcing Hub</a>
+            <a class="button secondary" href="/tools/china-sourcing-checklist/">Sourcing Checklist</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="before-title">
+      <div class="content-grid">
+        <div>
+          <span class="eyebrow">Before you contact us</span>
+          <h2 id="before-title">Start with the main preparation pages</h2>
+          <p>These pages may already answer the next question in your trip, fair, or sourcing plan.</p>
+          <div class="grid-3">
+            <ToolCard icon="Free" title="Free Checklist" description="Choose the checklist path that matches your trip, Canton Fair visit, or sourcing plan." href="/free-checklist/" label="Open page" />
+            <ToolCard icon="Tools" title="Tools" description="Browse all online checklists and supplier comparison tools in one place." href="/tools/" label="Browse tools" />
+            <ToolCard icon="Travel" title="China Travel" description="Prepare payment, internet, addresses, hotels, transportation, and arrival basics." href="/china-travel/" label="Open hub" />
+            <ToolCard icon="Fair" title="Canton Fair" description="Prepare phases, badge basics, supplier questions, hotel area, and fair planning." href="/canton-fair/" label="Open hub" />
+            <ToolCard icon="Source" title="China Sourcing" description="Prepare supplier comparison, samples, first order details, trade terms, and landed cost." href="/china-sourcing/" label="Open hub" />
+          </div>
+        </div>
+        <aside class="sidebar">
+          <div class="notice-box">
+            <h2>What to include in your message</h2>
+            <ul class="recommendation-list">
+              <li class="recommendation-item"><span>What you are preparing for</span></li>
+              <li class="recommendation-item"><span>Your timeline</span></li>
+              <li class="recommendation-item"><span>Whether this is travel, Canton Fair, or sourcing</span></li>
+              <li class="recommendation-item"><span>The specific issue you are stuck on</span></li>
+              <li class="recommendation-item"><span>Whether you already have a supplier, quote, sample, hotel, or trip plan</span></li>
+              <li class="recommendation-item"><span>Which guide or checklist you have already read, if any</span></li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <WarningBox title="Practical guidance note">
+      <p>China Buyer Prep provides practical preparation guidance and routing to relevant guides, checklists, and tools. We do not provide legal, tax, customs, visa, official event, logistics, or financial advice. Requirements can change, and details may vary by destination, product, supplier, service provider, and official source. Confirm important details with official sources or qualified professional support when needed.</p>
+    </WarningBox>
+
+    <section class="cta-section">
+      <div class="section">
+        <h2>Tell us what you are preparing for</h2>
+        <p>Use the request form if you are not sure which China Buyer Prep guide, checklist, or tool fits your situation.</p>
+        <div class="cta-actions">
+          <a
+            class="button"
+            href={preparationRequestUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-track-event="checklist_cta_click"
+            data-cta-location="contact_page"
+            data-cta-label="Send your preparation request"
+            data-cta-destination="google_form"
+          >Send your preparation request</a>
+          <a class="button secondary" href="/tools/">Browse all tools</a>
+        </div>
+      </div>
+    </section>
   </section>
 </BaseLayout>

@@ -6,35 +6,135 @@ import ToolCard from '@components/ToolCard.astro';
 ---
 
 <BaseLayout
-  title="Tools"
-  description="Simple China travel, Canton Fair, and sourcing checklists for visitors and overseas buyers preparing for China."
+  title="China Buyer Prep Tools"
+  description="Free practical China preparation tools for first-time visitors, Canton Fair buyers, and small importers, including travel checklists, sourcing checklists, and supplier comparison sheets."
   canonical="/tools/"
 >
   <HubLayout>
     <HubHero
       slot="hero"
       eyebrow="Tools"
-      title="Checklists and templates for planning your China trip"
-      description="Use these simple tools to prepare your China trip, trade fair visit, or supplier comparison process without relying on memory."
-      primaryHref="/tools/china-trip-checklist/"
-      primaryLabel="Start travel checklist"
-      secondaryHref="/tools/supplier-comparison-sheet/"
-      secondaryLabel="Open supplier sheet"
-      statusTitle="Resource Center"
-      progress={66}
+      title="China Buyer Prep Tools"
+      description="Free practical tools to help you prepare for a first China trip, Canton Fair visit, or China sourcing plan."
+      primaryHref="/free-checklist/"
+      primaryLabel="Get Free Checklist"
+      secondaryHref="/china-sourcing/"
+      secondaryLabel="Browse China Sourcing Guides"
+      statusTitle="Tool Paths"
+      progress={0}
     />
 
     <section class="section">
       <div class="editorial-note" style="margin-bottom: 24px;">
         <span class="eyebrow">Resource center</span>
-        <h2>Choose the tool that matches the decision in front of you.</h2>
-        <p>Use these pages as preparation worksheets. They are intentionally static, copyable, and fast so the important details stay visible to search engines and readers.</p>
+        <h2>Choose the tool that matches your next decision.</h2>
+        <p>Use these tools before you travel to China, attend the Canton Fair, compare suppliers, request samples, confirm a first order, or estimate sourcing costs.</p>
+        <p>Requirements can change and details can vary by product, supplier, destination, and service provider. Confirm current details with official sources or professional support when needed.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="travel-tools-title">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">Travel Tools</span>
+          <h2 id="travel-tools-title">Prepare your first China trip</h2>
+          <p>Start here if your main concern is arrival, payment, internet, hotels, addresses, and getting around.</p>
+        </div>
+        <a class="button secondary" href="/china-travel/">China Travel Hub</a>
       </div>
       <div class="tool-grid">
-        <ToolCard icon="Trip" title="China Trip Checklist" description="Best for first-time travel setup: documents, payment apps, internet, hotel, transport, and daily route planning." href="/tools/china-trip-checklist/" label="Open checklist" trackEvent="checklist_cta_click" ctaLocation="tools_index" ctaLabel="View China Travel Checklist" ctaDestination="/tools/china-trip-checklist/" />
-        <ToolCard icon="Fair" title="Canton Fair Buyer Checklist" description="Best for Canton Fair preparation: badge, phase selection, supplier questions, booth notes, and post-fair follow-up." href="/tools/canton-fair-buyer-checklist/" label="Open buyer checklist" trackEvent="checklist_cta_click" ctaLocation="tools_index" ctaLabel="View Canton Fair Checklist" ctaDestination="/tools/canton-fair-buyer-checklist/" />
-        <ToolCard icon="Sourcing" title="China Sourcing Checklist" description="Best for small importers preparing supplier comparison, samples, quality control, first order details, trade terms, freight questions, and landed cost." href="/tools/china-sourcing-checklist/" label="Open sourcing checklist" trackEvent="checklist_cta_click" ctaLocation="tools_index" ctaLabel="View China Sourcing Checklist" ctaDestination="/tools/china-sourcing-checklist/" />
-        <ToolCard icon="Sheet" title="Supplier Comparison Sheet" description="Best for supplier comparison: MOQ, price, lead time, trade terms, sample cost, payment terms, and communication quality." href="/tools/supplier-comparison-sheet/" label="Open comparison sheet" />
+        <ToolCard
+          icon="Trip"
+          title="China Trip Checklist"
+          description="Check payment apps, internet access, hotel address, Chinese addresses, transportation, and backup plans before your trip."
+          href="/tools/china-trip-checklist/"
+          label="Open checklist"
+          trackEvent="checklist_cta_click"
+          ctaLocation="tools_index"
+          ctaLabel="View China Travel Checklist"
+          ctaDestination="/tools/china-trip-checklist/"
+        />
+      </div>
+      <div class="inline-actions">
+        <a class="button secondary" href="/china-travel/">China Travel Hub</a>
+        <a class="button secondary" href="/blog/china-payment-apps-for-foreign-visitors/">China Payment Apps Guide</a>
+        <a class="button secondary" href="/blog/china-esim-internet-access-guide/">China eSIM and Internet Access Guide</a>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="canton-fair-tools-title">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">Canton Fair Tools</span>
+          <h2 id="canton-fair-tools-title">Prepare your Canton Fair visit</h2>
+          <p>Use this path if you are planning phases, buyer badge basics, supplier questions, hotel area, and fair days.</p>
+        </div>
+        <a class="button secondary" href="/canton-fair/">Canton Fair Hub</a>
+      </div>
+      <div class="tool-grid">
+        <ToolCard
+          icon="Fair"
+          title="Canton Fair Buyer Checklist"
+          description="Prepare buyer badge basics, fair phases, supplier questions, hotel area, and fair planning before visiting the Canton Fair."
+          href="/tools/canton-fair-buyer-checklist/"
+          label="Open buyer checklist"
+          trackEvent="checklist_cta_click"
+          ctaLocation="tools_index"
+          ctaLabel="View Canton Fair Checklist"
+          ctaDestination="/tools/canton-fair-buyer-checklist/"
+        />
+      </div>
+      <div class="inline-actions">
+        <a class="button secondary" href="/canton-fair/">Canton Fair Hub</a>
+        <a class="button secondary" href="/blog/canton-fair-first-time-buyer-guide/">Canton Fair First-Time Buyer Guide</a>
+        <a class="button secondary" href="/blog/supplier-questions-to-ask-at-canton-fair/">Supplier Questions Guide</a>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="sourcing-tools-title">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">Sourcing Tools</span>
+          <h2 id="sourcing-tools-title">Compare suppliers and prepare sourcing decisions</h2>
+          <p>Use these tools when you are preparing supplier comparison, samples, quality control, trade terms, freight questions, and landed cost.</p>
+        </div>
+        <a class="button secondary" href="/china-sourcing/">China Sourcing Hub</a>
+      </div>
+      <div class="tool-grid">
+        <ToolCard
+          icon="Source"
+          title="China Sourcing Checklist"
+          description="Follow a step-by-step sourcing checklist covering suppliers, samples, quality control, MOQ, trade terms, freight questions, and landed cost."
+          href="/tools/china-sourcing-checklist/"
+          label="Open sourcing checklist"
+          trackEvent="checklist_cta_click"
+          ctaLocation="tools_index"
+          ctaLabel="View China Sourcing Checklist"
+          ctaDestination="/tools/china-sourcing-checklist/"
+        />
+        <ToolCard
+          icon="Sheet"
+          title="Supplier Comparison Sheet"
+          description="Compare Chinese suppliers by product details, sample status, quote scope, communication, quality risk, trade terms, and sourcing notes."
+          href="/tools/supplier-comparison-sheet/"
+          label="Open comparison sheet"
+        />
+      </div>
+      <div class="inline-actions">
+        <a class="button secondary" href="/china-sourcing/">China Sourcing Hub</a>
+        <a class="button secondary" href="/blog/how-to-compare-chinese-suppliers-before-sample-order/">Supplier Comparison Guide</a>
+        <a class="button secondary" href="/blog/how-to-estimate-landed-cost-importing-from-china/">Landed Cost Guide</a>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="section">
+        <h2>Not sure which tool fits your situation?</h2>
+        <p>Start with the Free Checklist page and choose the path that matches your trip, Canton Fair visit, or sourcing plan.</p>
+        <div class="cta-actions">
+          <a class="button" href="/free-checklist/">Get Free Checklist</a>
+          <a class="button secondary" href="/china-travel/">Browse Travel Setup</a>
+        </div>
       </div>
     </section>
   </HubLayout>

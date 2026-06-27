@@ -1,0 +1,82 @@
+<script>
+  const getChecklistStatusLabel = (progress: number) => {
+    if (progress === 0) return 'Not started';
+    if (progress === 100) return 'Complete';
+    return 'In progress';
+  };
+
+  const updateSyncedStatusCards = (syncKey: string | undefined, progress: number) => {
+    if (!syncKey) return;
+
+    document.querySelectorAll<HTMLElement>('[data-progress-card]').forEach((card) => {
+      if (card.dataset.progressCard !== syncKey) return;
+
+      const progressValue = card.querySelector<HTMLElement>('[data-status-card-progress-value]');
+      const statusValue = card.querySelector<HTMLElement>('[data-status-card-status]');
+      const progressBar = card.querySelector<HTMLElement>('[data-status-card-progress-bar]');
+
+      if (progressValue) progressValue.textContent = String(progress);
+      if (statusValue) statusValue.textContent = getChecklistStatusLabel(progress);
+      if (progressBar) progressBar.style.width = `${progress}%`;
+      card.querySelector('.progress')?.setAttribute('aria-label', `${progress}% complete`);
+    });
+  };
+
+  const updateChecklistBlock = (block: HTMLElement) => {
+    const checkboxes = Array.from(block.querySelectorAll<HTMLInputElement>('[data-checklist-checkbox]'));
+    if (checkboxes.length === 0) return;
+
+    const checkedCount = checkboxes.filter((checkbox) => checkbox.checked).length;
+    const progress = Math.round((checkedCount / checkboxes.length) * 100);
+    const progressValue = block.querySelector<HTMLElement>('[data-checklist-progress-value]');
+    const progressBar = block.querySelector<HTMLElement>('[data-checklist-progress-bar]');
+
+    if (progressValue) progressValue.textContent = String(progress);
+    if (progressBar) progressBar.style.width = `${progress}%`;
+    block.querySelector('.progress')?.setAttribute('aria-label', `${progress}% complete`);
+
+    checkboxes.forEach((checkbox) => {
+      const item = checkbox.closest('[data-checklist-item]');
+      const dot = item?.querySelector<HTMLElement>('.check-dot');
+      item?.classList.toggle('done', checkbox.checked);
+      dot?.classList.toggle('done', checkbox.checked);
+      if (dot) dot.textContent = checkbox.checked ? '✓' : '';
+    });
+
+    const storageKey = block.dataset.storageKey;
+    if (storageKey) {
+      try {
+        localStorage.setItem(storageKey, JSON.stringify(checkboxes.map((checkbox) => checkbox.checked)));
+      } catch {
+        // Ignore storage failures so the checklist remains usable.
+      }
+    }
+
+    updateSyncedStatusCards(block.dataset.syncKey || storageKey, progress);
+  };
+
+  document.querySelectorAll<HTMLElement>('[data-checklist-block="true"]').forEach((block) => {
+    const storageKey = block.dataset.storageKey;
+    const checkboxes = Array.from(block.querySelectorAll<HTMLInputElement>('[data-checklist-checkbox]'));
+
+    if (storageKey) {
+      try {
+        const savedState = JSON.parse(localStorage.getItem(storageKey) || 'null');
+        if (Array.isArray(savedState)) {
+          checkboxes.forEach((checkbox, index) => {
+            checkbox.checked = savedState[index] === true;
+          });
+        }
+      } catch {
+        // Ignore invalid stored state and use the page defaults.
+      }
+    }
+
+    updateChecklistBlock(block);
+    block.addEventListener('change', (event) => {
+      if (event.target instanceof HTMLInputElement && event.target.matches('[data-checklist-checkbox]')) {
+        updateChecklistBlock(block);
+      }
+    });
+  });
+</script>

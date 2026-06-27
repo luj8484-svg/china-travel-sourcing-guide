@@ -2,6 +2,7 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import ToolLayout from '@layouts/ToolLayout.astro';
 import PrepStatusCard from '@components/PrepStatusCard.astro';
+import ChecklistInteraction from '@components/ChecklistInteraction.astro';
 import WarningBox from '@components/WarningBox.astro';
 import SidebarCard from '@components/SidebarCard.astro';
 ---
@@ -24,9 +25,10 @@ import SidebarCard from '@components/SidebarCard.astro';
       </div>
       <PrepStatusCard
         title="Sourcing Checklist Progress"
-        subtitle="Status: Not started"
+        subtitle="Checklist status"
         progress={0}
         tone="orange"
+        syncKey="china-sourcing-checklist"
         items={[
           { label: 'Supplier comparison prepared' },
           { label: 'Sample review planned' },
@@ -51,8 +53,20 @@ import SidebarCard from '@components/SidebarCard.astro';
       </ul>
     </section>
 
-    <section id="checklist" class="section">
+    <section id="checklist" class="section" data-checklist-block="true" data-storage-key="china-sourcing-checklist" data-sync-key="china-sourcing-checklist">
       <h2>Step-by-step China sourcing checklist</h2>
+      <div class="checklist-panel" style="margin-bottom: 18px;">
+        <div class="checklist-heading">
+          <div>
+            <span class="status-label">Overall progress</span>
+            <h3>Sourcing checklist progress</h3>
+          </div>
+          <strong><span data-checklist-progress-value>0</span>%</strong>
+        </div>
+        <div class="progress orange" aria-label="0% complete">
+          <span data-checklist-progress-bar style="width: 0%"></span>
+        </div>
+      </div>
       <div class="grid-2">
         <section class="checklist-panel">
           <div class="checklist-heading">
@@ -62,12 +76,12 @@ import SidebarCard from '@components/SidebarCard.astro';
             </div>
           </div>
           <ul class="checklist-list">
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Confirm supplier name and contact details.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Compare at least two or three supplier options if possible.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Save product photos, specs, and quote details.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Check whether the supplier understands your target product clearly.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Compare communication quality, response speed, and clarity.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Ask what is included and excluded in the quote.</strong></span></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Confirm supplier name and contact details.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Compare at least two or three supplier options if possible.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Save product photos, specs, and quote details.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Check whether the supplier understands your target product clearly.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Compare communication quality, response speed, and clarity.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Ask what is included and excluded in the quote.</strong></span></label></li>
           </ul>
           <div class="inline-actions">
             <a class="button secondary" href="/blog/how-to-compare-chinese-suppliers-before-sample-order/">Read supplier comparison guide</a>
@@ -83,12 +97,12 @@ import SidebarCard from '@components/SidebarCard.astro';
             </div>
           </div>
           <ul class="checklist-list">
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Confirm sample price.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Confirm sample shipping cost.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Confirm whether the sample fee can be deducted from a bulk order.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Ask whether the sample matches mass production materials and packaging.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Save photos and videos of the sample.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Compare the received sample against the promised product details.</strong></span></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Confirm sample price.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Confirm sample shipping cost.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Confirm whether the sample fee can be deducted from a bulk order.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Ask whether the sample matches mass production materials and packaging.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Save photos and videos of the sample.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Compare the received sample against the promised product details.</strong></span></label></li>
           </ul>
           <div class="inline-actions">
             <a class="button secondary" href="/blog/how-to-request-samples-from-chinese-suppliers/">Read sample request guide</a>
@@ -103,11 +117,11 @@ import SidebarCard from '@components/SidebarCard.astro';
             </div>
           </div>
           <ul class="checklist-list">
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Define acceptable quality before production.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Confirm material, size, color, packaging, labeling, and key specs.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Ask how defects will be handled.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Decide whether inspection or testing is needed.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Confirm inspection timing before final payment when relevant.</strong></span></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Define acceptable quality before production.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Confirm material, size, color, packaging, labeling, and key specs.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Ask how defects will be handled.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Decide whether inspection or testing is needed.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Confirm inspection timing before final payment when relevant.</strong></span></label></li>
           </ul>
           <p>Inspection needs can vary by product and market. Use professional inspection or compliance support when needed.</p>
           <div class="inline-actions">
@@ -123,11 +137,11 @@ import SidebarCard from '@components/SidebarCard.astro';
             </div>
           </div>
           <ul class="checklist-list">
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Confirm MOQ.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Ask about price breaks by quantity.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Confirm whether packaging or customization changes price.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Ask what is included in the unit price.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Do not compare unit price without checking quote scope.</strong></span></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Confirm MOQ.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Ask about price breaks by quantity.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Confirm whether packaging or customization changes price.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Ask what is included in the unit price.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Do not compare unit price without checking quote scope.</strong></span></label></li>
           </ul>
           <div class="inline-actions">
             <a class="button secondary" href="/blog/how-to-negotiate-moq-price-chinese-suppliers/">Read MOQ and price guide</a>
@@ -142,14 +156,14 @@ import SidebarCard from '@components/SidebarCard.astro';
             </div>
           </div>
           <ul class="checklist-list">
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Confirm final product specification.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Confirm quantity.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Confirm production lead time.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Confirm payment terms.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Confirm packaging.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Confirm shipping plan.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Confirm documents.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Save all key details in writing before payment.</strong></span></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Confirm final product specification.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Confirm quantity.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Confirm production lead time.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Confirm payment terms.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Confirm packaging.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Confirm shipping plan.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Confirm documents.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Save all key details in writing before payment.</strong></span></label></li>
           </ul>
           <div class="inline-actions">
             <a class="button secondary" href="/blog/what-to-confirm-before-first-order-chinese-supplier/">Read first order checklist</a>
@@ -164,11 +178,11 @@ import SidebarCard from '@components/SidebarCard.astro';
             </div>
           </div>
           <ul class="checklist-list">
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Confirm whether quote is EXW, FOB, CIF, DDP, or another agreed term.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Confirm named place, port, or delivery address.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Confirm what supplier handles.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Confirm what buyer handles.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Confirm what is excluded.</strong></span></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Confirm whether quote is EXW, FOB, CIF, DDP, or another agreed term.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Confirm named place, port, or delivery address.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Confirm what supplier handles.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Confirm what buyer handles.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Confirm what is excluded.</strong></span></label></li>
           </ul>
           <div class="inline-actions">
             <a class="button secondary" href="/blog/exw-fob-cif-ddp-china-sourcing/">Read trade terms guide</a>
@@ -183,13 +197,13 @@ import SidebarCard from '@components/SidebarCard.astro';
             </div>
           </div>
           <ul class="checklist-list">
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Ask what shipping method is quoted.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Ask what costs are included.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Ask what costs are excluded.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Ask who handles customs.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Ask whether duties and taxes are included or excluded.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Ask what documents are needed.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Ask how tracking and delays are handled.</strong></span></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Ask what shipping method is quoted.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Ask what costs are included.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Ask what costs are excluded.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Ask who handles customs.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Ask whether duties and taxes are included or excluded.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Ask what documents are needed.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Ask how tracking and delays are handled.</strong></span></label></li>
           </ul>
           <p>Shipping details can vary by product, destination, forwarder, supplier, and trade term. Confirm details in writing before payment.</p>
           <div class="inline-actions">
@@ -205,16 +219,16 @@ import SidebarCard from '@components/SidebarCard.astro';
             </div>
           </div>
           <ul class="checklist-list">
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Add supplier product cost.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Add packaging or customization cost.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Add freight.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Add insurance if used.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Add duties and taxes if applicable.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Add customs or broker support if needed.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Add destination charges.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Add final delivery.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Add inspection or QC cost.</strong></span></li>
-            <li class="checklist-item"><span class="check-dot"></span><span class="check-text"><strong>Add a practical risk buffer.</strong></span></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Add supplier product cost.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Add packaging or customization cost.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Add freight.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Add insurance if used.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Add duties and taxes if applicable.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Add customs or broker support if needed.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Add destination charges.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Add final delivery.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Add inspection or QC cost.</strong></span></label></li>
+            <li class="checklist-item" data-checklist-item><label class="checklist-control"><input class="checklist-input" type="checkbox" data-checklist-checkbox /><span class="check-dot" aria-hidden="true"></span><span class="check-text"><strong>Add a practical risk buffer.</strong></span></label></li>
           </ul>
           <p>Use professional freight, customs, inspection, legal, tax, or compliance support when needed.</p>
           <div class="inline-actions">
@@ -223,6 +237,7 @@ import SidebarCard from '@components/SidebarCard.astro';
         </section>
       </div>
     </section>
+    <ChecklistInteraction />
 
     <section class="section">
       <h2>Copyable sourcing preparation table</h2>

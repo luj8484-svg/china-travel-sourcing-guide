@@ -25,9 +25,10 @@ import SidebarCard from '@components/SidebarCard.astro';
       </div>
       <PrepStatusCard
         title="Fair Readiness Score"
-        subtitle="Status: Not started"
+        subtitle="Checklist status"
         progress={0}
         tone="orange"
+        syncKey="canton-fair-buyer-checklist"
         items={[
           { label: 'Product phase checked' },
           { label: 'Buyer badge prepared' },
@@ -41,6 +42,7 @@ import SidebarCard from '@components/SidebarCard.astro';
       progress={0}
       interactive
       storageKey="canton-fair-buyer-checklist"
+      syncKey="canton-fair-buyer-checklist"
       items={[
         { label: 'Confirm the correct fair phase', description: 'Match product category to Phase 1, 2, or 3.' },
         { label: 'Prepare buyer registration details', description: 'Passport, company information, and business cards.' },

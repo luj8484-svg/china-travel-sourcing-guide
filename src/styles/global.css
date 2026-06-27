@@ -682,8 +682,19 @@ h3 {
 
 .checklist-input {
   position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  border: 0;
+  clip: rect(0 0 0 0);
   opacity: 0;
-  pointer-events: none;
+  white-space: nowrap;
+}
+
+.checklist-control:focus-within .check-dot {
+  outline: 3px solid rgba(33, 112, 228, 0.36);
+  outline-offset: 3px;
 }
 
 .warning-box {

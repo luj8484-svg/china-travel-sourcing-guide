@@ -29,9 +29,10 @@ import SidebarCard from '@components/SidebarCard.astro';
       </div>
       <PrepStatusCard
         title="Payment Readiness Score"
-        subtitle="Status: Not started"
+        subtitle="Checklist status"
         progress={0}
         tone="orange"
+        syncKey="china-trip-checklist"
         items={[
           { label: 'Installed Alipay App' },
           { label: 'Linked international card' },
@@ -45,6 +46,7 @@ import SidebarCard from '@components/SidebarCard.astro';
       progress={0}
       interactive
       storageKey="china-trip-checklist"
+      syncKey="china-trip-checklist"
       items={[
         { label: 'Installed Alipay app', description: 'Download the app before arriving in China and complete basic setup.' },
         { label: 'Installed WeChat app', description: 'Required for communication and useful as a payment backup.' },

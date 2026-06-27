@@ -1,4 +1,6 @@
 ---
+import ChecklistInteraction from '@components/ChecklistInteraction.astro';
+
 interface Item {
   label: string;
   description?: string;
@@ -12,9 +14,10 @@ interface Props {
   items: Item[];
   interactive?: boolean;
   storageKey?: string;
+  syncKey?: string;
 }
 
-const { title, eyebrow = 'Overall progress', progress = 0, items, interactive = false, storageKey } = Astro.props;
+const { title, eyebrow = 'Overall progress', progress = 0, items, interactive = false, storageKey, syncKey } = Astro.props;
 const safeProgress = Math.max(0, Math.min(100, progress));
 ---
 
@@ -24,6 +27,7 @@ const safeProgress = Math.max(0, Math.min(100, progress));
   aria-labelledby={`${title.replaceAll(' ', '-').toLowerCase()}-title`}
   data-checklist-block={interactive ? 'true' : undefined}
   data-storage-key={storageKey}
+  data-sync-key={syncKey}
 >
   <div class="checklist-heading">
     <div>
@@ -61,60 +65,4 @@ const safeProgress = Math.max(0, Math.min(100, progress));
   </ul>
 </section>
 
-<script>
-  const updateChecklistBlock = (block: HTMLElement) => {
-    const checkboxes = Array.from(block.querySelectorAll<HTMLInputElement>('[data-checklist-checkbox]'));
-    if (checkboxes.length === 0) return;
-
-    const checkedCount = checkboxes.filter((checkbox) => checkbox.checked).length;
-    const progress = Math.round((checkedCount / checkboxes.length) * 100);
-    const progressValue = block.querySelector<HTMLElement>('[data-checklist-progress-value]');
-    const progressBar = block.querySelector<HTMLElement>('[data-checklist-progress-bar]');
-
-    if (progressValue) progressValue.textContent = String(progress);
-    if (progressBar) progressBar.style.width = `${progress}%`;
-    block.querySelector('.progress')?.setAttribute('aria-label', `${progress}% complete`);
-
-    checkboxes.forEach((checkbox) => {
-      const item = checkbox.closest('[data-checklist-item]');
-      const dot = item?.querySelector<HTMLElement>('.check-dot');
-      item?.classList.toggle('done', checkbox.checked);
-      dot?.classList.toggle('done', checkbox.checked);
-      if (dot) dot.textContent = checkbox.checked ? '✓' : '';
-    });
-
-    const storageKey = block.dataset.storageKey;
-    if (storageKey) {
-      try {
-        localStorage.setItem(storageKey, JSON.stringify(checkboxes.map((checkbox) => checkbox.checked)));
-      } catch {
-        // Ignore storage failures so the checklist remains usable.
-      }
-    }
-  };
-
-  document.querySelectorAll<HTMLElement>('[data-checklist-block="true"]').forEach((block) => {
-    const storageKey = block.dataset.storageKey;
-    const checkboxes = Array.from(block.querySelectorAll<HTMLInputElement>('[data-checklist-checkbox]'));
-
-    if (storageKey) {
-      try {
-        const savedState = JSON.parse(localStorage.getItem(storageKey) || 'null');
-        if (Array.isArray(savedState)) {
-          checkboxes.forEach((checkbox, index) => {
-            checkbox.checked = savedState[index] === true;
-          });
-        }
-      } catch {
-        // Ignore invalid stored state and use the page defaults.
-      }
-    }
-
-    updateChecklistBlock(block);
-    block.addEventListener('change', (event) => {
-      if (event.target instanceof HTMLInputElement && event.target.matches('[data-checklist-checkbox]')) {
-        updateChecklistBlock(block);
-      }
-    });
-  });
-</script>
+{interactive && <ChecklistInteraction />}

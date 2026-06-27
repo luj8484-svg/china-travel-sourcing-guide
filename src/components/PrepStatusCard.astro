@@ -12,6 +12,7 @@ interface Props {
   items?: Item[];
   footer?: string;
   tone?: 'green' | 'orange' | 'blue';
+  syncKey?: string;
 }
 
 const {
@@ -20,24 +21,25 @@ const {
   progress = 50,
   items = [],
   footer,
-  tone = 'green'
+  tone = 'green',
+  syncKey
 } = Astro.props;
 const safeProgress = Math.max(0, Math.min(100, progress));
 const progressStatus = safeProgress === 0 ? 'Not started' : safeProgress === 100 ? 'Complete' : 'In progress';
 ---
 
-<div class={`prep-card tone-${tone}`}>
+<div class={`prep-card tone-${tone}`} data-progress-card={syncKey}>
   <div class="prep-card-header">
     <div class="prep-card-title-row">
       <h3>{title}</h3>
-      <span class="status-label">{safeProgress}%</span>
+      <span class="status-label"><span data-status-card-progress-value>{safeProgress}</span>%</span>
     </div>
     <div class="progress-label-row">
       <span>{subtitle}</span>
-      <span>{progressStatus}</span>
+      <span data-status-card-status>{progressStatus}</span>
     </div>
     <div class={`progress ${tone === 'orange' ? 'orange' : ''}`} aria-label={`${safeProgress}% complete`}>
-      <span style={`width: ${safeProgress}%`}></span>
+      <span data-status-card-progress-bar style={`width: ${safeProgress}%`}></span>
     </div>
   </div>
   <ul class="prep-card-list">
